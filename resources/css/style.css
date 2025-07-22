@@ -107,8 +107,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
         }
 
         .video-bg video.active {
@@ -145,7 +143,6 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: opacity 2s ease-in-out;
         }
 
         .video-slide.active {
@@ -289,60 +286,109 @@
 
         /* Ministries Section */
         .ministries-section {
-            padding: 5rem 0;
-            background: white;
+            background: #fbefff; /* soft pink like screenshot */
+            padding: 4rem 0;
         }
 
-        .ministry-grid {
+        .ministry-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .ministry-info {
+            flex: 1 1 350px;
+            max-width: 450px;
+        }
+
+        .ministry-highlight {
+            color: #b97aff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: #333;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid #333;
+            background: transparent;
+            color: #333;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-outline:hover {
+            background: #333;
+            color: #fff;
+        }
+
+        .ministry-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 1.5rem;
+            flex: 1 1 500px;
         }
 
         .ministry-card {
-            position: relative;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            height: 300px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+            position: relative;
+            min-width: 200px;
+            min-height: 180px;
         }
-
-        .ministry-card:hover {
-            transform: scale(1.03);
-        }
-
         .ministry-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .ministry-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(0,0,0,0.7), rgba(52, 73, 94, 0.5));
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.5), transparent 60%);
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
+            align-items: flex-end;
+            padding: 1.2rem;
         }
-
         .ministry-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 0;
         }
 
         /* Footer */
         .footer {
-            background: linear-gradient(135deg, #2c3e50, #34495e);
+            position: relative;
+            background: url('/resources/img/jesusbyhoffman.avif') center/cover no-repeat;
             color: white;
             padding: 3rem 0 1rem;
+            overflow: hidden;
+        }
+
+        .footer-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(44, 62, 80, 0.85); /* dark translucent overlay */
+            z-index: 0;
         }
 
         .footer-content {
@@ -350,6 +396,13 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section{
+            position: relative;
+            z-index: 1;
         }
 
         .footer-section h3 {
@@ -372,14 +425,15 @@
         }
 
         .footer-section ul li a {
-            color: #bdc3c7;
+            color: #f9e79f;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color 0.2s;
         }
 
         .footer-section ul li a:hover {
             color: #f39c12;
         }
+
 
         .social-links {
             display: flex;
@@ -404,10 +458,12 @@
         }
 
         .footer-bottom {
-            border-top: 1px solid #34495e;
+            border-top: 1px solid #bdc3c7;
             padding-top: 1rem;
             text-align: center;
-            color: #7f8c8d;
+            color: #bdc3c7;
+            position: relative;
+            z-index: 1;
         }
 
         /* Mobile Responsive */
@@ -431,6 +487,22 @@
             }
         }
 
+        @media (max-width: 900px) {
+            .ministry-flex {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .ministry-cards {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto;
+            }
+        }
+        @media (max-width: 600px) {
+            .ministry-cards {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+        }
         @media (max-width: 768px) {
             .mobile-menu {
                 display: block;
@@ -465,3 +537,113 @@
                 font-size: 2rem;
             }
         }
+
+/* --- About Us Section Redesign --- */
+.about-us-layout {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+.about-features {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.5rem;
+    flex: 1 1 220px;
+    max-width: 260px;
+}
+.about-feature-box {
+    background: #faf9f7;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.2rem 1.2rem 1.5rem 1.2rem;
+    min-height: 120px;
+    transition: box-shadow 0.2s;
+}
+.about-feature-box i {
+    font-size: 2.2rem;
+    color: #b7b7b7;
+    margin-bottom: 1.1rem;
+}
+.feature-title {
+    color: #b7b7b7;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+}
+.about-center {
+    flex: 2 1 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.about-center-content {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+.about-label {
+    font-size: 1.3rem;
+    color: #222;
+    margin-bottom: 0.2rem;
+    font-family: serif;
+}
+.about-title {
+    font-size: 2.5rem;
+    color: #b97a7a;
+    font-weight: bold;
+    margin-bottom: 0.7rem;
+    font-family: serif;
+}
+.about-mission {
+    font-size: 1.1rem;
+    color: #222;
+    margin-bottom: 1.5rem;
+    font-family: serif;
+}
+.about-desc {
+    color: #888;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    line-height: 1.7;
+}
+@media (max-width: 1000px) {
+    .about-us-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding: 3rem 1rem;
+    }
+    .about-features {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1.5rem;
+        max-width: 100%;
+    }
+    .about-feature-box {
+        min-width: 140px;
+        padding: 1.2rem 0.5rem 1rem 0.5rem;
+    }
+    .about-center {
+        margin: 1.5rem 0;
+    }
+}
+@media (max-width: 600px) {
+    .about-us-layout {
+        padding: 2rem 0.2rem;
+    }
+    .about-center-content {
+        max-width: 95vw;
+    }
+    .about-feature-box {
+        min-width: 100px;
+        font-size: 0.95rem;
+    }
+}
