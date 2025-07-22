@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - UETMC</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/css/style.css">
+    <style>
+        /* Quick modal style for gallery */
+        .modal { display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); align-items:center; justify-content:center; }
+        .modal.active { display:flex; }
+        .modal-content { position:relative; max-width:90vw; max-height:90vh; }
+        .modal-content img { max-width:100%; max-height:80vh; border-radius:10px; }
+        .modal-close { position:absolute; top:10px; right:10px; color:#fff; font-size:2rem; cursor:pointer; }
+        .modal-nav { position:absolute; top:50%; transform:translateY(-50%); color:#fff; font-size:2.5rem; cursor:pointer; background:rgba(0,0,0,0.3); border:none; border-radius:50%; width:40px; height:40px; display:flex; align-items:center; justify-content:center; }
+        .modal-prev { left:10px; }
+        .modal-next { right:10px; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-church"></i>
+                <span>UETMC</span>
+            </div>
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="index.html#home">HOME</a></li>
+                    <li><a href="index.html#about">ABOUT US</a></li>
+                    <li><a href="sermons.html">SERMONS</a></li>
+                    <li><a href="index.html#ministries">MINISTRIES</a></li>
+                    <li><a href="blog.html">BLOG</a></li>
+                    <li><a href="gallery.html" class="active">GALLERY</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </nav>
+            <a href="index.html#join" class="join-btn">Join Ministry</a>
+            <button class="mobile-menu" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+    <main class="gallery-main">
+        <div class="container">
+            <h1 class="section-title" style="text-align:center; margin-top:2rem;">Photo & Video Gallery</h1>
+            <h2 style="margin-top:2rem;">Photo Gallery</h2>
+            <div class="gallery-grid" id="gallery-grid">
+                <img src="/resources/img/logo.png" alt="Photo 1" class="gallery-photo" data-group="event1">
+                <img src="/resources/img/jesusbyhoffman.avif" alt="Photo 2" class="gallery-photo" data-group="event1">
+                <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400" alt="Photo 3" class="gallery-photo" data-group="event2">
+                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400" alt="Photo 4" class="gallery-photo" data-group="event2">
+                <!-- Add more images as needed, with data-group for chains -->
+            </div>
+            <div class="modal" id="gallery-modal">
+                <button class="modal-nav modal-prev" id="modal-prev">&#8592;</button>
+                <div class="modal-content">
+                    <span class="modal-close" id="modal-close">&times;</span>
+                    <img id="modal-img" src="" alt="Gallery Slide">
+                </div>
+                <button class="modal-nav modal-next" id="modal-next">&#8594;</button>
+            </div>
+            <h2 style="margin-top:3rem;">Video Gallery</h2>
+            <div class="gallery-videos">
+                <div class="gallery-video">
+                    <iframe width="360" height="215" src="https://www.youtube.com/embed/ysz5S6PUM-U" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="gallery-video">
+                    <iframe width="360" height="215" src="https://www.youtube.com/embed/ScMzIvxBSi4" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <!-- Add more YouTube iframes as needed -->
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-overlay"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Our Ministry</h3>
+                    <p>Ubungo End Time Message Church is committed to spreading the Word of God, touching lives through faith, and providing a path for spiritual growth. Join us as we worship, learn, and serve together in the love of Christ.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html#about">About Church</a></li>
+                        <li><a href="sermons.html">Our Sermons</a></li>
+                        <li><a href="index.html#ministries">Church Ministries</a></li>
+                        <li><a href="blog.html">Church Blog</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Service Times</h3>
+                    <ul>
+                        <li>Sunday Worship: 9:00 AM - 12:00 PM</li>
+                        <li>Wednesday Bible Study: 6:00 PM - 8:00 PM</li>
+                        <li>Friday Prayer Service: 7:00 PM - 9:00 PM</li>
+                        <li>Saturday Youth Service: 4:00 PM - 6:00 PM</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <a href="https://maps.google.com/?q=Ubungo, Dar es Salaam, Tanzania" target="_blank">
+                                Ubungo, Dar es Salaam, Tanzania
+                            </a>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+255123456789">+255 123 456 789</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@uetmc.or.tz">info@uetmc.or.tz</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 5:00 PM
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025. Ubungo End Time Message Church. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        if (mobileMenu && navMenu) {
+            mobileMenu.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+        // Gallery modal logic
+        const galleryPhotos = document.querySelectorAll('.gallery-photo');
+        const modal = document.getElementById('gallery-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalClose = document.getElementById('modal-close');
+        const modalPrev = document.getElementById('modal-prev');
+        const modalNext = document.getElementById('modal-next');
+        let currentGroup = [];
+        let currentIndex = 0;
+        function openModal(group, index) {
+            currentGroup = Array.from(document.querySelectorAll('.gallery-photo[data-group="'+group+'"]'));
+            currentIndex = index;
+            modalImg.src = currentGroup[currentIndex].src;
+            modal.classList.add('active');
+        }
+        galleryPhotos.forEach((img, idx) => {
+            img.addEventListener('click', () => {
+                const group = img.getAttribute('data-group');
+                const groupPhotos = Array.from(document.querySelectorAll('.gallery-photo[data-group="'+group+'"]'));
+                const groupIndex = groupPhotos.indexOf(img);
+                openModal(group, groupIndex);
+            });
+        });
+        modalClose.addEventListener('click', () => { modal.classList.remove('active'); });
+        modalPrev.addEventListener('click', () => {
+            if (currentGroup.length) {
+                currentIndex = (currentIndex - 1 + currentGroup.length) % currentGroup.length;
+                modalImg.src = currentGroup[currentIndex].src;
+            }
+        });
+        modalNext.addEventListener('click', () => {
+            if (currentGroup.length) {
+                currentIndex = (currentIndex + 1) % currentGroup.length;
+                modalImg.src = currentGroup[currentIndex].src;
+            }
+        });
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+    </script>
+</body>
+</html> 

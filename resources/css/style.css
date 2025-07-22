@@ -987,3 +987,212 @@
         padding: 1.2rem 0.5rem;
     }
 }
+
+/* --- Sermons Page Styles --- */
+.sermons-main {
+    background: #f6f8fc;
+    min-height: 100vh;
+    padding: 3rem 0;
+    padding-top: 7.5rem;
+}
+.sermons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    max-width: 700px;
+    margin: 2rem auto 0 auto;
+}
+.sermon-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    padding: 2rem 2rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+}
+.sermon-title {
+    font-size: 1.4rem;
+    color: #7c5fe6;
+    margin-bottom: 0.2rem;
+}
+.sermon-meta {
+    font-size: 0.98rem;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+}
+.sermon-desc {
+    color: #444;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+}
+.sermon-card audio {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+.sermon-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #7c5fe6;
+    color: #fff;
+    border-radius: 6px;
+    padding: 0.5rem 1.2rem;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+.sermon-download:hover {
+    background: #5a3fc0;
+    color: #fff;
+}
+@media (max-width: 700px) {
+    .sermons-list {
+        padding: 0 0.5rem;
+    }
+    .sermon-card {
+        padding: 1.2rem 0.7rem 1rem 0.7rem;
+    }
+}
+
+/* --- Gallery Page Styles --- */
+.gallery-main {
+    background: #f6f8fc;
+    min-height: 100vh;
+    padding: 3rem 0;
+    padding-top: 7.5rem;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0 3rem 0;
+}
+.gallery-photo {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.gallery-photo:hover {
+    transform: scale(1.04);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+}
+.gallery-videos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-content: flex-start;
+}
+.gallery-video iframe {
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    width: 360px;
+    height: 215px;
+    max-width: 100%;
+}
+@media (max-width: 900px) {
+    .gallery-videos {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+    }
+}
+@media (max-width: 600px) {
+    .gallery-main {
+        padding-top: 6.5rem;
+    }
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.7rem;
+    }
+    .gallery-photo {
+        height: 110px;
+    }
+    .gallery-video iframe {
+        width: 100vw;
+        height: 180px;
+    }
+}
+
+/* --- Contact Page Styles --- */
+.contact-main {
+    background: #f6f8fc;
+    min-height: 100vh;
+    padding: 3rem 0;
+    padding-top: 7.5rem;
+}
+.contact-flex {
+    display: flex;
+    gap: 2.5rem;
+    margin: 2.5rem 0 0 0;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.contact-form {
+    flex: 1 1 350px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    padding: 2rem 2rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 280px;
+    max-width: 500px;
+}
+.contact-form label {
+    font-weight: 500;
+    color: #7c5fe6;
+    margin-bottom: 0.2rem;
+}
+.contact-form input, .contact-form textarea {
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    padding: 0.7rem;
+    font-size: 1rem;
+    margin-bottom: 0.7rem;
+    width: 100%;
+}
+.contact-form button {
+    background: #7c5fe6;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.contact-form button:hover {
+    background: #5a3fc0;
+}
+.contact-map {
+    flex: 1 1 350px;
+    min-width: 280px;
+    max-width: 600px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    padding: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 900px) {
+    .contact-flex {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .contact-map, .contact-form {
+        max-width: 100%;
+        min-width: 0;
+    }
+}

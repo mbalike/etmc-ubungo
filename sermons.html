@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sermons - UETMC</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-church"></i>
+                <span>UETMC</span>
+            </div>
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="index.html#home">HOME</a></li>
+                    <li><a href="index.html#about">ABOUT US</a></li>
+                    <li><a href="sermons.html" class="active">SERMONS</a></li>
+                    <li><a href="index.html#ministries">MINISTRIES</a></li>
+                    <li><a href="blog.html">BLOG</a></li>
+                    <li><a href="gallery.html">GALLERY</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </nav>
+            <a href="index.html#join" class="join-btn">Join Ministry</a>
+            <button class="mobile-menu" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+    <main class="sermons-main">
+        <div class="container">
+            <h1 class="section-title" style="text-align:center; margin-top:2rem;">Audio Sermons</h1>
+            <div class="sermons-list">
+                <div class="sermon-card">
+                    <h2 class="sermon-title">The Power of Faith</h2>
+                    <div class="sermon-meta">March 10, 2025</div>
+                    <p class="sermon-desc">Discover how faith can move mountains and transform your life in this inspiring sermon.</p>
+                    <audio controls>
+                        <source src="/resources/audio/sermon1.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="/resources/audio/sermon1.mp3" download class="sermon-download"><i class="fas fa-download"></i> Download</a>
+                </div>
+                <div class="sermon-card">
+                    <h2 class="sermon-title">Walking in Love</h2>
+                    <div class="sermon-meta">February 24, 2025</div>
+                    <p class="sermon-desc">A message on the importance of love in the Christian walk and how to live it daily.</p>
+                    <audio controls>
+                        <source src="/resources/audio/sermon2.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="/resources/audio/sermon2.mp3" download class="sermon-download"><i class="fas fa-download"></i> Download</a>
+                </div>
+                <!-- Add more sermon-card blocks as needed -->
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-overlay"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Our Ministry</h3>
+                    <p>Ubungo End Time Message Church is committed to spreading the Word of God, touching lives through faith, and providing a path for spiritual growth. Join us as we worship, learn, and serve together in the love of Christ.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html#about">About Church</a></li>
+                        <li><a href="sermons.html">Our Sermons</a></li>
+                        <li><a href="index.html#ministries">Church Ministries</a></li>
+                        <li><a href="blog.html">Church Blog</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Service Times</h3>
+                    <ul>
+                        <li>Sunday Worship: 9:00 AM - 12:00 PM</li>
+                        <li>Wednesday Bible Study: 6:00 PM - 8:00 PM</li>
+                        <li>Friday Prayer Service: 7:00 PM - 9:00 PM</li>
+                        <li>Saturday Youth Service: 4:00 PM - 6:00 PM</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <a href="https://maps.google.com/?q=Ubungo, Dar es Salaam, Tanzania" target="_blank">
+                                Ubungo, Dar es Salaam, Tanzania
+                            </a>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+255123456789">+255 123 456 789</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@uetmc.or.tz">info@uetmc.or.tz</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 5:00 PM
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025. Ubungo End Time Message Church. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        if (mobileMenu && navMenu) {
+            mobileMenu.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html> 
