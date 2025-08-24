@@ -1,302 +1,484 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ubungo - ETMC</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/resources/css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Church Name — Welcome</title>
+  <meta name="description" content="A Bible-believing fellowship proclaiming the Gospel of Jesus Christ." />
+  <link rel="icon" href="assets/logo.png" />
+  <style>
+    :root{
+      --brand:#2a4c7f;         /* primary */
+      --ink:#10131a;           /* body text */
+      --muted:#6b7280;
+      --bg:#0b1020;            /* page background, dark to support glass */
+      --ring:rgba(42,76,127,.35);
+      --glass-bg:rgba(255,255,255,.12);
+      --glass-brd:rgba(255,255,255,.22);
+      --glass-shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
+      color:#eef2ff; background:radial-gradient(1200px 600px at 20% -10%, #1a2440 0, transparent 60%), var(--bg);
+      line-height:1.6;
+    }
 
+    /* ======= Glass helpers ======= */
+    .glass{
+      background:var(--glass-bg);
+      -webkit-backdrop-filter:saturate(180%) blur(14px);
+      backdrop-filter:saturate(180%) blur(14px);
+      border:1px solid var(--glass-brd);
+      box-shadow:var(--glass-shadow);
+    }
+    .glass-soft{
+      background:rgba(255,255,255,.08);
+      -webkit-backdrop-filter:saturate(160%) blur(10px);
+      backdrop-filter:saturate(160%) blur(10px);
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:0 8px 24px rgba(0,0,0,.25);
+    }
+
+    /* ======= Pill Navigation (iOS-like) ======= */
+    .nav-wrap{
+      position:sticky; top:16px; z-index:60; display:flex; justify-content:center; padding:0 16px;
+    }
+    .nav{
+      display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:999px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; text-decoration:none; color:#eef2ff; font-weight:800;
+      padding:6px 10px; border-radius:999px;
+    }
+    .brand img{width:28px; height:28px; object-fit:contain}
+    .links{display:flex; gap:4px; flex-wrap:wrap}
+    .links a{
+      color:#f0f4ff; text-decoration:none; font-weight:700; font-size:.95rem;
+      padding:8px 12px; border-radius:999px; opacity:.95;
+    }
+    .links a:hover, .links a[aria-current="page"]{background:rgba(255,255,255,.14)}
+    .menu-btn{display:none; margin-left:8px; border:0; background:transparent; color:#fff; font-size:1.1rem; padding:8px 10px; border-radius:12px}
+    .menu-btn:focus{outline:3px solid var(--ring)}
+
+    /* ======= Hero with blurred local video ======= */
+    .hero{
+      position:relative; min-height:78vh; display:grid; place-items:center; overflow:hidden;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .hero-bg{
+      position:absolute; inset:0; overflow:hidden; z-index:-2;
+    }
+    .hero-bg video{
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+      filter:blur(14px) saturate(120%) brightness(70%);
+      transform:scale(1.08); /* bleed edges after blur */
+    }
+    .hero-overlay{
+      position:absolute; inset:0; z-index:-1;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(58,88,168,.35), transparent 60%),
+        linear-gradient(to bottom, rgba(7,10,20,.55), rgba(7,10,20,.55));
+    }
+    .hero-inner{
+      max-width:1200px; width:100%; padding:96px 16px 64px; display:grid; grid-template-columns:1.25fr 1fr; gap:24px;
+    }
+    .kicker{color:#c7d6ff; text-transform:uppercase; letter-spacing:.12em; font-weight:800; font-size:.8rem}
+    h1{margin:.35rem 0 1rem; font-size:clamp(1.9rem, 3.8vw, 3.2rem); line-height:1.15}
+    .lead{color:#e6ebff; max-width:65ch}
+    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px}
+    .btn{
+      appearance:none; border:0; border-radius:999px; padding:12px 18px; font-weight:800; cursor:pointer;
+      text-decoration:none; display:inline-flex; align-items:center; gap:10px;
+    }
+    .btn.primary{background:#3b5db1; color:#fff; box-shadow:0 10px 28px rgba(59,93,177,.45)}
+    .btn.ghost{background:rgba(255,255,255,.14); color:#fff; border:1px solid rgba(255,255,255,.22)}
+
+    .hero-card{
+      border-radius:var(--radius); padding:20px;
+    }
+    .meta{display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:.98rem; color:#d6def6}
+    .meta div{padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14)}
+
+    /* ======= Sections & Cards (glass) ======= */
+    section{max-width:1200px; margin:0 auto; padding:56px 16px}
+    .section-title{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:24px}
+    .section-title h2{margin:0; font-size:clamp(1.3rem, 2.6vw, 2rem)}
+    .section-title a{font-weight:800; color:#d2deff; text-decoration:none}
+
+    .grid{display:grid; gap:16px}
+    .cols-3{grid-template-columns:repeat(3, 1fr)}
+    .cols-2{grid-template-columns:repeat(2, 1fr)}
+    .cols-4{grid-template-columns:repeat(4, 1fr)}
+
+    .card{
+      border-radius:18px; padding:16px;
+      color:#eaf0ff;
+    }
+    .card h3{margin:6px 0 6px; font-size:1.06rem}
+    .muted{color:#c5cce6}
+    .badge{display:inline-block; font-size:.75rem; padding:4px 8px; border-radius:999px; background:rgba(255,255,255,.15); color:#fff; font-weight:800; border:1px solid rgba(255,255,255,.22)}
+
+    /* Publications videos */
+    .video-grid{display:grid; gap:16px; grid-template-columns:repeat(3, 1fr)}
+    .video-grid iframe{width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#000}
+
+    /* Prayer banner */
+    .banner{
+      border-radius:22px; padding:22px; display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .banner p{margin:0; max-width:75ch}
+
+    /* Footer */
+    footer{margin-top:40px; background:rgba(255,255,255,.06); border-top:1px solid rgba(255,255,255,.12)}
+    footer .wrap{max-width:1200px; margin:auto; padding:30px 16px; display:grid; gap:20px; grid-template-columns:2fr 1fr 1fr}
+    footer a{color:#d7e4ff; text-decoration:none}
+    .foot-note{border-top:1px solid rgba(255,255,255,.12); text-align:center; padding:14px; font-size:.9rem; color:#c8d4f7}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-inner{grid-template-columns:1fr}
+      .video-grid{grid-template-columns:1fr 1fr}
+      .cols-4{grid-template-columns:repeat(2, 1fr)}
+      footer .wrap{grid-template-columns:1fr}
+    }
+    @media (max-width: 760px){
+      .links{display:none}
+      .menu-btn{display:block}
+      .links.open{
+        display:flex; width:100%; flex-direction:column; padding:8px; gap:6px; margin-top:8px;
+      }
+      .video-grid{grid-template-columns:1fr}
+      .cols-3, .cols-2{grid-template-columns:1fr}
+      .banner{flex-direction:column; align-items:flex-start}
+    }
+
+    /* A11y focus */
+    a:focus, button:focus{outline:3px solid var(--ring); outline-offset:2px; border-radius:10px}
+
+    /* Motion & blur safety */
+    @media (prefers-reduced-motion: reduce){
+      .hero-bg video{animation:none}
+      .btn{transition:none}
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="nav-container">
-            <div class="logo">
-                <img src="/resources/img/logo.png" alt="ETMC Logo" style="height:40px; width:auto; margin-right:0.5rem; vertical-align:middle; display:inline-block; object-fit:contain;">
-                <span>ETMC</span>
-            </div>
-            
-            <nav>
-                <ul class="nav-menu" id="nav-menu">
-                    <li><a href="#home" class="active">HOME</a></li>
-                    <li><a href="about.html">ABOUT US</a></li>
-                    <li><a href="sermons.html">SERMONS</a></li>
-                    <li><a href="#ministries">MINISTRIES</a></li>
-                    <li><a href="blog.html">BLOG</a></li>
-                    <li><a href="gallery.html">GALLERY</a></li>
-                    <li><a href="contact.html">CONTACT</a></li>
-                </ul>
-            </nav>
 
-            <a href="#join" class="join-btn">Join Ministry</a>
-            
-            <button class="mobile-menu" id="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </header>
+  <!-- Glass Pill NAV -->
+  <div class="nav-wrap" role="banner">
+    <div class="nav glass" role="navigation" aria-label="Primary">
+      <a class="brand" href="#home" aria-label="Home">
+        <img src="assets/logo.png" alt="Church Logo" />
+        <span>Your Church</span>
+      </a>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="video-bg">
-            <div class="video-slideshow">
-    <!-- Hero Section Background Videos that cycle through -->
-    <div class="video-slide active">
-        <video autoplay muted loop>
-            <source src="/resources/videos/66.0-77.0.mp4" type="video/mp4">
-            
-            Your browser does not support the video tag.
-        </video>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" title="Toggle navigation">☰</button>
+
+      <nav id="nav-links" class="links">
+        <a href="#home" aria-current="page">Home</a>
+        <a href="#beliefs">What We Believe</a>
+        <a href="#about">About</a>
+        <a href="#board">Church Board</a>
+        <a href="#missionaries">Missionaries</a>
+        <a href="#prayer">Prayer Request</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
-    <div class="video-slide">
-        <video autoplay muted loop>
-            <source src="/resources/videos/66.0-77.0.mp4" type="video/mp4">
-            
-            Your browser does not support the video tag.
-        </video>
+  </div>
+
+  <!-- HERO with blurred local video -->
+  <header id="home" class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <!-- Local video (muted+autoplay+loop for hero) -->
+      <video
+        preload="auto"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="assets/hero.jpg"
+      >
+        <source src="hero.mp4" type="video/mp4" />
+        <!-- Optional WebM if you have it
+        <source src="assets/hero.webm" type="video/webm" /> -->
+      </video>
     </div>
-    <div class="video-slide">
-        <video autoplay muted loop>
-            <source src="/resources/videos/66.0-77.0.mp4" type="video/mp4">
-            
-            Your browser does not support the video tag.
-        </video>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div>
+        <div class="kicker">Welcome</div>
+        <h1>A Bible-Believing Fellowship in the Name of the Lord Jesus Christ</h1>
+        <p class="lead">
+          We uphold the infallible Word of God, proclaim Jesus Christ the same yesterday, today, and forever,
+          and seek to live out the apostolic faith in love, holiness, and order.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="#beliefs">Our Beliefs</a>
+          <a class="btn ghost glass-soft" href="#prayer">Send a Prayer Request</a>
+        </div>
+      </div>
+
+      <aside class="hero-card glass" aria-label="Service times and location">
+        <h3 style="margin:0 0 10px">Join Us This Sunday</h3>
+        <div class="meta">
+          <div><strong>Morning Worship</strong><br/>Sun · 10:00 AM</div>
+          <div><strong>Midweek Service</strong><br/>Wed · 6:00 PM</div>
+          <div><strong>Location</strong><br/>123 Church Street, Your City</div>
+          <div><strong>Contact</strong><br/><a style="color:#fff" href="tel:+255700000000">+255 700 000 000</a></div>
+        </div>
+        <p class="muted" style="margin-top:10px">“For where two or three are gathered together in my name, there am I in the midst of them.” — Matthew 18:20</p>
+      </aside>
     </div>
-   
-</div>
-        </div>
-        <div class="hero-overlay"></div>
-        
-        <div class="hero-content">
-            <h1>Ubungo End Time Message Church</h1>
-            <p>“Behold, I will send you Elijah the prophet before the coming of the great and dreadful day of the Lord.” — Malachi 4:5</p>
-            <div class="hero-buttons">
-                <a href="#about" class="btn btn-primary">Learn More</a>
-                <a href="https://www.google.com/maps/place/Ubungo+EndTime+Message+Church/data=!4m2!3m1!1s0x0:0x5754399bcd4d4b8?sa=X&ved=1t:2428&ictx=111" class="btn btn-secondary" target="_blank">Visit Us</a>
-            </div>
-        </div>
-    </section>
+  </header>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="about-us-layout">
-            <div class="about-features about-features-left">
-                <div class="about-feature-box">
-                    <i class="fas fa-praying-hands"></i>
-                    <div class="feature-title">Message of the Hour</div>
-                </div>
-                <div class="about-feature-box">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <div class="feature-title">Bride Assembly</div>
-                </div>
-            </div>
-            <div class="about-center">
-                <div class="about-center-content">
-                    <div class="about-label">About</div>
-                    <h2 class="about-title">Our Church</h2>
-                    <div class="about-mission">Believers of the End-Time Message of Jesus Christ revealed through God’s servant William Marrion Branham</div>
-                    <div class="about-desc">
-                        We are a fellowship of believers grounded in the prophetic Message of the Hour. Our purpose is to live by every Word revealed to us through the Bible and God's vindicated prophet. We welcome souls of all ages who desire to walk in truth and holiness, and invite you to join us in worship, spiritual teaching, and preparation for the Rapture of the Bride of Christ.
-                    </div>
-                </div>
-            </div>
-            <div class="about-features about-features-right">
-                <div class="about-feature-box">
-                    <i class="fas fa-hands-helping"></i>
-                    <div class="feature-title">Revealed Word Teaching</div>
-                </div>
-                <div class="about-feature-box">
-                    <i class="fas fa-church"></i>
-                    <div class="feature-title">Sermon Archive</div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- WHAT WE BELIEVE -->
+  <section id="beliefs" aria-labelledby="beliefs-title">
+    <div class="section-title">
+      <h2 id="beliefs-title">What We Believe</h2>
+      <a href="beliefs.html" title="Read all beliefs">Read full statement →</a>
+    </div>
 
-    <!-- Ministries Section -->
-    <section id="ministries" class="ministries-section">
-        <div class="container">
-            <div class="ministry-flex">
-                <div class="ministry-info">
-                    <span class="ministry-highlight">Tune in on Arise & Shine TV</span>
-                    <h2 class="section-title">Explore our Church Ministries</h2>
-                    <p class="section-desc">
-                        Discover how you can grow, serve, and connect through our vibrant church ministries at Arise and Shine Heavenly Embassy. From Healing & Deliverance to Youth Empowerment and Women of Faith, each ministry is designed to meet spiritual, emotional, and practical needs while fostering a deeper relationship with Christ.
-                    </p>
-                    <a href="#learn" class="btn btn-outline ministry-btn">
-                        <i class="fa-regular fa-arrow-up-right-from-square"></i> Learn More
-                    </a>
-            </div>
-                <div class="ministry-cards">
-                <div class="ministry-card">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=300&fit=crop" alt="Healing Ministry">
-                    <div class="ministry-overlay">
-                        <div class="ministry-content">
-                            <h3>Healing & Deliverance</h3>
-                            <p>Experience God's healing power</p>
-                        </div>
-                    </div>
-                </div>
+    <div class="grid cols-3">
+      <article class="card glass">
+        <span class="badge">The Bible</span>
+        <h3>The Infallible Word of God</h3>
+        <p class="muted">Every chapter, verse, and line is the Absolute—our final authority for faith and life.</p>
+      </article>
 
-                <div class="ministry-card">
-                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=500&h=300&fit=crop" alt="Women Ministry">
-                    <div class="ministry-overlay">
-                        <div class="ministry-content">
-                            <h3>Women of Faith</h3>
-                            <p>Empowering women in their spiritual journey</p>
-                        </div>
-                    </div>
-                </div>
+      <article class="card glass">
+        <span class="badge">The Godhead</span>
+        <h3>Jehovah of the Old, Jesus of the New</h3>
+        <p class="muted">We confess one God manifested in the Lord Jesus Christ (Isa 9:6; 1 Tim 3:16; Heb 13:8).</p>
+      </article>
 
-                <div class="ministry-card">
-                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&h=300&fit=crop" alt="Youth Ministry">
-                    <div class="ministry-overlay">
-                        <div class="ministry-content">
-                            <h3>Youth Empowerment</h3>
-                            <p>Building tomorrow's leaders in Christ</p>
-                        </div>
-                    </div>
-                </div>
+      <article class="card glass">
+        <span class="badge">Restoration</span>
+        <h3>Malachi 4 & Revelation 10</h3>
+        <p class="muted">We receive the end-time message restoring apostolic faith and opening the mysteries of God.</p>
+      </article>
+    </div>
+  </section>
 
-                <div class="ministry-card">
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&h=300&fit=crop" alt="Children Ministry">
-                    <div class="ministry-overlay">
-                        <div class="ministry-content">
-                            <h3>Children's Ministry</h3>
-                            <p>Nurturing young hearts for Jesus</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- ABOUT -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="section-title">
+      <h2 id="about-title">About Us</h2>
+      <a href="about.html">Learn more →</a>
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-overlay"></div>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>About Our Ministry</h3>
-                    <p>Ubungo End Time Message Church is committed to spreading the Word of God, touching lives through faith, and providing a path for spiritual growth. Join us as we worship, learn, and serve together in the love of Christ.</p>
-                    
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
+    <div class="grid cols-2">
+      <div class="card glass-soft">
+        <h3>Our Story & Mission</h3>
+        <p class="muted">
+          Rooted in Scripture and led by the Spirit, we are a local body pursuing Christlike character, worship,
+          discipleship, and service. We cherish apostolic doctrine and church order in love and humility.
+        </p>
+        <p class="muted">“That in all things He might have the preeminence.” (Col 1:18)</p>
+      </div>
+      <div class="card glass-soft">
+        <h3>Who is W. M. Branham?</h3>
+        <p class="muted">
+          We recognize the end-time message promised in Malachi 4:5–6 and Revelation 10:7. Read the overview and
+          Scripture foundations we hold concerning the ministry of William Marrion Branham.
+        </p>
+        <p><a style="color:#d2deff" href="about/william-branham.html">Read the full article →</a></p>
+      </div>
+    </div>
+  </section>
 
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#about">About Church</a></li>
-                        <li><a href="#sermons">Our Sermons</a></li>
-                        <li><a href="#ministries">Church Ministries</a></li>
-                        <li><a href="#blog">Church Blog</a></li>
-                        <li><a href="#gallery">Photo Gallery</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
-                    </ul>
-                </div>
+  <!-- BOARD -->
+  <section id="board" aria-labelledby="board-title">
+    <div class="section-title">
+      <h2 id="board-title">Church Board</h2>
+      <a href="board.html">Meet the team →</a>
+    </div>
 
-                <div class="footer-section">
-                    <h3>Service Times</h3>
-                    <ul>
-                        <li>Sunday Service: 9:00 AM - 14:30 PM</li>
-                        <li>Wednesday Tape Session: 6:00 PM - 7:00 PM</li>
-                        <li>Saturday Prayer Session: 4:00 PM - 6:00 PM</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-                    </ul>
-                </div>
+    <div class="grid cols-4">
+      <article class="card glass-soft">
+        <img src="assets/board/pastor.jpg" alt="Pastor photo" style="width:100%; height:200px; object-fit:cover; border-radius:12px" loading="lazy" />
+        <h3>Firstname Lastname</h3>
+        <p class="muted">Pastor</p>
+      </article>
+      <article class="card glass-soft">
+        <img src="assets/board/elder1.jpg" alt="Elder photo" style="width:100%; height:200px; object-fit:cover; border-radius:12px" loading="lazy" />
+        <h3>Firstname Lastname</h3>
+        <p class="muted">Elder</p>
+      </article>
+      <article class="card glass-soft">
+        <img src="assets/board/deacon1.jpg" alt="Deacon photo" style="width:100%; height:200px; object-fit:cover; border-radius:12px" loading="lazy" />
+        <h3>Firstname Lastname</h3>
+        <p class="muted">Deacon</p>
+      </article>
+      <article class="card glass-soft">
+        <img src="assets/board/secretary.jpg" alt="Secretary photo" style="width:100%; height:200px; object-fit:cover; border-radius:12px" loading="lazy" />
+        <h3>Firstname Lastname</h3>
+        <p class="muted">Secretary</p>
+      </article>
+    </div>
+  </section>
 
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <ul>
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <a href="https://maps.google.com/?q=Ubungo, Dar es Salaam, Tanzania" target="_blank">
-                                Ubungo, Dar es Salaam, Tanzania
-                            </a>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+255123456789">+255 123 456 789</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:info@ETMC.or.tz">info@ETMC.or.tz</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 5:00 PM
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025. Ubungo End Time Message Church. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+  <!-- MISSIONARIES -->
+  <section id="missionaries" aria-labelledby="missionaries-title">
+    <div class="section-title">
+      <h2 id="missionaries-title">Missionaries</h2>
+      <a href="missionaries.html">All missionaries →</a>
+    </div>
 
-    <script>
-        // Video slideshow functionality
-        const slides = document.querySelectorAll('.video-slide');
-        let currentSlide = 0;
+    <div class="grid cols-3">
+      <article class="card glass-soft">
+        <span class="badge">Arusha, TZ</span>
+        <h3>Jane Doe</h3>
+        <p class="muted">Church planting, discipleship, and weekly home fellowships since 2021.</p>
+      </article>
+      <article class="card glass-soft">
+        <span class="badge">Mwanza, TZ</span>
+        <h3>John Smith</h3>
+        <p class="muted">Youth outreach and evangelism; training local leaders and families.</p>
+      </article>
+      <article class="card glass-soft">
+        <span class="badge">Zanzibar</span>
+        <h3>Mary K.</h3>
+        <p class="muted">Women’s ministry, mercy initiatives, and children’s Bible classes.</p>
+      </article>
+    </div>
+  </section>
 
-        function showNextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
+  <!-- PRAYER REQUEST CTA -->
+  <section id="prayer" aria-labelledby="prayer-title">
+    <div class="section-title">
+      <h2 id="prayer-title">Prayer Request</h2>
+    </div>
+    <div class="banner glass">
+      <p><strong>Need prayer?</strong> Share your request and our ministry team will stand with you in faith.</p>
+      <a class="btn primary" href="prayer-request.html">Send a Request</a>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications" aria-labelledby="pub-title">
+    <div class="section-title">
+      <h2 id="pub-title">Publications</h2>
+      <a href="publications.html">View all →</a>
+    </div>
+
+    <div class="video-grid">
+      <div class="card glass-soft">
+        <iframe loading="lazy" src="https://www.youtube.com/embed/videoseries?list=PLAYLIST_ID" title="Sermon Playlist"></iframe>
+        <h3 style="margin-top:10px">Sermon Series</h3>
+        <p class="muted">Latest messages from our services.</p>
+      </div>
+      <div class="card glass-soft">
+        <iframe loading="lazy" src="https://www.youtube.com/embed/VIDEO_ID_1" title="Recent message"></iframe>
+        <h3 style="margin-top:10px">“Title of Recent Message”</h3>
+        <p class="muted">Date · Speaker</p>
+      </div>
+      <div class="card glass-soft">
+        <iframe loading="lazy" src="https://www.youtube.com/embed/VIDEO_ID_2" title="Event highlight"></iframe>
+        <h3 style="margin-top:10px">Event Highlights</h3>
+        <p class="muted">Moments from recent gatherings.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT + MAP -->
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="section-title">
+      <h2 id="contact-title">Contact Us</h2>
+      <a href="contact.html">More contact options →</a>
+    </div>
+
+    <div class="grid cols-2">
+      <div class="card glass-soft">
+        <h3>Visit or Reach Out</h3>
+        <p class="muted">
+          123 Church Street, Your City, Tanzania<br/>
+          <a style="color:#fff" href="tel:+255700000000">+255 700 000 000</a> · <a style="color:#fff" href="mailto:info@yourchurch.org">info@yourchurch.org</a><br/>
+          WhatsApp: <a style="color:#fff" href="https://wa.me/255700000000" target="_blank" rel="noopener">+255 700 000 000</a>
+        </p>
+        <p class="muted">Office hours: Tue–Fri · 10:00–16:00</p>
+      </div>
+      <div class="card glass-soft">
+        <!-- Replace with your Google Maps embed -->
+        <iframe
+          title="Church location map"
+          loading="lazy"
+          style="border:0; width:100%; height:300px; border-radius:12px"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31873.707!2d39.0!3d-6.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sTZ!4v0000000000">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo" class="glass-soft">
+    <div class="wrap">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px">
+        <img src="assets/logo.png" alt="Church logo" width="36" height="36" />
+        <strong>Your Church Name</strong>
+      </div>
+      <div>
+        <strong>Quick Links</strong><br/>
+        <a href="#beliefs">What We Believe</a><br/>
+        <a href="about.html">About Us</a><br/>
+        <a href="prayer-request.html">Prayer Request</a><br/>
+        <a href="publications.html">Publications</a>
+      </div>
+      <div>
+        <strong>Contact</strong><br/>
+        <a href="mailto:info@yourchurch.org">info@yourchurch.org</a><br/>
+        <a href="tel:+255700000000">+255 700 000 000</a><br/>
+        <a href="https://wa.me/255700000000" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="foot-note">© <span id="year"></span> Your Church Name. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle for pill menu
+    const btn = document.querySelector('.menu-btn');
+    const links = document.querySelector('.links');
+    btn?.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Maintain focus on smooth-scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const id = a.getAttribute('href').slice(1);
+        if(!id) return;
+        const el = document.getElementById(id);
+        if(el){
+          e.preventDefault();
+          el.setAttribute('tabindex','-1'); el.focus({preventScroll:true});
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+          setTimeout(()=>el.removeAttribute('tabindex'), 500);
         }
+      })
+    });
+  </script>
 
-        // Change slide every 4 seconds
-        setInterval(showNextSlide, 4000);
-
-        // Mobile menu toggle
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navMenu = document.getElementById('nav-menu');
-
-        mobileMenu.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Update active navigation link on scroll
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
+  <!-- JSON-LD (update fields) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Church",
+    "name":"Your Church Name",
+    "url":"https://yourchurch.org",
+    "logo":"https://yourchurch.org/assets/logo.png",
+    "address":{"@type":"PostalAddress","addressCountry":"TZ"},
+    "telephone":"+255700000000"
+  }
+  </script>
 </body>
 </html>
