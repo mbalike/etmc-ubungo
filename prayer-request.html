@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ETMC - Ubungo — Contact Us</title>
-  <meta name="description" content="Contact ETMC - Ubungo: address, phone, WhatsApp, email, service times, and a contact form." />
+  <title>ETMC - Ubungo — Prayer & Thanks</title>
+  <meta name="description" content="Send a prayer request or thanksgiving to ETMC - Ubungo." />
   <link rel="icon" href="assets/logo.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
     :root{
-      --brand:#2a4c7f;         /* primary */
+      --brand:#2a4c7f;
       --ink:#10131a;
       --muted:#c5cce6;
-      --bg:#665d08;            /* site bg to match homepage */
+      --bg:#665d08;
       --ring:rgba(42,76,127,.35);
       --glass-bg:rgba(255,255,255,.12);
       --glass-brd:rgba(255,255,255,.22);
@@ -47,9 +47,7 @@
     }
 
     /* Pill Navigation */
-    .nav-wrap{
-      position:fixed; top:16px; z-index:60; display:flex; justify-content:center; padding:0 16px; width:100%;
-    }
+    .nav-wrap{position:fixed; top:16px; z-index:60; display:flex; justify-content:center; padding:0 16px; width:100%}
     .nav{display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:999px}
     .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:#eef2ff; font-weight:800; padding:6px 10px; border-radius:999px}
     .brand img{width:28px; height:28px; object-fit:contain}
@@ -58,31 +56,29 @@
     .links a:hover, .links a[aria-current="page"]{background:rgba(255,255,255,.14)}
     .menu-btn{display:none; margin-left:8px; border:0; background:transparent; color:#fff; font-size:1.1rem; padding:8px 10px; border-radius:12px}
 
-    /* Hero with photo background */
+    /* Hero (full viewport height photo) */
     .hero{
-      position:relative; min-height:56vh; display:grid; place-items:center; overflow:hidden; border-bottom:1px solid rgba(255,255,255,.08);
+      position:relative; min-height:100vh; display:grid; place-items:center; overflow:hidden; border-bottom:1px solid rgba(255,255,255,.08);
     }
     .hero-bg{
       position:absolute; inset:0; background:
         linear-gradient(to bottom, rgba(7,10,20,.55), rgba(7,10,20,.6)),
-        url('assets/contact-hero.jpg') center/cover no-repeat;
+        url('assets/prayer-hero.jpg') center/cover no-repeat;
       filter:saturate(115%) contrast(105%);
       z-index:-1;
     }
-    .hero-inner{max-width:1100px; width:100%; padding:140px 16px 48px; display:grid; grid-template-columns:1.4fr 1fr; gap:20px}
-    .hero-card{border-radius:var(--radius); padding:20px}
+    .hero-inner{max-width:1100px; width:100%; padding:160px 16px 48px; display:grid; grid-template-columns:1.3fr 1fr; gap:20px}
+    .hero-card{border-radius:var(--radius); padding:22px}
     .kicker{color:#c7d6ff; text-transform:uppercase; letter-spacing:.12em; font-weight:800; font-size:.8rem}
-    h1{margin:.35rem 0 1rem; font-size:clamp(1.8rem, 3.6vw, 3rem); line-height:1.15}
+    h1{margin:.35rem 0 1rem; font-size:clamp(1.9rem, 3.8vw, 3.2rem); line-height:1.15}
     .lead{color:#e6ebff; max-width:65ch}
     .quick-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
     .btn{appearance:none; border:0; border-radius:999px; padding:12px 16px; font-weight:800; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px}
     .btn.primary{background:#3b5db1; color:#fff; box-shadow:0 10px 28px rgba(59,93,177,.45)}
     .btn.ghost{background:rgba(255,255,255,.14); color:#fff; border:1px solid rgba(255,255,255,.22)}
 
-    /* Main layout */
+    /* Main section (forms) */
     section{max-width:1100px; margin:0 auto; padding:40px 16px}
-    .grid{display:grid; gap:16px}
-    .cols-2{grid-template-columns:1.2fr .8fr}
     .card{border-radius:18px; padding:16px; color:#eaf0ff}
     .muted{color:#c5cce6}
     label{display:block; margin:.5rem 0 .25rem; font-weight:700}
@@ -95,9 +91,6 @@
     .help{font-size:.9rem; color:#cbd5e1}
     .error{color:#ffd6d6; font-size:.9rem; display:none; margin-top:6px}
 
-    /* Map card */
-    .map-iframe{border:0; width:100%; height:300px; border-radius:14px}
-
     /* Footer */
     footer{margin-top:40px; background:rgba(255,255,255,.06); border-top:1px solid rgba(255,255,255,.12)}
     footer .wrap{max-width:1100px; margin:auto; padding:30px 16px; display:grid; gap:20px; grid-template-columns:2fr 1fr 1fr}
@@ -109,7 +102,6 @@
     /* Responsive */
     @media (max-width:980px){
       .hero-inner{grid-template-columns:1fr}
-      .cols-2{grid-template-columns:1fr}
       footer .wrap{grid-template-columns:1fr}
     }
     @media (max-width:760px){
@@ -122,7 +114,7 @@
 </head>
 <body>
 
-  <!-- Pill NAV (glass) -->
+  <!-- Pill NAV -->
   <div class="nav-wrap" role="banner">
     <div class="nav glass" role="navigation" aria-label="Primary">
       <a class="brand" href="index.html#home" aria-label="Home">
@@ -138,151 +130,115 @@
         <a href="about.html">About</a>
         <a href="board.html">Church Board</a>
         
-        <a href="prayer-request.html">Prayer Request</a>
+        <a href="prayer-request.html" aria-current="page">Prayer Request</a>
         <a href="publications.html">Publications</a>
-        <a href="contact.html" aria-current="page">Contact</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </div>
   </div>
 
-  <!-- HERO (photo background) -->
+  <!-- HERO (full viewport photo) -->
   <header class="hero">
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="hero-inner">
       <div class="glass hero-card">
-        <div class="kicker">Contact Us</div>
-        <h1>We’d Love to Hear From You</h1>
-        <p class="lead">Questions, testimonies, or prayer needs? Reach out by form, WhatsApp, or email. You’re welcome to visit us during our regular services.</p>
+        <div class="kicker">Prayer & Thanks</div>
+        <h1>“Call unto Me, and I will answer thee…”</h1>
+        <p class="lead">Share your <strong>prayer request</strong> or a <strong>thanksgiving</strong> testimony. Our team will stand with you in faith and celebrate God’s goodness.</p>
         <div class="quick-actions">
-          <a class="btn primary" href="#form"><i class="bi bi-pencil-square"></i> Send a Message</a>
+          <a class="btn primary" href="#form"><i class="bi bi-pencil-square"></i> Send Now</a>
           <a class="btn ghost" href="https://wa.me/255742398600" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i> WhatsApp</a>
           <a class="btn ghost" href="mailto:info@etmc.org"><i class="bi bi-envelope"></i> info@etmc.org</a>
         </div>
       </div>
 
-      <aside class="glass hero-card" aria-label="Service times and address">
-        <h3 style="margin:0 0 10px">Visit Us</h3>
-        <p class="muted" style="margin:0 0 8px">Ubungo, Dar es Salaam, Tanzania</p>
-        <div class="grid" style="grid-template-columns:1fr 1fr; gap:10px; font-size:.98rem">
-          <div class="glass-soft" style="padding:10px 12px; border-radius:14px"><strong>Wed</strong><br>6:00–7:00 PM</div>
-          <div class="glass-soft" style="padding:10px 12px; border-radius:14px"><strong>Sat</strong><br>4:00–6:00 PM</div>
-          <div class="glass-soft" style="padding:10px 12px; border-radius:14px"><strong>Sun</strong><br>9:00 AM–3:00 PM</div>
-          <a class="glass-soft" style="padding:10px 12px; border-radius:14px; text-decoration:none; color:#fff"
-             href="https://maps.app.goo.gl/AmmTMawztCnETcYY9" target="_blank" rel="noopener"><strong><i class="bi bi-geo-alt"></i> Directions</strong><br>Open in Google Maps</a>
-        </div>
+      <aside class="glass hero-card" aria-label="Service times">
+        <h3 style="margin:0 0 10px">Join Us in Prayer</h3>
+        <div class="muted">Wed: 6:00–7:00 PM · Sat: 4:00–6:00 PM · Sun: 9:00 AM–3:00 PM</div>
+        <p class="muted" style="margin:.6rem 0 0">Ubungo, Dar es Salaam · <a href="https://maps.app.goo.gl/AmmTMawztCnETcYY9" target="_blank" rel="noopener" style="color:#d7e4ff; text-decoration:none"><i class="bi bi-geo-alt"></i> Directions</a></p>
       </aside>
     </div>
   </header>
 
-  <!-- CONTACT SECTION -->
-  <section id="form" aria-labelledby="contact-title">
-    <div class="grid cols-2">
-      <!-- Contact form -->
-      <div class="card glass" role="form" aria-describedby="contact-help">
-        <h2 id="contact-title" style="margin-top:0">Send a Message</h2>
-        <p id="contact-help" class="help">We usually respond within 1–2 days. Required fields are marked with *</p>
+  <!-- FORM SECTION -->
+  <section id="form" aria-labelledby="form-title">
+    <div class="card glass" role="form" aria-describedby="form-help">
+      <h2 id="form-title" style="margin-top:0">Send a Prayer or Thanks</h2>
+      <p id="form-help" class="help">Choose the type below. Required fields are marked with *</p>
 
-        <form id="contactForm" action="#" method="post" novalidate>
-          <!-- Honeypot (anti-spam) -->
-          <input type="text" name="website" id="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute; left:-9999px; opacity:0" />
+      <!-- Type selector -->
+      <div class="row-2" style="margin-bottom:10px">
+        <div>
+          <label for="type">Type *</label>
+          <select id="type" name="type" required>
+            <option value="prayer" selected>Prayer Request</option>
+            <option value="thanks">Thanksgiving</option>
+          </select>
+        </div>
+        <div>
+          <label for="topic">Topic</label>
+          <select id="topic" name="topic">
+            <option value="">— Select —</option>
+            <option value="healing">Healing</option>
+            <option value="family">Family</option>
+            <option value="provision">Provision/Work</option>
+            <option value="guidance">Guidance</option>
+            <option value="testimony">Testimony</option>
+          </select>
+        </div>
+      </div>
 
-          <div class="row-2">
-            <div>
-              <label for="name">Full Name *</label>
-              <input id="name" name="name" type="text" placeholder="Your full name" required />
-              <div class="error" id="err-name">Please enter your name.</div>
-            </div>
-            <div>
-              <label for="phone">Phone / WhatsApp</label>
-              <input id="phone" name="phone" type="tel" placeholder="+255 ..." />
-            </div>
-          </div>
+      <form id="ptForm" action="#" method="post" novalidate>
+        <!-- Honeypot -->
+        <input type="text" name="website" id="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute; left:-9999px; opacity:0" />
 
-          <div class="row-2">
-            <div>
-              <label for="email">Email *</label>
-              <input id="email" name="email" type="email" placeholder="you@example.com" required />
-              <div class="error" id="err-email">Please enter a valid email.</div>
-            </div>
-            <div>
-              <label for="topic">Topic</label>
-              <select id="topic" name="topic">
-                <option value="">— Select —</option>
-                <option value="general">General Question</option>
-                <option value="visit">Planning a Visit</option>
-                <option value="prayer">Prayer / Care</option>
-                <option value="ministry">Ministry / Mission</option>
-              </select>
-            </div>
-          </div>
-
+        <div class="row-2">
           <div>
-            <label for="message">Message *</label>
-            <textarea id="message" name="message" rows="5" placeholder="How can we help?" required></textarea>
-            <div class="error" id="err-message">Please write a short message.</div>
+            <label for="name">Full Name *</label>
+            <input id="name" name="name" type="text" placeholder="Your full name" required />
+            <div class="error" id="err-name">Please enter your name.</div>
           </div>
-
-          <div style="display:flex; align-items:center; gap:10px; margin-top:10px">
-            <input type="checkbox" id="consent" name="consent" required />
-            <label for="consent" style="margin:0">I consent to ETMC - Ubungo contacting me about this inquiry *</label>
-          </div>
-          <div class="error" id="err-consent" style="margin-top:6px">Please confirm consent to proceed.</div>
-
-          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px">
-            <button type="submit" class="btn primary"><i class="bi bi-send"></i> Send</button>
-            <button type="reset" class="btn ghost">Clear</button>
-            <a class="btn ghost" href="https://wa.me/255742398600" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i> WhatsApp</a>
-          </div>
-
-          <p id="formStatus" class="help" role="status" aria-live="polite" style="margin-top:12px; display:none"></p>
-        </form>
-      </div>
-
-      <!-- Info + Map -->
-      <div class="grid" style="gap:16px">
-        <div class="card glass-soft">
-          <h3 style="margin-top:0">Contact Details</h3>
-          <p class="muted" style="margin:0 0 10px">
-            Ubungo, Dar es Salaam, Tanzania
-          </p>
-          <p style="margin:0 0 8px">
-            <a href="tel:+255742398600" style="color:#fff; text-decoration:none"><i class="bi bi-telephone"></i> +255 742 398 600</a><br>
-            <a href="mailto:info@etmc.org" style="color:#fff; text-decoration:none"><i class="bi bi-envelope"></i> info@etmc.org</a><br>
-            <a href="https://wa.me/255742398600" target="_blank" rel="noopener" style="color:#fff; text-decoration:none"><i class="bi bi-whatsapp"></i> WhatsApp</a>
-          </p>
-          <p class="muted" style="margin-top:10px">Office hours: Tue–Fri · 10:00–16:00</p>
-        </div>
-
-        <div class="card glass-soft">
-          <h3 style="margin-top:0">Find Us</h3>
-          <iframe
-            class="map-iframe"
-            title="Church location map"
-            loading="lazy"
-            allowfullscreen
-            referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.7011818848173!2d39.2058714!3d-6.8061577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c492fd319aafb%3A0x5754399bcd4d4b8!2sUbungo%20EndTime%20Message%20Church!5e0!3m2!1sen!2stz!4v1756116179655!5m2!1sen!2stz">
-          </iframe>
-          <p class="muted" style="margin:.5rem 0 0">
-            <a href="https://maps.app.goo.gl/AmmTMawztCnETcYY9" target="_blank" rel="noopener" style="color:#d7e4ff; text-decoration:none"><i class="bi bi-geo-alt"></i> Open in Google Maps</a>
-          </p>
-        </div>
-
-        <div class="card glass-soft">
-          <h3 style="margin-top:0">Stay Connected</h3>
-          <div class="social-icons" style="display:flex; gap:12px">
-            <a href="https://www.instagram.com/ubungoendtime" target="_blank" rel="noopener" aria-label="Instagram" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1)">
-              <i class="bi bi-instagram"></i>
-            </a>
-            <a href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener" aria-label="YouTube" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1)">
-              <i class="bi bi-youtube"></i>
-            </a>
-            <a href="https://wa.me/255742398600" target="_blank" rel="noopener" aria-label="WhatsApp" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1)">
-              <i class="bi bi-whatsapp"></i>
-            </a>
+          <div>
+            <label for="contact">Phone / Email *</label>
+            <input id="contact" name="contact" type="text" placeholder="+255..., or you@example.com" required />
+            <div class="error" id="err-contact">Please add a phone or email.</div>
           </div>
         </div>
-      </div>
+
+        <div id="field-subject" style="display:none">
+          <label for="subject">Subject (Thanks)</label>
+          <input id="subject" name="subject" type="text" placeholder="Short title of your thanksgiving" />
+        </div>
+
+        <div>
+          <label for="message"><span id="message-label">Request *</span></label>
+          <textarea id="message" name="message" rows="5" placeholder="How can we pray with you?" required></textarea>
+          <div class="error" id="err-message">Please write a short message.</div>
+        </div>
+
+        <!-- Conditional extras -->
+        <div id="extras-prayer" style="margin-top:6px">
+          <div style="display:flex; align-items:center; gap:10px; margin:.4rem 0">
+            <input type="checkbox" id="confidential" name="confidential" />
+            <label for="confidential" style="margin:0" class="muted">Keep this request confidential (pastoral team only)</label>
+          </div>
+        </div>
+
+        <div id="extras-thanks" style="display:none; margin-top:6px">
+          <div style="display:flex; align-items:center; gap:10px; margin:.4rem 0">
+            <input type="checkbox" id="share" name="share" />
+            <label for="share" style="margin:0" class="muted">You may share this testimony to encourage others</label>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px">
+          <button type="submit" class="btn primary"><i class="bi bi-send"></i> Submit</button>
+          <button type="reset" class="btn ghost">Clear</button>
+          <a class="btn ghost" href="https://wa.me/255742398600" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+        </div>
+
+        <p id="formStatus" class="help" role="status" aria-live="polite" style="margin-top:12px; display:none"></p>
+      </form>
     </div>
   </section>
 
@@ -347,35 +303,55 @@
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Simple form validation + fake submit (replace with your backend)
-    const form = document.getElementById('contactForm');
+    // Dynamic behavior for Prayer vs Thanks
+    const typeSelect = document.getElementById('type');
+    const message = document.getElementById('message');
+    const messageLabel = document.getElementById('message-label');
+    const fieldSubject = document.getElementById('field-subject');
+    const extrasPrayer = document.getElementById('extras-prayer');
+    const extrasThanks = document.getElementById('extras-thanks');
+
+    function syncType(){
+      const val = typeSelect.value;
+      if(val === 'thanks'){
+        message.placeholder = 'Share your testimony of what the Lord has done';
+        messageLabel.textContent = 'Testimony *';
+        fieldSubject.style.display = '';
+        extrasPrayer.style.display = 'none';
+        extrasThanks.style.display = '';
+      }else{
+        message.placeholder = 'How can we pray with you?';
+        messageLabel.textContent = 'Request *';
+        fieldSubject.style.display = 'none';
+        extrasPrayer.style.display = '';
+        extrasThanks.style.display = 'none';
+      }
+    }
+    typeSelect.addEventListener('change', syncType);
+    syncType();
+
+    // Simple validation + fake submit (replace with your backend)
+    const form = document.getElementById('ptForm');
     const status = document.getElementById('formStatus');
     form?.addEventListener('submit', (e)=>{
       e.preventDefault();
-      // Honeypot
-      if (document.getElementById('website').value) return;
+      if (document.getElementById('website').value) return; // honeypot
 
       let ok = true;
       const name = document.getElementById('name');
-      const email = document.getElementById('email');
-      const message = document.getElementById('message');
-      const consent = document.getElementById('consent');
+      const contact = document.getElementById('contact');
 
-      // helpers
       const showErr = (id, show) => document.getElementById(id).style.display = show ? 'block':'none';
-      const emailValid = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-
       if (!name.value.trim()){ ok=false; showErr('err-name', true);} else showErr('err-name', false);
-      if (!emailValid(email.value.trim())){ ok=false; showErr('err-email', true);} else showErr('err-email', false);
+      if (!contact.value.trim()){ ok=false; showErr('err-contact', true);} else showErr('err-contact', false);
       if (!message.value.trim()){ ok=false; showErr('err-message', true);} else showErr('err-message', false);
-      if (!consent.checked){ ok=false; showErr('err-consent', true);} else showErr('err-consent', false);
-
       if (!ok) return;
 
-      // Demo success (replace with fetch to your API or Formspree endpoint)
       status.style.display='block';
-      status.textContent='Thank you! Your message has been sent.';
+      const t = typeSelect.value === 'thanks' ? 'thanksgiving' : 'prayer request';
+      status.textContent=`Thank you! Your ${t} has been received.`;
       form.reset();
+      syncType();
     });
   </script>
 
@@ -385,7 +361,7 @@
     "@context":"https://schema.org",
     "@type":"Church",
     "name":"ETMC - Ubungo",
-    "url":"https://etmc.org/contact",
+    "url":"https://etmc.org/prayer-request",
     "logo":"https://etmc.org/assets/logo.png",
     "address":{"@type":"PostalAddress","addressLocality":"Ubungo","addressRegion":"Dar es Salaam","addressCountry":"TZ"},
     "telephone":"+255742398600",
