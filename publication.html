@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ETMC - Ubungo — Publications</title>
+  <meta name="description" content="Photos from ETMC - Ubungo, organized by events." />
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    :root{
+      --brand:#2a4c7f; --muted:#c5cce6; --bg:#665d08; --ring:rgba(42,76,127,.35);
+      --glass-bg:rgba(255,255,255,.12); --glass-brd:rgba(255,255,255,.22); --glass-shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+      color:#eef2ff; background:radial-gradient(1200px 600px at 20% -10%, #1a2440 0, transparent 60%), var(--bg); line-height:1.6;}
+    a:focus,button:focus{outline:3px solid var(--ring); outline-offset:2px; border-radius:10px}
+
+    /* Glass */
+    .glass{background:var(--glass-bg); -webkit-backdrop-filter:saturate(180%) blur(14px); backdrop-filter:saturate(180%) blur(14px);
+      border:1px solid var(--glass-brd); box-shadow:var(--glass-shadow); border-radius:var(--radius);}
+    .glass-soft{background:rgba(255,255,255,.08); -webkit-backdrop-filter:saturate(160%) blur(10px); backdrop-filter:saturate(160%) blur(10px);
+      border:1px solid rgba(255,255,255,.16); box-shadow:0 8px 24px rgba(0,0,0,.25); border-radius:var(--radius);}
+
+    /* Pill nav */
+    .nav-wrap{position:fixed; top:16px; z-index:60; display:flex; justify-content:center; padding:0 16px; width:100%}
+    .nav{display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:999px}
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:#eef2ff; font-weight:800; padding:6px 10px; border-radius:999px}
+    .brand img{width:28px; height:28px; object-fit:contain}
+    .links{display:flex; gap:4px; flex-wrap:wrap}
+    .links a{color:#f0f4ff; text-decoration:none; font-weight:700; font-size:.95rem; padding:8px 12px; border-radius:999px; opacity:.95}
+    .links a:hover, .links a[aria-current="page"]{background:rgba(255,255,255,.14)}
+    .menu-btn{display:none; margin-left:8px; border:0; background:transparent; color:#fff; font-size:1.1rem; padding:8px 10px; border-radius:12px}
+
+    /* Hero full viewport */
+    .hero{position:relative; min-height:100vh; display:grid; place-items:end center; overflow:hidden; border-bottom:1px solid rgba(255,255,255,.08)}
+    .hero-bg{position:absolute; inset:0; background:
+      linear-gradient(to bottom, rgba(7,10,20,.35), rgba(7,10,20,.6)),
+      url('assets/publications-hero.jpg') center/cover no-repeat; filter:saturate(115%) contrast(105%); z-index:-1}
+    .hero-inner{max-width:1200px; width:100%; padding:160px 16px 28px}
+    .hero-title h1{margin:0; font-size:clamp(1.9rem, 3.8vw, 3.2rem)}
+    .muted{color:var(--muted)}
+
+    /* Main */
+    main{max-width:1200px; margin:0 auto; padding:28px 16px 40px}
+    .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin:8px 0 14px}
+    .section-head h2{margin:0; font-size:clamp(1.3rem, 2.5vw, 1.8rem)}
+
+    /* Event cards grid */
+    .grid{display:grid; gap:16px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .card{border-radius:16px; overflow:hidden; position:relative}
+    .cover{width:100%; height:260px; object-fit:cover; display:block; background:rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.14)}
+    .meta{display:flex; align-items:center; justify-content:space-between; padding:12px 14px}
+    .title{font-weight:800}
+    .badge{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22); font-weight:800}
+    .date{font-size:.95rem; color:#d7e4ff}
+
+    .card .overlay-tools{
+      position:absolute; left:12px; bottom:12px; display:flex; gap:8px;
+    }
+    .mini-btn{display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:999px;
+      background:rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.25); color:#fff; cursor:pointer}
+    .thumbs-stack{
+      position:absolute; right:12px; bottom:12px; display:flex;
+    }
+    .thumbs-stack img{
+      width:38px; height:38px; object-fit:cover; border-radius:8px; border:1px solid rgba(255,255,255,.5);
+      margin-left:-10px; background:rgba(255,255,255,.1)
+    }
+
+    /* Lightbox (event) */
+    .lightbox{position:fixed; inset:0; z-index:100; display:none; place-items:center; background:rgba(10,14,25,.6); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px)}
+    .lightbox.open{display:grid}
+    .viewer{width:min(98vw,1400px); height:min(92vh,900px); display:grid; grid-template-rows:auto 1fr auto; gap:12px; padding:16px}
+    .viewer .chrome{display:flex; align-items:center; justify-content:space-between; padding:8px 0}
+    .viewer .stage{position:relative; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.18); border-radius:18px; display:flex; align-items:center; justify-content:center; overflow:hidden; min-height:0}
+    .viewer .stage img{max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; border-radius:12px; display:block}
+    .viewer .toolbar{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; padding:8px 0}
+    .btn{border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.10); color:#fff; padding:10px 12px; border-radius:12px; font-weight:800; display:inline-flex; align-items:center; gap:8px; cursor:pointer}
+    .btn.primary{background:#3b5db1; border-color:#3b5db1}
+    .btn-icon{width:42px; height:42px; justify-content:center}
+
+    /* Responsive */
+    @media (max-width:1100px){ .grid.cols-3{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:680px){
+      .links{display:none} .menu-btn{display:block}
+      .links.open{display:flex; width:100%; flex-direction:column; padding:8px; gap:6px; margin-top:8px}
+      .grid.cols-3{grid-template-columns:1fr}
+      .cover{height:220px}
+      
+      /* Mobile lightbox adjustments */
+      .viewer{width:98vw; height:95vh; padding:12px; gap:8px}
+      .viewer .chrome{padding:4px 0}
+      .viewer .toolbar{padding:4px 0}
+      .btn{padding:8px 10px; font-size:0.9rem}
+      .btn-icon{width:38px; height:38px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Pill NAV -->
+  <div class="nav-wrap" role="banner">
+    <div class="nav glass" role="navigation" aria-label="Primary">
+      <a class="brand" href="index.html#home" aria-label="Home">
+        <img src="assets/logo.png" alt="Church Logo" />
+        <span>ETMC-Ubungo</span>
+      </a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" title="Toggle navigation">☰</button>
+      <nav id="nav-links" class="links">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#beliefs">What We Believe</a>
+        <a href="about.html">About</a>
+        <a href="board.html">Church Board</a>
+        <a href="prayer-request.html">Prayer Request</a>
+        <a href="publications.html" aria-current="page">Publications</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="glass" style="padding:16px">
+        <div class="hero-title">
+          <h1>Publications</h1>
+          <div class="muted">Events & photo albums (newest first)</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section aria-labelledby="photos-title">
+      <div class="section-head">
+        <h2 id="photos-title">Photo Albums</h2>
+        <p class="muted" style="max-width:75ch">
+          Each card is an event. Click to view all photos from that event. Use ←/→ to navigate in the viewer and the
+          **Download** button to save the current photo.
+        </p>
+      </div>
+
+      <div id="events" class="grid cols-3"></div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX (event) -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" aria-label="Album viewer">
+    <div class="viewer">
+      <div class="chrome">
+        <div id="viewerTitle" style="font-weight:800">Album</div>
+        <div style="display:flex; gap:8px">
+          <button class="btn btn-icon" id="btnPrev" title="Previous (←)"><i class="bi bi-chevron-left"></i></button>
+          <button class="btn btn-icon" id="btnNext" title="Next (→)"><i class="bi bi-chevron-right"></i></button>
+          <button class="btn btn-icon" id="btnClose" title="Close (Esc)"><i class="bi bi-x-lg"></i></button>
+        </div>
+      </div>
+
+      <div class="stage"><img id="viewImg" alt="Photo"></div>
+
+      <div class="toolbar">
+        <a class="btn primary" id="btnDownload" title="Download"><i class="bi bi-download"></i> Download</a>
+        <a class="btn" id="btnOpen" target="_blank" rel="noopener" title="Open original"><i class="bi bi-box-arrow-up-right"></i> Open Original</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo" class="glass-soft" style="margin-top:20px">
+    <div class="wrap" style="max-width:1200px; margin:auto; padding:30px 16px; display:grid; gap:20px; grid-template-columns:2fr 1fr 1fr">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px">
+          <img src="assets/logo.png" alt="Church logo" width="36" height="36" />
+          <strong>ETMC - Ubungo</strong>
+        </div>
+        <p style="margin:0 0 15px; color:#c8d4f7; line-height:1.5; max-width:260px">A Bible-believing fellowship in Ubungo proclaiming the Gospel of Jesus Christ.</p>
+        <div style="display:flex; gap:12px; margin-top:8px">
+          <a href="https://www.instagram.com/ubungoendtime" target="_blank" rel="noopener" aria-label="Instagram" style="color:#d7e4ff; font-size:1.2rem"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener" aria-label="YouTube" style="color:#d7e4ff; font-size:1.2rem"><i class="bi bi-youtube"></i></a>
+          <a href="https://wa.me/255742398600" target="_blank" rel="noopener" aria-label="WhatsApp" style="color:#d7e4ff; font-size:1.2rem"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <strong>Quick Links</strong><br/>
+        <a href="index.html#beliefs">What We Believe</a><br/>
+        <a href="about.html">About Us</a><br/>
+        <a href="prayer-request.html">Prayer Request</a><br/>
+        <a href="publications.html">Publications</a>
+      </div>
+      <div>
+        <strong>Contact</strong><br/>
+        <a href="mailto:info@etmc.org">info@etmc.org</a><br/>
+        <a href="tel:+255742398600">+255 742 398 600</a><br/>
+        <a href="https://maps.app.goo.gl/AmmTMawztCnETcYY9" target="_blank" rel="noopener">Ubungo, Dar es Salaam</a>
+      </div>
+    </div>
+    <div class="foot-note" style="border-top:1px solid rgba(255,255,255,.12); text-align:center; padding:14px; font-size:.9rem; color:#c8d4f7">
+      © <span id="year"></span> ETMC - Ubungo. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle & year
+    const btn = document.querySelector('.menu-btn');
+    const links = document.querySelector('.links');
+    btn?.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== Define EVENTS (preferred) =====
+    // Each event has: id, title, date (YYYY-MM-DD or YYYY-MM), cover (optional), photos: [{src, title?}, ...]
+    const EVENTS = [
+      {
+        id: "prayer-night-2025-08-10",
+        title: "Prayer Night",
+        date: "2025-08-10",
+        cover: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600",
+        photos: [
+          { src: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600", title: "Worship" },
+          { src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600", title: "Altar Call" },
+          { src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600", title: "Intercession" }
+          // ... add as many as you like
+        ]
+      },
+      {
+        id: "youth-fellowship-2025-07-05",
+        title: "Sunday Service",
+        date: "2025-08-05",
+        photos: [
+          { src: "https://images.pixieset.com/01431569/138c1ff92994443101f09ed62e6812bc-large.JPG" },
+{ src: "https://images.pixieset.com/01431569/a0cc036929670ebf9fb35859f17760d2-large.JPG" },
+{ src: "https://images.pixieset.com/01431569/4966c8dc15ebb2a9112c4109ed6f5ff1-large.JPG" },
+{ src: "https://images.pixieset.com/01431569/7b1b8341c3ba64dfac2387167dc6baf1-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/a99754d8629d581f20a7dfd5aa87ff3f-large.JPG" },
+{ src: "https://images.pixieset.com/01431569/5456b8ddbe1aea2fb828aa84fbc56f33-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/29769dcc296cccf8ebf3ed4dd871afe1-large.JPG" },
+{ src: "https://images.pixieset.com/01431569/860e3d57b7f7c727b1fbcaed24287cac-large.JPG" },
+{ src: "https://images.pixieset.com/01431569/5b143334b4a82500ffa093f426259796-large.JPG" },
+{ src: "https://images.pixieset.com/01431569/d2410b68653e720f50e750909f0a36ed-large.JPG" },
+{ src: "https://images.pixieset.com/01431569/699c967d2d2de2f1891a33c7f2c4e483-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/8462917821a6184489df5404a6184d45-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/1085d301db2ad5d290d4faed2c6608f9-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/db60ba0c90166b70a8b2275f4465ac0e-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/16c0bd5f9727a3de971c24886b057326-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/21e738b5d2de85ba18da10e03cc572dd-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/94ce7f3cfa88e38db2447936c8e9483e-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/84d283138e0166651d68f4d3deb00d79-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/b24a48b8d099f7f7cbeec739c5ad7d7b-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/53f76c7580e804a8c97fd97991103a73-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/e78cd0798c5fd955062315692e460bbe-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/54588b981c5ea9c280bf5729890a50c7-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/a36606badb8ee45db9e56033c9d84398-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/3f0d814008ab105e3c0941d709fffcb9-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/96388c616fc826bfabfe105b134f0c41-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/3893915fdc2f6b196b9106f33b4f62fa-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/45aa932119fd68f922a0d6831ca8fdeb-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/b8694a63cb226702d3694d03852af841-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/e3c7fb38e42dd499d8d431f6ac72c67e-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/4750bf51ae15a51dc1116eb468468f74-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/9842268e2a02abae11ebf14b413cef6a-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/03df5c30190f64e61a24b5bc2289fe81-xlarge.JPG" },
+{ src: "https://images.pixieset.com/01431569/20ebc9cdc1a4e7ddc4ae33b25ffe89e6-xlarge.JPG" }
+
+        ]
+      }
+    ];
+
+    // ===== OPTIONAL: If you still have a flat list, we can group by date into events =====
+    // Example flat list:
+    // const PHOTOS = [{src:"...", title:"...", date:"2025-08-10"}, ...]
+    function groupFlatPhotos(photos){
+      const bucket = {};
+      photos.forEach(p=>{
+        const key = p.date || 'unknown';
+        if(!bucket[key]) bucket[key] = [];
+        bucket[key].push(p);
+      });
+      return Object.keys(bucket).map(date => {
+        const arr = bucket[date];
+        return {
+          id: `album-${date}`,
+          title: arr[0].title ? arr[0].title.replace(/\s+\d+$/, '') : `Album ${date}`,
+          date,
+          cover: arr[0].src,
+          photos: arr.map(x=>({src:x.src, title:x.title}))
+        };
+      });
+    }
+
+    // ===== Use EVENTS (or derive from PHOTOS if you prefer) =====
+    let albums = EVENTS.slice();
+
+    // Sort newest first
+    function parseDateStr(s){
+      const parts = String(s).split('-').map(Number);
+      const y = parts[0], m = (parts[1] || 1) - 1, d = (parts[2] || 1);
+      return new Date(y, m, d);
+    }
+    albums.sort((a,b)=> parseDateStr(b.date) - parseDateStr(a.date));
+
+    // ===== Render Event Cards =====
+    const eventsEl = document.getElementById('events');
+
+    function eventCardHTML(ev, i){
+      const cover = ev.cover || (ev.photos && ev.photos[0] && ev.photos[0].src) || '';
+      // stack up to 3 thumb previews
+      const stack = (ev.photos||[]).slice(0,3).map(p=>`<img src="${p.src}" alt="" loading="lazy">`).join('');
+      const dateFmt = parseDateStr(ev.date).toLocaleDateString('en-US', {year:'numeric', month:'long', day: ev.date.length>7?'2-digit':undefined});
+      return `
+        <article class="card glass-soft">
+          ${cover ? `<img class="cover" src="${cover}" alt="${ev.title} cover" loading="lazy">` : `<div class="cover"></div>`}
+          <div class="meta">
+            <div>
+              <div class="title">${ev.title}</div>
+              <div class="date">${dateFmt}</div>
+            </div>
+            <span class="badge"><i class="bi bi-images"></i> ${ev.photos?.length || 0}</span>
+          </div>
+          <div class="overlay-tools">
+            <button class="mini-btn" data-open-album="${i}" title="Open album"><i class="bi bi-arrows-fullscreen"></i></button>
+          </div>
+          <div class="thumbs-stack" aria-hidden="true">${stack}</div>
+        </article>
+      `;
+    }
+
+    function renderEvents(){
+      eventsEl.innerHTML = albums.map(eventCardHTML).join('');
+    }
+    renderEvents();
+
+    // ===== Lightbox (per album) =====
+    const lb = document.getElementById('lightbox');
+    const viewImg = document.getElementById('viewImg');
+    const viewerTitle = document.getElementById('viewerTitle');
+    const btnClose = document.getElementById('btnClose');
+    const btnPrev  = document.getElementById('btnPrev');
+    const btnNext  = document.getElementById('btnNext');
+    const btnDownload = document.getElementById('btnDownload');
+    const btnOpen = document.getElementById('btnOpen');
+
+    let currentAlbum = null;
+    let slide = 0;
+
+    function openAlbumAt(albumIndex, photoIndex=0){
+      currentAlbum = albums[albumIndex];
+      slide = (photoIndex || 0) % currentAlbum.photos.length;
+      const p = currentAlbum.photos[slide];
+      viewImg.src = p.src;
+      const dateFmt = parseDateStr(currentAlbum.date).toLocaleDateString('en-US', {year:'numeric', month:'long', day: currentAlbum.date.length>7?'2-digit':undefined});
+      viewerTitle.textContent = `${currentAlbum.title} — ${dateFmt} (${slide+1}/${currentAlbum.photos.length})`;
+      btnDownload.href = p.src;
+      btnOpen.href = p.src;
+      lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+    }
+    function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); }
+    function prev(){
+      if (!currentAlbum) return;
+      slide = (slide - 1 + currentAlbum.photos.length) % currentAlbum.photos.length;
+      openAlbumAt(albums.indexOf(currentAlbum), slide);
+    }
+    function next(){
+      if (!currentAlbum) return;
+      slide = (slide + 1) % currentAlbum.photos.length;
+      openAlbumAt(albums.indexOf(currentAlbum), slide);
+    }
+
+    // Card click
+    eventsEl.addEventListener('click', e=>{
+      const btn = e.target.closest('[data-open-album]');
+      if (btn){
+        const idx = Number(btn.dataset.openAlbum);
+        openAlbumAt(idx, 0);
+      }
+    });
+
+    // Controls
+    btnClose.onclick = closeLb; btnPrev.onclick = prev; btnNext.onclick = next;
+
+    // Keyboard
+    window.addEventListener('keydown', e=>{
+      if (!lb.classList.contains('open')) return;
+      if (e.key==='Escape') closeLb();
+      if (e.key==='ArrowLeft') prev();
+      if (e.key==='ArrowRight') next();
+    });
+
+    // Backdrop
+    lb.addEventListener('click', e=>{ if (e.target===lb) closeLb(); });
+
+  </script>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"CollectionPage",
+    "name":"ETMC - Ubungo Publications",
+    "url":"https://etmc.org/publications",
+    "hasPart": [
+      {"@type":"CreativeWork","name":"Photo Albums"}
+    ]
+  }
+  </script>
+</body>
+</html>
