@@ -1,88 +1,78 @@
 # YouTube Integration Setup Guide
 
-This guide will help you set up the YouTube integration to display real video titles and published dates on your website.
+This guide explains how to set up the YouTube videos section on the publications page.
 
-## Prerequisites
+## What's Been Added
 
-1. A Google account
-2. Access to Google Cloud Console
+The publications page now includes:
+- A YouTube Videos section below the Photo Albums
+- Dynamic loading of video data from YouTube API
+- Responsive grid layout (3 columns on desktop, 2 on tablet, 1 on mobile)
+- Loading states and error handling
+- Automatic date formatting
 
-## Step 1: Get YouTube Data API v3 Key
+## Setup Steps
 
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+### 1. Get YouTube Data API Key
+
+1. Go to [Google Cloud Console](https://console.developers.google.com/)
 2. Create a new project or select an existing one
-3. Enable the YouTube Data API v3:
-   - Go to "APIs & Services" > "Library"
-   - Search for "YouTube Data API v3"
-   - Click on it and press "Enable"
-4. Create credentials:
-   - Go to "APIs & Services" > "Credentials"
-   - Click "Create Credentials" > "API Key"
-   - Copy your API key
+3. Enable the "YouTube Data API v3"
+4. Go to Credentials → Create Credentials → API Key
+5. Copy your API key
 
-## Step 2: Configure Video IDs
+### 2. Configure Video IDs
 
 1. Open `youtube-config.js`
 2. Replace `YOUR_API_KEY_HERE` with your actual API key
-3. Replace the video IDs with your actual YouTube video IDs:
+3. Replace the video IDs in the `YOUTUBE_VIDEO_IDS` array:
+   - Go to your YouTube video
+   - Copy the URL (e.g., `https://www.youtube.com/watch?v=VIDEO_ID_HERE`)
+   - Extract the part after `v=` and add it to the array
 
+Example:
 ```javascript
 const YOUTUBE_VIDEO_IDS = [
-  'dQw4w9WgXcQ', // Example: Rick Roll
-  'jNQXAC9IVRw', // Example: Me at the zoo
-  'kJQP7kiw5Fk'  // Example: Despacito
+  'dQw4w9WgXcQ',  // Your first video
+  'abc123def456',  // Your second video
+  'xyz789uvw012'   // Your third video
 ];
 ```
 
-### How to Find Video IDs
+### 3. Test the Integration
 
-- Open any YouTube video
-- The video ID is the part after `v=` in the URL
-- Example: `https://www.youtube.com/watch?v=dQw4w9WgXcQ`
-- The video ID is: `dQw4w9WgXcQ`
-
-## Step 3: Test the Integration
-
-1. Save both files
-2. Open your website
-3. Check the browser console for any errors
-4. The videos should load with real titles and dates
-
-## Troubleshooting
-
-### API Quota Limits
-- YouTube Data API v3 has daily quotas
-- Each video fetch costs 1 unit
-- Default quota: 10,000 units/day
-- Monitor usage in Google Cloud Console
-
-### Common Errors
-- **403 Forbidden**: Check if API is enabled and key is correct
-- **400 Bad Request**: Verify video IDs are correct
-- **Quota exceeded**: Wait until quota resets or request increase
-
-### Security Notes
-- Keep your API key private
-- Don't commit it to public repositories
-- Consider restricting the key to your domain
+1. Save the `youtube-config.js` file
+2. Refresh the publications page
+3. The YouTube section should now display your videos with:
+   - Embedded video players
+   - Video titles
+   - Publication dates
+   - Channel information
 
 ## Features
 
-✅ **Real video titles** from YouTube  
-✅ **Published dates** with smart formatting  
-✅ **Channel names** displayed  
-✅ **Responsive design** for all devices  
-✅ **Error handling** for failed requests  
-✅ **Loading states** while fetching data  
+- **Responsive Design**: Automatically adjusts to different screen sizes
+- **Loading States**: Shows loading indicators while fetching data
+- **Error Handling**: Gracefully handles API errors or unavailable videos
+- **Performance**: Videos load lazily and only when needed
+- **Accessibility**: Proper ARIA labels and semantic HTML
+
+## Troubleshooting
+
+- **Videos not loading**: Check your API key and ensure YouTube Data API v3 is enabled
+- **API quota exceeded**: YouTube API has daily limits; consider caching or reducing requests
+- **Videos not displaying**: Verify video IDs are correct and videos are public
+
+## Security Notes
+
+- Keep your API key private and don't commit it to public repositories
+- Consider restricting the API key to only YouTube Data API v3
+- Monitor your API usage to avoid unexpected charges
 
 ## Customization
 
-You can modify the date formatting, styling, and number of videos displayed by editing the JavaScript code in `index.html`.
-
-## Support
-
-If you encounter issues:
-1. Check browser console for error messages
-2. Verify API key and video IDs
-3. Ensure YouTube Data API v3 is enabled
-4. Check your daily API quota usage 
+You can customize:
+- Number of videos displayed (modify the array length)
+- Video grid layout (adjust CSS grid properties)
+- Date formatting (modify the `formatDate` function)
+- Error messages and loading states 
