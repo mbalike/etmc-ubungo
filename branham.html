@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Who is W. M. Branham? — ETMC - Ubungo</title>
+  <meta name="description" content="An overview of the ministry of William Marrion Branham as understood by ETMC - Ubungo, with Scripture references." />
+  <link rel="icon" href="../assets/logo.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    :root{
+      --brand:#2a4c7f; --ink:#eef2ff; --muted:#c5cce6;
+      --bg:#665d08; --ring:rgba(42,76,127,.35);
+      --glass-bg:rgba(255,255,255,.12); --glass-brd:rgba(255,255,255,.22);
+      --glass-shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
+      color:var(--ink); background:radial-gradient(1200px 600px at 20% -10%, #1a2440 0, transparent 60%), var(--bg);
+      line-height:1.6;
+    }
+    a{color:#d7e4ff; text-decoration:none}
+    a:focus, button:focus{outline:3px solid var(--ring); outline-offset:2px; border-radius:10px}
+
+    /* Glass helpers */
+    .glass{
+      background:var(--glass-bg);
+      -webkit-backdrop-filter:saturate(180%) blur(14px);
+      backdrop-filter:saturate(180%) blur(14px);
+      border:1px solid var(--glass-brd);
+      box-shadow:var(--glass-shadow);
+      border-radius:var(--radius);
+    }
+    .glass-soft{
+      background:rgba(255,255,255,.08);
+      -webkit-backdrop-filter:saturate(160%) blur(10px);
+      backdrop-filter:saturate(160%) blur(10px);
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:0 8px 24px rgba(0,0,0,.25);
+      border-radius:var(--radius);
+    }
+
+    /* Pill Navigation */
+    .nav-wrap{position:fixed; top:16px; z-index:60; display:flex; justify-content:center; padding:0 16px; width:100%}
+    .nav{display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:999px}
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:#eef2ff; font-weight:800; padding:6px 10px; border-radius:999px}
+    .brand img{width:28px; height:28px; object-fit:contain}
+    .links{display:flex; gap:4px; flex-wrap:wrap}
+    .links a{color:#f0f4ff; text-decoration:none; font-weight:700; font-size:.95rem; padding:8px 12px; border-radius:999px; opacity:.95}
+    .links a:hover, .links a[aria-current="page"]{background:rgba(255,255,255,.14)}
+    .menu-btn{display:none; margin-left:8px; border:0; background:transparent; color:#fff; font-size:1.1rem; padding:8px 10px; border-radius:12px}
+
+    /* HERO (foggy translucent photo) */
+    .hero{
+      position:relative; min-height:100vh; display:grid; place-items:center; overflow:hidden;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .hero-bg{
+      position:absolute; inset:0; z-index:-2;
+      background:url('/assets/william-branham.jpg') center/cover no-repeat;
+      filter:blur(10px) saturate(115%) brightness(80%); transform:scale(1.06);
+    }
+    .hero-overlay{
+      position:absolute; inset:0; z-index:-1;
+      background:
+        radial-gradient(1400px 700px at 10% -10%, rgba(58,88,168,.35), transparent 60%),
+        linear-gradient(to bottom, rgba(7,10,20,.55), rgba(7,10,20,.65));
+    }
+    .hero-inner{
+      width:100%; max-width:1200px; padding:160px 16px 80px;
+    }
+    .hero-grid{display:grid; grid-template-columns:1.25fr 1fr; gap:20px}
+    .hero-card{padding:22px}
+    .kicker{color:#c7d6ff; text-transform:uppercase; letter-spacing:.12em; font-weight:800; font-size:.8rem}
+    h1{margin:.35rem 0 1rem; font-size:clamp(2rem, 4vw, 3.2rem); line-height:1.15}
+    .lead{color:#e6ebff; max-width:70ch}
+
+    /* Hero pills (verse chips) */
+    .pills{display:grid; gap:12px; grid-template-columns:1fr}
+    .pill{
+      display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:16px;
+      background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22); font-weight:800;
+    }
+    .pill small{color:#d9e4ff}
+    .pill i{opacity:.9}
+
+    /* Main layout */
+    .wrap{max-width:1200px; margin:0 auto; padding:40px 16px 60px}
+    .layout{display:grid; grid-template-columns:260px 1fr 260px; gap:24px}
+    .toc{position:sticky; top:100px; align-self:start}
+    .toc nav{display:flex; flex-direction:column; gap:8px}
+    .toc a{padding:8px 12px; border-radius:12px; transition:.2s}
+    .toc a:hover, .toc a.active{background:rgba(255,255,255,.14)}
+    .right-rail{position:sticky; top:100px; align-self:start; display:flex; flex-direction:column; gap:12px}
+    .note{padding:14px}
+
+    section.belief{margin-bottom:34px}
+    .card{padding:18px}
+    .belief .title{display:flex; align-items:center; gap:10px; margin-bottom:8px}
+    .belief .title h2{margin:0; font-size:1.35rem}
+    .muted{color:var(--muted)}
+
+    /* Footer */
+    footer{margin-top:40px; background:rgba(255,255,255,.06); border-top:1px solid rgba(255,255,255,.12)}
+    footer .fwrap{max-width:1200px; margin:auto; padding:30px 16px; display:grid; gap:20px; grid-template-columns:2fr 1fr 1fr}
+    footer a{color:#d7e4ff; text-decoration:none}
+    .foot-note{border-top:1px solid rgba(255,255,255,.12); text-align:center; padding:14px; font-size:.9rem; color:#c8d4f7}
+
+    /* Responsive */
+    @media (max-width:1100px){
+      .layout{grid-template-columns:1fr}
+      .toc,.right-rail{position:static}
+    }
+    @media (max-width:680px){
+      .links{display:none} .menu-btn{display:block}
+      .links.open{display:flex; width:100%; flex-direction:column; padding:8px; gap:6px; margin-top:8px}
+    }
+  </style>
+</head>
+<body >
+
+  <!-- Pill NAV -->
+  <div class="nav-wrap" role="banner">
+    <div class="nav glass" role="navigation" aria-label="Primary">
+      <a class="brand" href="../index.html#home" aria-label="Home">
+        <img src="../assets/logo.png" alt="Church Logo" />
+        <span>ETMC-Ubungo</span>
+      </a>
+
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" title="Toggle navigation">☰</button>
+
+      <nav id="nav-links" class="links">
+        <a href="../index.html#home">Home</a>
+        <a href="../index.html#beliefs">What We Believe</a>
+        <a href="../about.html">About</a>
+        <a href="../board.html">Church Board</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="hero-grid">
+        <!-- Left: Title & intro -->
+        <div class="hero-card glass">
+          <div class="kicker">About • Doctrine</div>
+          <h1>Who is William Marrion Branham?</h1>
+          <p class="lead">
+            Malachi 4:5–6 · Revelation 10:7 — We believe God fulfilled His promise in our day by sending a
+            prophet-messenger in the spirit of Elijah, vindicated by the Word and the works of God, to restore
+            apostolic faith and reveal the mysteries of the Bible.
+          </p>
+        </div>
+
+        <!-- Right: Scripture pills -->
+        <aside class="hero-card glass">
+          <div class="kicker">Scripture Anchors</div>
+          <div class="pills" style="margin-top:10px">
+            <a class="pill" href="#malachi-4">
+              <i class="bi bi-book"></i>
+              <div>
+                <div><strong>Malachi 4:5–6</strong></div>
+                <small>Elijah before the great day</small>
+              </div>
+            </a>
+            <a class="pill" href="#revelation-10-7">
+              <i class="bi bi-book"></i>
+              <div>
+                <div><strong>Revelation 10:7</strong></div>
+                <small>Mystery of God finished</small>
+              </div>
+            </a>
+            <a class="pill" href="#isaiah-40">
+              <i class="bi bi-book"></i>
+              <div>
+                <div><strong>Isaiah 40:3</strong></div>
+                <small>Voice in the wilderness</small>
+              </div>
+            </a>
+            <a class="pill" href="#luke-1-17">
+              <i class="bi bi-book"></i>
+              <div>
+                <div><strong>Luke 1:17</strong></div>
+                <small>Spirit & power of Elias</small>
+              </div>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <div class="wrap">
+    <div class="layout">
+      <!-- TOC -->
+      <aside class="toc glass" aria-label="Table of contents">
+        <nav>
+          <a href="#intro">1.0 Introduction</a>
+          <a href="#john-elijah">2.0 John the Baptist came into the Spirit of Elijah</a>
+          <a href="#doctrines">3.0 The Doctrines of William Branham is God’s Word</a>
+          <a href="#malachi-4">4.0 Branham a prophet of Malachi 4 and Messenger of Revelation 10</a>
+          <a href="#ministries">5.0 Ministries of John the Baptist and William Branham</a>
+          <a href="#tishbite">6.0 Ministry of Elijah the Tishbite and John the Baptist</a>
+          <a href="#conclusion">7.0 Conclusion</a>
+        </nav>
+      </aside>
+
+      <!-- CONTENT -->
+      <main>
+        <!-- 1.0 Introduction -->
+        <section id="intro" class="belief">
+          <div class="card glass">
+            <div class="title"><h2>1.0 Introduction</h2></div>
+            <p class="muted">
+              God promised that at the end time dispensation there would be a prophet on earth and would be identified by scriptures.
+              According to Malachi four this man would be a prophet in the spirit of Elijah to the Gentiles Church to bring back faith of Pentecostal Apostles.
+              And according to Revelation chapter ten this man will be a messenger from God to reveal mysteries of the Bible.
+            </p>
+            <p class="muted"><strong id="amos-3-7">Amos 3:7</strong> Surely the Lord GOD will do nothing, but he revealeth his secret unto his servants the prophets.</p>
+            <p class="muted">
+              God does things kind of strange and odd, He works in peculiar ways and mysterious ways and that's why people get away from the Word of God.
+              He promised that He will do nothing unless He revealed his secrets to His prophets. We cannot scientifically prove these promises of God, but we find that
+              every one of them happened just as God said they would.
+            </p>
+          </div>
+        </section>
+
+        <!-- 2.0 John the Baptist -->
+        <section id="john-elijah" class="belief">
+          <div class="card glass">
+            <div class="title"><h2>2.0 John the Baptist came into the Spirit of Elijah</h2></div>
+            <p class="muted" id="isaiah-40"><strong>Isaiah 40:3</strong> the voice of him that crieth in the wilderness, prepare ye the way of the LORD, make straight in the desert a highway for our God.</p>
+            <p class="muted">
+              When Isaiah spoke of John the Baptist that he would forerun the first advent of Jesus Christ, Israel didn’t recognize him. John came in the spirit of Elias to turn the hearts of Israel to faith of son who was among them.
+            </p>
+            <p class="muted" id="luke-1-17"><strong>Luke 1:17</strong> ‘and he shall go before him in the spirit and power of Elias, to turn the hearts of the fathers to the children…’</p>
+            <p class="muted">
+              John the Baptist was proving to Israel that he comes so that they can recognize Jesus Christ, but they missed Jesus Christ because they fail to see fulfillment of God’s word into him. He said "Behold (means to look at) the Lamb of God that takes away the sin of the world."
+            </p>
+            <p class="muted"><strong>John 1:29</strong> the next day John seeth Jesus coming unto him, and saith, Behold the Lamb of God, which taketh away the sin of the world. He came an ordinary man introducing Jesus to the world.</p>
+            <p class="muted">
+              Today, most of us are convinced that John came according to scriptures, but that helps nothing to them people of that day who rejected him. God who is full in mercy has done same thing to our day. He sent us a prophet according to scriptures of Malachi 4 in the spirit of Elijah, as it was in the days of John the Baptist so will be in the days of Branham.
+            </p>
+            <p class="muted">
+              How did they miss John the Baptist? Because they were looking for something else so is today they are missing Branham because they are looking for something else. They missed Jesus Christ at His first advent because they didn’t recognize Prophet John so is today they will not see the second coming of Jesus Christ and going of the rapture because they don’t recognize Prophet Branham
+            </p>
+          </div>
+        </section>
+
+        <!-- 3.0 Doctrines -->
+        <section id="doctrines" class="belief">
+          <div class="card glass">
+            <div class="title"><h2>3.0 The Doctrines of William Branham is God’s Word</h2></div>
+            <p class="muted">
+              If you go into denominational churches you would find Pentecostal faith is deferent to that of Roman Catholic, and Catholic faith is deferent to Baptist faith and Baptist is different to Anglican faith etc. every church is contending on her own faith. Now here comes a question which faith Jesus was talking about in Saint Luke when He says <em>Luke 18:8</em> … Nevertheless when the Son of man cometh, shall he find faith on the earth?’ It was necessary for God Himself to send His Prophet on earth at this denominational confusion to restore back a faith Jesus talked about.
+            </p>
+            <p class="muted">
+              William Marrion Branham was a prophet of God combating with intellectual denominational doctrines. According to his life history William Branham was a seventh grade educational level but he was able to show the truth and power of God by spirit and signs before educational ecclesiastical. He was ordained to see past and future things and tell and God proved to be truth before people.
+            </p>
+            <p class="muted">
+              Though he was not a popular, he was vindicated by God. As Jesus authenticated John, and the Holy Ghost authenticated Jesus, William Braham was first of all authenticated by the Spirit working in his life in acts of power that are indisputable and found nowhere else; and Jesus Himself, in returning, will authenticate him, even as He authenticated John. John witnessed that Jesus was coming, and so will this man, like John, witness that Jesus is coming.
+            </p>
+            <p class="muted">
+              And the very return of Christ will prove that William Branham indeed was the forerunner of His second coming. This is the final evidence that this indeed is the prophet of Malachi 4, for the end of the Gentile period will be Jesus, Himself, appearing. Then it will be too late for those who have rejected him.
+            </p>
+            <p class="muted">
+              People will say it was told that Jesus should not come until one to forerun Him as in the days of John <em>Matthew 17:10</em>,  “His disciples asked Him saying, Why then say the scribes that Elias must first come?" And Jesus said, "Elias truly shall first come, and restore all things." But I say unto you, that Elias is come already, and you knew him not.
+            </p>
+            <p class="muted">
+              Jesus said "He's already come, and you didn't know him." He spoke of John to forerun His first coming but John the Baptist wasn't the Elijah that He spoke of the last days, 'because the world never burnt and the millennium set in.
+            </p>
+          </div>
+        </section>
+
+        <!-- 4.0 Malachi 4 / Rev 10 -->
+        <section id="malachi-4" class="belief">
+          <div class="card glass">
+            <div class="title"><h2>4.0 Branham a prophet of Malachi 4 and Messenger of Revelation 10</h2></div>
+            <p class="muted"><strong>Malachi 4:5–6</strong> ‘Behold, I will send you Elijah the prophet before the coming of the great and dreadful day of the LORD: And he shall turn the heart of the fathers to the children, and the heart of the children to their fathers, lest I come and smite the earth with a curse’.</p>
+            <p class="muted">
+              Before the coming of our Lord, Elijah must come back for a work of restoration in the church. This is what Malachi 4:6 says …" he shall turn the heart of the children to their fathers, lest I come and smite the earth with a curse."
+            </p>
+            <p class="muted">
+              There is absolutely no doubt that Elijah must return before the coming of Jesus. He has a specific work to accomplish. That work is the part of Malachi 4:6 that says "he will turn the hearts of the children to their fathers". The reason that we know this is his specific work to do at that time is because he has already accomplished the part that says "he shall turn the hearts of the fathers to the children," when the Elijah ministry was here in John the Baptist.
+            </p>
+            <p class="muted">
+              We know that in the ministry of John the "hearts of the fathers were turned to the children". But it does not say that the hearts of the children were turned to the fathers that are yet to take place. The hearts of the children will be turned back to the Pentecostal fathers at the last days. Brother Branham upon by the Spirit of Elijah is preparing the children to welcome back Jesus.
+            </p>
+            <p class="muted">
+              The first time Elijah come (John the Baptist), he turned the hearts of the old patriarch fathers, (old Jews, to the faith of the children and believed of the coming Messiah).  When He comes the second time (William Branham) will be turning the hearts of the children back to the Pentecostal fathers.
+            </p>
+            <p class="muted" id="revelation-10-7"><strong>Revelation 10:7</strong> But in the days of the voice of the seventh angel, when he shall begin to sound, the mystery of God should be finished, as he hath declared to his servants the prophets.</p>
+            <p class="muted">
+              Now this person, who in this verse is called an 'angel' is NOT a heavenly being. He is a man, and he is to bring a message from God and his message and ministry is going to finish the mystery of God as declared to His servants, the prophets. God is going to treat this last messenger as a prophet.
+            </p>
+            <p class="muted">
+              This messenger will have the prophetic ministry based solidly on the Word because when he prophesies or sees vision, it will always be "Word oriented" and it will ALWAYS come to pass. He will be vindicated as a prophet because of his accuracy.
+            </p>
+            <p class="muted">
+              We find in scriptures that the messenger to this last age, will take all those loose ends out there and reveal the whole secret of God for the rupturing of the Church. Also we find that there are seven mysterious thunders that were not even written at all (in Revelation 10:1-7). We believe that this messenger will revealed these seven thunders in the last days in order to get the Bride together for rupturing faith;
+            </p>
+          </div>
+        </section>
+
+        <!-- 5.0 Ministries -->
+        <section id="ministries" class="belief">
+          <div class="card glass">
+            <div class="title"><h2>5.0 Ministries of John the Baptist and William Branham</h2></div>
+            <p class="muted">
+              In order to let no one confused with Malachi 4;5-6 where you note compound coming, His first coming spoke of turning of father’s heart to the children and His second coming spoke of turning the hearts of children to their fathers but both coming is operated by one spirit of Elijah.
+            </p>
+            <p class="muted">
+              The first coming was fulfilled by John the Baptist and the second is fulfilled by William Branham.  The second coming will be just before the great and dreadful day of the LORD which did not happen at the first coming. It said the earth will be burnt and cleaned off, and saints will walk out upon the ashes of wicked. This didn’t happen at the time of John the Baptist, because the dreadful day of the Lord wasn't then:
+            </p>
+            <p class="muted">
+              <strong>Matthew 17:12</strong>,  "But I say unto you that Elias is come already, and they knew him not, but have done unto him what they listed.".  The reason that he called John Elijah, was because the same Spirit that was upon Elijah had come back upon John, even as that Spirit had come back upon Elisha after the reign of King Ahab.
+            </p>
+            <p class="muted">
+              Now once again that Spirit will come back upon another man just before Jesus comes. He will be a prophet. He will be vindicated as such by God. It will be done by the Holy Spirit so that this prophet's ministry will be attended by great and wonderful manifestation, for every revelation will come to pass. Wonderful acts of power will be performed at his commands in faith. Then will be brought forth the message that God has given him in the Word to turn the people back to truth and the true power of God. Some will listen, but the majority will reject him. The ministry of William Marrion Branham has already proved that he was the one to come in the spirit of Elijah at the end time.
+            </p>
+          </div>
+        </section>
+
+        <!-- 6.0 Elijah the Tishbite -->
+        <section id="tishbite" class="belief">
+          <div class="card glass">
+            <div class="title"><h2>6.0 Ministry of Elijah the Tishbite and John the Baptist</h2></div>
+            <p class="muted">
+              God always sends a forerunning before some great event. Elijah and John, Both were men set apart from the accepted religious schools of their day. Both were men of the wilderness. Both acted only when they had "Thus saith the Lord," straight from God by revelation. Both lashed out against the religious orders and leaders of their day. And notice, both prophesied much against immoral women and their ways. Elijah cried out against painted-faced Jezebels of his day, and John rebuked Herodias, Philip's wife. Women rebuking was the cause of their death. Both dressed sheepskin wrapped around, and a piece of leather.
+            </p>
+            <p class="muted">
+              This man William Branham will be naturally like Elijah the Tishbite, and John the Baptist. He will be a prophet of God, his ministry will be turning the hearts of children to their fathers or in other words he will be restoring the faith of disciples of Jesus Christ which was first preached by Paul to the Gentiles. He hated immoral woman and he was called woman hater, he was firm against denominations. He hated denominations system, his life in the wilderness, comes forth with his Message. He was a humble man, poor preacher even below his trophies.
+            </p>
+            <p class="muted">
+              This prophet, Elijah Tishbite, we know he was the servant of God for that hour. And God used his Spirit five times. He used it upon Elijah; it came on Elisha in a double portion; was on John the Baptist; and came into Branham just to issue in the Gentile Bride; and supposed to come with Moses (Revelations the 11th) to take the Jews home. Five times that God promises to use the Spirit of Elijah, and already done it four times.
+            </p>
+          </div>
+        </section>
+
+        <!-- 7.0 Conclusion -->
+        <section id="conclusion" class="belief">
+          <div class="card glass">
+            <div class="title"><h2>7.0 Conclusion</h2></div>
+            <p class="muted">
+              In further clarification on the introduction of this last day prophet, let us particularly note that the prophet of Matthew 17;12, was John the Baptist, who was the one foretold in Malachi 3:1 "Behold, I will send My messenger, and he shall prepare the way before Me; and the Lord, Whom ye seek, shall suddenly come to His temple, even the Messenger of the Covenant, Whom ye delight in; behold, He shall come, saith the Lord of Hosts."
+            </p>
+            <p class="muted">
+              John was a messenger of the covenant. He was the one that introduced and said, "This is Him." All other prophets spoke of Him, but John said, "This is Him." In his simple way of coming, it just blinded the intellectual.
+            </p>
+            <p class="muted">
+              Now this messenger of Malachi 4 and Revelation 10:7 is going to do two things. One: according to Malachi 4 he will turn the hearts of the children to the fathers. Second: according to Revelation 10:7 he will reveal the mysteries of the seven thunders which are the revelations contained in the seven seals. It will be these divinely revealed 'mystery-truths' that literally turn the hearts of the children to the Pentecostal fathers.
+            </p>
+            <p class="muted">
+              <strong>II Peter 1:20–21</strong> knowing this first that no prophecy of the scripture is of any private interpretation. For the prophecy came not in old time by the will of man: but holy men of God spake [as they were] moved by the Holy Ghost. Now, remember, the Word of the Lord comes to the prophet, not the theologian, the prophet. A prophet is a reflector of God's Word. He can't say his own thoughts; he can only speak what God reveals.
+            </p>
+            <p class="muted">
+              William Branham is a prophet of God ordained to fulfill Malachi chapter 4 and Revelation chapter 10. His ministry started early 1930s when he was a youth preacher and in 1965 he was called home for a rest at the age of 56 years.  His ministry has all around shook the world through great signs, wonders, visions and manifestation of power of God under first, second and third pulls. No wonder Branham has successfully accomplished his duty as a prophet and messenger of God.
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <!-- Right Rail Notes (verses quick reference) -->
+      <aside class="right-rail">
+        <div class="note glass-soft">
+          <strong>Key Verses</strong>
+          <ul style="margin:8px 0 0 18px; padding:0; color:var(--muted)">
+            <li><a href="#malachi-4">Malachi 4:5–6</a></li>
+            <li><a href="#revelation-10-7">Revelation 10:7</a></li>
+            <li><a href="#isaiah-40">Isaiah 40:3</a></li>
+            <li><a href="#luke-1-17">Luke 1:17</a></li>
+            <li><a href="#amos-3-7">Amos 3:7</a></li>
+          </ul>
+        </div>
+        <div class="note glass">
+          <strong>Explore More</strong>
+          <p class="muted" style="margin:.4em 0 0">Return to <a href="../about.html">About Us</a> or read our full <a href="../beliefs.html">What We Believe</a>.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo" class="glass-soft">
+    <div class="fwrap">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px">
+          <img src="../assets/logo.png" alt="Church logo" width="36" height="36" />
+          <strong>ETMC - Ubungo</strong>
+        </div>
+        <p style="margin:0 0 15px; color:#c8d4f7; line-height:1.5; max-width:260px">
+          A Bible-believing fellowship in Ubungo proclaiming the Gospel of Jesus Christ.
+        </p>
+        <div style="display:flex; gap:12px; margin-top:8px">
+          <a href="https://www.instagram.com/ubungoendtime" target="_blank" rel="noopener" aria-label="Instagram" style="color:#d7e4ff; font-size:1.2rem"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener" aria-label="YouTube" style="color:#d7e4ff; font-size:1.2rem"><i class="bi bi-youtube"></i></a>
+          <a href="https://wa.me/255742398600" target="_blank" rel="noopener" aria-label="WhatsApp" style="color:#d7e4ff; font-size:1.2rem"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <strong>Quick Links</strong><br/>
+        <a href="../index.html#beliefs">What We Believe</a><br/>
+        <a href="../about.html">About Us</a><br/>
+        <a href="../prayer-request.html">Prayer Request</a><br/>
+        <a href="../publications.html">Publications</a>
+      </div>
+      <div>
+        <strong>Contact</strong><br/>
+        <a href="mailto:info@etmc.org">info@etmc.org</a><br/>
+        <a href="tel:+255742398600">+255 742 398 600</a><br/>
+        <a href="https://maps.app.goo.gl/AmmTMawztCnETcYY9" target="_blank" rel="noopener">Ubungo, Dar es Salaam</a>
+      </div>
+    </div>
+    <div class="foot-note">© <span id="year"></span> ETMC - Ubungo. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const btn = document.querySelector('.menu-btn');
+    const links = document.querySelector('.links');
+    btn?.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Active TOC link on scroll
+    const tocLinks = document.querySelectorAll(".toc nav a");
+    const sections = [...document.querySelectorAll("main section.belief")];
+    window.addEventListener("scroll", () => {
+      let fromTop = window.scrollY + 120;
+      sections.forEach((sec) => {
+        if (sec.offsetTop <= fromTop && sec.offsetTop + sec.offsetHeight > fromTop) {
+          tocLinks.forEach(a => a.classList.remove("active"));
+          const active = document.querySelector(`.toc nav a[href="#${sec.id}"]`);
+          active?.classList.add("active");
+        }
+      });
+    });
+  </script>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Who is William Marrion Branham?",
+    "url":"https://etmc.org/about/william-branham",
+    "about":{"@type":"Person","name":"William Marrion Branham"},
+    "publisher":{"@type":"Organization","name":"ETMC - Ubungo"}
+  }
+  </script>
+</body>
+</html>

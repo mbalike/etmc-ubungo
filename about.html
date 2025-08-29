@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us — ETMC - Ubungo</title>
+  <meta name="description" content="Learn about ETMC - Ubungo: our story, mission, distinctives, and the end-time message we hold." />
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    :root{
+      --brand:#2a4c7f; --ink:#eef2ff; --muted:#c5cce6;
+      --bg:#665d08;
+      --ring:rgba(42,76,127,.35);
+      --glass-bg:rgba(255,255,255,.12);
+      --glass-brd:rgba(255,255,255,.22);
+      --glass-shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
+      color:var(--ink);
+      background:radial-gradient(1200px 600px at 20% -10%, #1a2440 0, transparent 60%), var(--bg);
+      line-height:1.6;
+    }
+    a{color:#d7e4ff; text-decoration:none}
+    a:focus, button:focus{outline:3px solid var(--ring); outline-offset:2px; border-radius:10px}
+
+    /* Glass helpers */
+    .glass{
+      background:var(--glass-bg);
+      -webkit-backdrop-filter:saturate(180%) blur(14px);
+      backdrop-filter:saturate(180%) blur(14px);
+      border:1px solid var(--glass-brd);
+      box-shadow:var(--glass-shadow);
+      border-radius:var(--radius);
+    }
+    .glass-soft{
+      background:rgba(255,255,255,.08);
+      -webkit-backdrop-filter:saturate(160%) blur(10px);
+      backdrop-filter:saturate(160%) blur(10px);
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:0 8px 24px rgba(0,0,0,.25);
+      border-radius:var(--radius);
+    }
+
+    /* Pill Navigation */
+    .nav-wrap{position:fixed; top:16px; z-index:60; display:flex; justify-content:center; padding:0 16px; width:100%}
+    .nav{display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:999px}
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:#eef2ff; font-weight:800; padding:6px 10px; border-radius:999px}
+    .brand img{width:28px; height:28px; object-fit:contain}
+    .links{display:flex; gap:4px; flex-wrap:wrap}
+    .links a{color:#f0f4ff; text-decoration:none; font-weight:700; font-size:.95rem; padding:8px 12px; border-radius:999px; opacity:.95}
+    .links a:hover, .links a[aria-current="page"]{background:rgba(255,255,255,.14)}
+    .menu-btn{display:none; margin-left:8px; border:0; background:transparent; color:#fff; font-size:1.1rem; padding:8px 10px; border-radius:12px}
+
+    /* HERO (foggy translucent photo) */
+    .hero{
+      position:relative; min-height:100vh; display:grid; place-items:center; overflow:hidden;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .hero-bg{
+      position:absolute; inset:0; z-index:-2;
+      background:url('assets/pub.jpeg') center/cover no-repeat;
+      filter:blur(10px) saturate(115%) brightness(80%); transform:scale(1.06);
+    }
+    .hero-overlay{
+      position:absolute; inset:0; z-index:-1;
+      background:
+        radial-gradient(1400px 700px at 10% -10%, rgba(58,88,168,.35), transparent 60%),
+        linear-gradient(to bottom, rgba(7,10,20,.55), rgba(7,10,20,.65));
+    }
+    .hero-inner{
+      width:100%; max-width:1200px; padding:150px 16px 80px;
+    }
+
+    .hero-grid{
+      display:grid; grid-template-columns:1.2fr 1fr; gap:20px;
+    }
+    .hero-card{
+      padding:22px;
+    }
+    .kicker{color:#c7d6ff; text-transform:uppercase; letter-spacing:.12em; font-weight:800; font-size:.8rem}
+    h1{margin:.35rem 0 1rem; font-size:clamp(2rem, 4vw, 3.2rem); line-height:1.15}
+    .lead{color:#e6ebff; max-width:65ch}
+
+    /* Hero pills (verse chips) */
+    .pills{
+      display:grid; gap:12px;
+      grid-template-columns:repeat(2, 1fr);
+    }
+    .pill{
+      display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:16px;
+      background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22); font-weight:800;
+    }
+    .pill small{color:#d9e4ff}
+    .pill i{opacity:.9}
+
+    /* Main sections */
+    main{max-width:1200px; margin:0 auto; padding:40px 16px 60px}
+    .section-title{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:16px}
+    .section-title h2{margin:0; font-size:clamp(1.3rem, 2.6vw, 2rem)}
+    .grid{display:grid; gap:16px}
+    .cols-2{grid-template-columns:1.2fr 1fr}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+
+    .card{padding:18px}
+    .muted{color:#c5cce6}
+    .badge{display:inline-block; font-size:.75rem; padding:4px 8px; border-radius:999px; background:rgba(255,255,255,.15); color:#fff; font-weight:800; border:1px solid rgba(255,255,255,.22)}
+
+    .img-fit{width:100%; height:100%; object-fit:cover; border-radius:14px; border:1px solid rgba(255,255,255,.16)}
+
+    /* Footer */
+    footer{margin-top:40px; background:rgba(255,255,255,.06); border-top:1px solid rgba(255,255,255,.12)}
+    footer .wrap{max-width:1200px; margin:auto; padding:30px 16px; display:grid; gap:20px; grid-template-columns:2fr 1fr 1fr}
+    footer a{color:#d7e4ff; text-decoration:none}
+    .foot-note{border-top:1px solid rgba(255,255,255,.12); text-align:center; padding:14px; font-size:.9rem; color:#c8d4f7}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      .cols-2{grid-template-columns:1fr}
+      .cols-3{grid-template-columns:1fr 1fr}
+      footer .wrap{grid-template-columns:1fr}
+    }
+    @media (max-width:680px){
+      .links{display:none} .menu-btn{display:block}
+      .links.open{display:flex; width:100%; flex-direction:column; padding:8px; gap:6px; margin-top:8px}
+      .cols-3{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Pill NAV -->
+  <div class="nav-wrap" role="banner">
+    <div class="nav glass" role="navigation" aria-label="Primary">
+      <a class="brand" href="index.html#home" aria-label="Home">
+        <img src="assets/logo.png" alt="Church Logo" />
+        <span>ETMC-Ubungo</span>
+      </a>
+
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" title="Toggle navigation">☰</button>
+
+      <nav id="nav-links" class="links">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#beliefs">What We Believe</a>
+        <a href="about.html" aria-current="page">About</a>
+        <a href="board.html">Church Board</a>
+        <a href="publications.html">Publications</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="hero-grid">
+        <!-- Left: Story/mission -->
+        <div class="hero-card glass">
+          <div class="kicker">About Us</div>
+          <h1>Rooted in Scripture, led by the Spirit</h1>
+          <p class="lead">
+            Rooted in Scripture and led by the Spirit, we are a local body pursuing Christlike character, worship,
+            discipleship, and service. We cherish apostolic doctrine and church order in love and humility.
+            “That in all things He might have the preeminence.” (Col 1:18)
+          </p>
+        </div>
+
+        <!-- Right: Verse Pills -->
+        <aside class="hero-card glass">
+          <div class="kicker">Scripture Pillars</div>
+          <div class="pills" style="margin-top:10px">
+            <a class="pill" href="beliefs.html#malachi4">
+              <i class="bi bi-book"></i>
+              <div>
+                <div><strong>Malachi 4:5</strong></div>
+                <small>Elijah before the great day</small>
+              </div>
+            </a>
+            <a class="pill" href="beliefs.html#restored">
+              <i class="bi bi-book"></i>
+              <div>
+                <div><strong>Revelation 10:7</strong></div>
+                <small>Mystery of God finished</small>
+              </div>
+            </a>
+            <a class="pill" href="beliefs.html#baptism">
+              <i class="bi bi-book"></i>
+              <div>
+                <div><strong>Acts 2:38</strong></div>
+                <small>Repent & be baptized</small>
+              </div>
+            </a>
+            <a class="pill" href="beliefs.html#fivefold">
+              <i class="bi bi-book"></i>
+              <div>
+                <div><strong>Ephesians 4:11–16</strong></div>
+                <small>Five-fold ministry</small>
+              </div>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Our Story & Mission -->
+    <section aria-labelledby="story-title">
+      <div class="section-title">
+        <h2 id="story-title">Our Story & Mission</h2>
+      </div>
+
+      <div class="grid cols-2">
+        <article class="card glass">
+          <h3 style="margin:0 0 6px">Who We Are</h3>
+          <p class="muted">
+            Rooted in Scripture and led by the Spirit, we are a local body pursuing Christlike character, worship,
+            discipleship, and service. We cherish apostolic doctrine and church order in love and humility.
+          </p>
+          <p class="muted"><em>“That in all things He might have the preeminence.”</em> (Colossians 1:18)</p>
+        </article>
+
+        <div class="card glass-soft" style="padding:0; overflow:hidden">
+          <img class="img-fit" src="assets/photos/church.jpg" alt="Church family worship" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- Distinctives / Quick bullets -->
+    <section aria-labelledby="distinctives-title">
+      <div class="section-title">
+        <h2 id="distinctives-title">Core Distinctives</h2>
+      </div>
+
+      <div class="grid cols-3">
+        <article class="card glass-soft">
+          <span class="badge">Bible-Centered</span>
+          <h3 style="margin:8px 0 6px">The Infallible Word</h3>
+          <p class="muted">Every chapter, verse, and line is the Absolute—our final authority for faith and life.</p>
+        </article>
+
+        <article class="card glass-soft">
+          <span class="badge">Apostolic</span>
+          <h3 style="margin:8px 0 6px">Full Gospel & Order</h3>
+          <p class="muted">We teach apostolic blessing and maintain church order, doctrine, and discipline in love.</p>
+        </article>
+
+        <article class="card glass-soft">
+          <span class="badge">Five-Fold</span>
+          <h3 style="margin:8px 0 6px">Ephesians 4:11–16</h3>
+          <p class="muted">We believe the five-fold ministry perfects and edifies the saints for the work of ministry.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Glimpse: Who is W. M. Branham? -->
+    <section aria-labelledby="branham-title">
+      <div class="section-title">
+        <h2 id="branham-title">Who is W. M. Branham? (Glimpse)</h2>
+      </div>
+
+      <div class="grid cols-2">
+        <article class="card glass">
+          <p class="muted">
+            We recognize the end-time message promised in Malachi 4:5–6 and Revelation 10:7. We believe God sent the
+            spirit of Elijah in our day—the end-time messenger to restore apostolic faith and reveal the mysteries of the
+            Word, turning hearts of the children back to the fathers. Explore Scriptures, history, and why we hold this.
+          </p>
+          <p style="margin:10px 0 0">
+            <a class="badge" href="about/william-branham.html" title="Read full article">Read the full article →</a>
+          </p>
+        </article>
+
+        <div class="card glass-soft" style="padding:0; overflow:hidden">
+          <img class="img-fit" src="/assets/branham.webp" alt="Glimpse of the end-time message" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- History teaser -->
+    <section aria-labelledby="history-title">
+      <div class="section-title">
+        <h2 id="history-title">History (Coming Soon)</h2>
+      </div>
+
+      <div class="grid cols-2">
+        <article class="card glass-soft">
+          <h3 style="margin:0 0 6px">A Journey of Grace</h3>
+          <p class="muted">
+            From humble beginnings to a thriving fellowship in Ubungo, our story is one of faith, prayer, and service.
+            We’ll share key moments, leaders, and the Lord’s dealings with us in due time.
+          </p>
+          <p style="margin:10px 0 0">
+            <a class="badge" href="about/history.html" title="View history">View timeline →</a>
+          </p>
+        </article>
+
+        <div class="card glass" style="padding:0; overflow:hidden">
+          <img class="img-fit" src="assets/photos/history.jpg" alt="Historic church moment" loading="lazy">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo" class="glass-soft">
+    <div class="wrap">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px">
+          <img src="assets/logo.png" alt="Church logo" width="36" height="36" />
+          <strong>ETMC - Ubungo</strong>
+        </div>
+        <p style="margin:0 0 15px; color:#c8d4f7; line-height:1.5; max-width:260px">
+          A Bible-believing fellowship in Ubungo proclaiming the Gospel of Jesus Christ.
+        </p>
+        <div style="display:flex; gap:12px; margin-top:8px">
+          <a href="https://www.instagram.com/ubungoendtime" target="_blank" rel="noopener" aria-label="Instagram" style="color:#d7e4ff; font-size:1.2rem"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener" aria-label="YouTube" style="color:#d7e4ff; font-size:1.2rem"><i class="bi bi-youtube"></i></a>
+          <a href="https://wa.me/255742398600" target="_blank" rel="noopener" aria-label="WhatsApp" style="color:#d7e4ff; font-size:1.2rem"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <strong>Quick Links</strong><br/>
+        <a href="index.html#beliefs">What We Believe</a><br/>
+        <a href="about.html">About Us</a><br/>
+        <a href="prayer-request.html">Prayer Request</a><br/>
+        <a href="publications.html">Publications</a>
+      </div>
+      <div>
+        <strong>Contact</strong><br/>
+        <a href="mailto:info@etmc.org">info@etmc.org</a><br/>
+        <a href="tel:+255742398600">+255 742 398 600</a><br/>
+        <a href="https://maps.app.goo.gl/AmmTMawztCnETcYY9" target="_blank" rel="noopener">Ubungo, Dar es Salaam</a>
+      </div>
+    </div>
+    <div class="foot-note">© <span id="year"></span> ETMC - Ubungo. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const btn = document.querySelector('.menu-btn');
+    const links = document.querySelector('.links');
+    btn?.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"AboutPage",
+    "name":"About ETMC - Ubungo",
+    "url":"https://etmc.org/about",
+    "primaryImageOfPage":"https://etmc.org/assets/about-hero.jpg",
+    "publisher":{"@type":"Organization","name":"ETMC - Ubungo"}
+  }
+  </script>
+</body>
+</html>
