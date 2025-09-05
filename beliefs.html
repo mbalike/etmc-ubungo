@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
     :root{
-      --brand:#2a4c7f; --muted:#c5cce6; --bg:#665d08;
+      --brand:#2a4c7f; --muted:#c5cce6; --bg:#000000;
       --ring:rgba(42,76,127,.35);
       --glass-bg:rgba(255,255,255,.12); --glass-brd:rgba(255,255,255,.22);
       --glass-shadow:0 10px 30px rgba(0,0,0,.35); --radius:20px;
@@ -62,33 +62,87 @@
     .links a:hover, .links a[aria-current="page"]{background:rgba(255,255,255,.14)}
     .menu-btn{display:none; margin-left:8px; border:0; background:transparent; color:#fff; font-size:1.1rem; padding:8px 10px; border-radius:12px}
 
-    /* ======= Hero ======= */
-    .hero{
-      position:relative; min-height:100vh; display:grid; place-items:center; overflow:hidden; border-bottom:1px solid rgba(255,255,255,.08);
+    /* ======= HERO ======= */
+    .hero {
+      position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid rgba(255,255,255,.08);
+      flex-direction:row;
+      gap:40px;
     }
-    .hero::before{
+    .hero::before {
       content:""; position:absolute; inset:0;
       background:
         linear-gradient(to bottom, rgba(10,12,22,.5), rgba(10,12,22,.7)),
         url('assets/pub.jpeg') center/cover no-repeat;
       z-index:-1;
+      filter: blur(18px);
     }
-    .hero-card{
-      width:min(1100px, 92vw); padding:20px;
-      display:grid; grid-template-columns:1.4fr .6fr; gap:16px; align-items:start;
+    .hero-content {
+      position:relative;
+      z-index:1;
+      text-align:left;
+      max-width:600px;
+      margin-bottom:0;
+      flex:1 1 0;
     }
-    .hero-left{padding:16px}
-    .hero-left h1{font-size:clamp(2rem, 4vw, 3rem); margin-bottom:.35rem}
-    .hero-left p{color:#dfe6ff; margin:0}
-
-    .hero-right{
-      display:flex; gap:10px; flex-wrap:wrap; align-content:flex-start; padding:12px;
+    .hero-content h1 {
+      font-size:clamp(2rem, 4vw, 3rem);
+      margin-bottom:.35rem;
     }
-    .verse-pill{
-      display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:999px;
-      background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.22); font-weight:800; color:#fff;
+    .hero-content p {
+      color:#dfe6ff;
+      margin:0;
+      font-size:1.15rem;
     }
-    .verse-pill i{font-size:1rem}
+    .hero-card {
+      width: 520px;           /* Fixed width for 2x2 grid */
+      max-width: 95vw;
+      min-width: 320px;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      padding: 32px 28px;
+      box-sizing: border-box;
+    }
+    .hero-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      width: 100%;
+    }
+    .verse-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;     /* Wider pills */
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.22);
+      font-weight: 800;
+      color: #fff;
+      width: 100%;
+      justify-content: center;
+      font-size: 1.08rem;
+      white-space: nowrap; /* Prevent line breaks */
+    }
+    @media (max-width: 900px) {
+      .hero { flex-direction:column; gap:24px; }
+      .hero-card { max-width:100%; width:100%; height:auto; }
+      .hero-content { text-align:center; }
+    }
+    /* Responsive: stack pills on small screens */
+    @media (max-width: 600px) {
+      .hero-card {
+        width: 100%;
+        padding: 18px 6px;
+      }
+      .hero-right {
+        grid-template-columns: 1fr;
+      }
+    }
 
     /* ======= Main layout ======= */
     main{max-width:1300px; margin:0 auto; display:grid; grid-template-columns:260px 1fr; gap:24px; padding:40px 16px}
@@ -97,13 +151,12 @@
     aside a{padding:8px 12px; border-radius:12px; transition:.2s}
     aside a:hover, aside a.active{background:rgba(255,255,255,.14)}
 
-    section{margin-bottom:80px; display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:center}
-    section:nth-of-type(even){grid-template-columns:1fr 1fr; direction:rtl}
-    section:nth-of-type(even) .content{direction:ltr}
+    section{margin-bottom:80px; display:grid; grid-template-columns:1fr; gap:24px; align-items:center}
     .content{padding:20px}
     .content h2{margin-bottom:.4em; font-size:1.6rem}
     .content p{color:#cfd6fb; margin:.6em 0}
-    .photo img{width:100%; border-radius:var(--radius); object-fit:cover; max-height:360px}
+    /* Remove photo column styling */
+    .photo {display:none;}
 
     /* ======= Footer ======= */
     footer{margin-top:40px; background:rgba(255,255,255,.06); border-top:1px solid rgba(255,255,255,.12)}
@@ -119,7 +172,6 @@
       main{grid-template-columns:1fr}
       aside{display:none}
       section{grid-template-columns:1fr}
-      section:nth-of-type(even){direction:ltr}
     }
     @media (max-width: 760px){
       .links{display:none}
@@ -153,13 +205,13 @@
 
   <!-- HERO -->
   <header class="hero">
+    <div class="hero-content">
+      <h1>What We Believe</h1>
+      <p>
+        We believe the Bible is the infallible Word of God, the Absolute and Ultimate Truth, i.e. every chapter, every verse and every line.
+      </p>
+    </div>
     <div class="hero-card glass">
-      <div class="hero-left">
-        <h1>What We Believe</h1>
-        <p>
-          We believe the Bible is the infallible Word of God, the Absolute and Ultimate Truth, i.e. every chapter, every verse and every line.
-        </p>
-      </div>
       <div class="hero-right">
         <a href="#malachi4" class="verse-pill"><i class="bi bi-journal-bookmark"></i> Malachi 4:5</a>
         <a href="#malachi4" class="verse-pill"><i class="bi bi-journal-bookmark"></i> Revelation 10:7</a>
@@ -191,112 +243,85 @@
 
     <!-- Sections (content is your original wording) -->
     <div>
-
       <section id="bible">
         <div class="content glass">
           <h2>The Bible</h2>
           <p>We believe the Bible is the infallible Word of God, the Absolute and Ultimate Truth, i.e. every chapter, every verse and every line.</p>
         </div>
-        <div class="photo"><img src="assets/photos/bible.jpg" alt="Open Bible"></div>
       </section>
-
       <section id="godhead">
         <div class="content glass">
           <h2>The Godhead</h2>
           <p>We believe that Jehovah of the Old Testament is the Lord Jesus Christ of the New Testament and that there is no other God but Him. (Isaiah 9.6, 1 Timothy 3:16 etc.). We believe this Lord Jesus Christ is real and alive today, even GOVERNING IN THE AFFAIRS OF MEN RIGHT NOW. HE IS BOTH CREATOR AND SUSTAINER.  (Hebrews 13:8; Colossians 1:16&17).</p>
         </div>
-        <div class="photo"><img src="assets/photos/cross.jpg" alt="Cross"></div>
       </section>
-
       <section id="malachi4">
         <div class="content glass">
           <h2>Malachi 4 Messenger & Revelation 10:7</h2>
           <p>We believe that the Word of the Lord according to Malachi 4:5 & 6 has promised that God would send to the earth once again the spirit of Elijah in the form of that End time Messenger who was the angel to the Seventh Church Age in these final closing days of time (Revelation 3:14 & Revelation 10:7). We believe firmly that this promise was fulfilled in the vindicated ministry of our Precious Brother, William Marrion Branham.</p>
         </div>
-        <div class="photo"><img src="assets/photos/messenger.jpg" alt="Messenger"></div>
       </section>
-
       <section id="restored">
         <div class="content glass">
           <h2>Restored Word of the Hour</h2>
           <p>We, thus, believe in the Restored Word of the hour according to Malachi 4:5&6, Matthew 17:11 and Revelation 10:1-7. We sincerely believe that the prophet-messenger was sent to do  two things. One: According to Malachi 4 he was to turn the hearts of the children back to the fathers, the apostles and Two: He was to reveal the mysteries of the seven thunders in Revelation 10 which are the revelations contained in the seven seals of Revelation chapters 6 and 8. We believe it is these Divinely revealed “mystery-truths” that are literally turning the hearts of the children back to the Pentecostal fathers.</p>
         </div>
-        <div class="photo"><img src="assets/photos/restoration.jpg" alt="Restored Word"></div>
       </section>
-
       <section id="apostolic">
         <div class="content glass">
           <h2>Apostolic Church & Full Gospel</h2>
           <p>We believe in an apostolic Church, teaching apostolic Blessing for people of this day. We believe in the Full gospel, and believe that all of the signs and wonders that were spoken of by our Lord Jesus Christ would accompany his Church until he returned. We believe in those things, and believe that they are to be set in order. We believe that the church has its order. And each Church has its doctrine, and order, and discipline.</p>
         </div>
-        <div class="photo"><img src="assets/photos/church.jpg" alt="Church"></div>
       </section>
-
       <section id="fivefold">
         <div class="content glass">
           <h2>Five-Fold Ministry</h2>
           <p>We believe in the five-fold ministry according to Ephesians chapter 4 verse 11 to 16 for the saints to be perfected, edified and for the work of the ministry to the end that the whole Church of the Living God the world over should be the Living Tabernacle of the Living God where God can dwell in in this time of the Bride-coming of Christ (Colossians 1:27) and recognize that She is the final voice to this final age according to Revelation 10:8-11 and Revelation 22;17.</p>
         </div>
-        <div class="photo"><img src="assets/photos/ministry.jpg" alt="Ministry"></div>
       </section>
-
       <section id="fellowship">
         <div class="content glass">
           <h2>Fellowship</h2>
           <p>Our Church has no members as joiners. We believe that the whole universal Church of the living God is our brothers and sisters; and that all people are always welcome regardless of what denomination they belong to.</p>
         </div>
-        <div class="photo"><img src="assets/photos/fellowship.jpg" alt="Fellowship"></div>
       </section>
-
       <section id="salvation">
         <div class="content glass">
           <h2>Justification & Sanctification</h2>
           <p>We believe in “justification by faith,” Romans 5:1. We believe that after a person being justified by faith, he has peace with the Lord Jesus Christ. But it’s possible that this same person could have habits such as drinking, smoking, doing things that he should not do, filthy habits of the flesh.</p>
           <p>Then we believe that the blood of Jesus Christ sanctifies this person for the service of the Lord. And, that’s, we believe in ‘sanctification” according to Hebrews 13:12 and 13, “Where Jesus also, that he might sanctify the people with His Own Blood, suffered without the gate.” And we believe that sanctification is taught in the New Testament age, which we’re now living. And we believe that after the person has been sanctified, unclean habits have gone from the person.</p>
         </div>
-        <div class="photo"><img src="assets/photos/salvation.jpg" alt="Salvation"></div>
       </section>
-
       <section id="holyspirit">
         <div class="content glass">
           <h2>Baptism of the Holy Spirit</h2>
           <p>He is a believer on the Lord Jesus Christ, and his habits are gone, we believe that then he is a candidate for ‘the baptism of the Holy Spirit,” which comes as a filling of the believer. We believe that the Holy Spirit is putting this person in service. That, the Holy Spirit is not another step of grace, but more of the same grace, that fills the believer to the extent where that signs and wonders such as the apostolic gifts spoken of in First Corinthians 12 manifest themselves through this believer, when the Holy Spirit comes in to take up the gifts.</p>
         </div>
-        <div class="photo"><img src="assets/photos/holyspirit.jpg" alt="Holy Spirit"></div>
       </section>
-
       <section id="baptism">
         <div class="content glass">
           <h2>Water Baptism (Acts 2:38)</h2>
           <p>We believe in “water baptism,” by immersing, “in the Name of the Lord Jesus Christ,” which is the apostolic Teaching of the Bible (Acts 2:38). This does bring those who have been baptized into the fellowship of the believers. We believe that by water baptism we are brought into a fellowship. But, by the baptism of the Holy Spirit, we are brought into the members, being members of the Body of Jesus Christ, which is all over the world.(1 Corinthians 12:13).</p>
         </div>
-        <div class="photo"><img src="assets/photos/baptism.jpg" alt="Water Baptism"></div>
       </section>
-
       <section id="gifts">
         <div class="content glass">
           <h2>Gifts & Order in the Church</h2>
           <p>Now, another thing that we believe is that, “The manifestation of the Spirit is given to every man to profit withal.” Now we believe that the spiritual gifts, among the believers, are the order of the day and must be set in order in the church according to the Bible. (1 Corinthians 12:1-28;1 Corinthians 14:26-33; Romans 12:3-8).</p>
         </div>
-        <div class="photo"><img src="assets/photos/gifts.jpg" alt="Spiritual Gifts"></div>
       </section>
-
       <section id="rapture">
         <div class="content glass">
           <h2>Rapture & Marriage Supper</h2>
           <p>We believe the whole Church of the living God, the Bride, will eventually be changed in a moment in a twinkling of an eye and be caught away by the Lord Jesus Christ to the Marriage Supper of the Lamb in the sky before the great tribulation sets in. (1 Corinthians 15:51-56; 1 Thessalonians 4:13 to 18; Revelation 19:7-9).</p>
         </div>
-        <div class="photo"><img src="assets/photos/rapture.jpg" alt="Rapture"></div>
       </section>
-
       <section id="newjerusalem">
         <div class="content glass">
           <h2>Final Destiny — New Jerusalem</h2>
           <p>We believe our final destiny is New Jerusalem, the pyramid-like city on Mount Zion where the Lamb will be the Light and everything will be HOLINESS UNTO THE LORD and there will be ONE LORD and His NAME ONE. (Revelation 21 & 22)</p>
         </div>
-        <div class="photo"><img src="assets/photos/new-jerusalem.jpg" alt="New Jerusalem"></div>
       </section>
-
     </div>
   </main>
 
