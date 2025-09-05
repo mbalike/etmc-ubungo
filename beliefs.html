@@ -159,10 +159,51 @@
     .photo {display:none;}
 
     /* ======= Footer ======= */
-    footer{margin-top:40px; background:rgba(255,255,255,.06); border-top:1px solid rgba(255,255,255,.12)}
-    footer .wrap{max-width:1200px; margin:auto; padding:30px 16px; display:grid; gap:20px; grid-template-columns:2fr 1fr 1fr}
-    footer a{color:#d7e4ff; text-decoration:none}
-    .foot-note{border-top:1px solid rgba(255,255,255,.12); text-align:center; padding:14px; font-size:.9rem; color:#c8d4f7}
+    footer {
+      margin-top:40px;
+      background:rgba(255,255,255,.06);
+      border-top:1px solid rgba(255,255,255,.12);
+    }
+    footer .wrap {
+      max-width:1200px;
+      margin:auto;
+      padding:48px 32px;
+      display:grid;
+      gap:0;
+      grid-template-columns:1fr 1fr 1fr;
+      justify-items:center;
+      align-items:center;
+      text-align:center;
+      column-gap:48px;
+    }
+    footer .wrap > div {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:0 24px;
+    }
+    .social-icons {
+      display:flex;
+      gap:12px;
+      margin-top:15px;
+      justify-content:center;
+    }
+    footer a {
+      color:#d7e4ff;
+      text-decoration:none;
+      text-align:center;
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .foot-note {
+      border-top:1px solid rgba(255,255,255,.12);
+      text-align:center;
+      padding:14px;
+      font-size:.9rem;
+      color:#c8d4f7;
+    }
 
     /* Responsive */
     @media (max-width: 1000px){
@@ -177,6 +218,14 @@
       .links{display:none}
       .menu-btn{display:block}
       .links.open{display:flex; width:100%; flex-direction:column; padding:8px; gap:6px; margin-top:8px}
+    }
+    @media (max-width: 700px) {
+      footer .wrap {
+        grid-template-columns:1fr;
+      }
+      footer .wrap > div {
+        margin-bottom:18px;
+      }
     }
   </style>
 </head>
@@ -333,18 +382,24 @@
           <img src="assets/logo.png" alt="Church logo" width="36" height="36" />
           <strong>ETMC - Ubungo</strong>
         </div>
-        <p style="margin:0 0 15px; color:#c8d4f7; line-height:1.5; max-width:260px">
+        <p style="margin:0 0 15px; color:#c8d4f7; line-height:1.5; max-width:220px">
           A Bible-believing fellowship in Ubungo proclaiming the Gospel of Jesus Christ.
         </p>
-        <div style="display:flex; gap:12px; margin-top:8px">
-          <a href="https://www.instagram.com/ubungoendtime" target="_blank" rel="noopener" aria-label="Instagram" style="color:#d7e4ff; font-size:1.2rem"><i class="bi bi-instagram"></i></a>
-          <a href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener" aria-label="YouTube" style="color:#d7e4ff; font-size:1.2rem"><i class="bi bi-youtube"></i></a>
-          <a href="https://wa.me/255742398600" target="_blank" rel="noopener" aria-label="WhatsApp" style="color:#d7e4ff; font-size:1.2rem"><i class="bi bi-whatsapp"></i></a>
+        <div class="social-icons" style="display:flex; gap:12px; margin-top:15px">
+          <a href="https://www.instagram.com/ubungoendtime" target="_blank" rel="noopener" aria-label="Follow us on Instagram" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1); transition:all 0.2s">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener" aria-label="Subscribe to our YouTube channel" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1); transition:all 0.2s">
+            <i class="bi bi-youtube"></i>
+          </a>
+          <a href="https://wa.me/255742398600" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1); transition:all 0.2s">
+            <i class="bi bi-whatsapp"></i>
+          </a>
         </div>
       </div>
       <div>
         <strong>Quick Links</strong><br/>
-        <a href="index.html#beliefs">What We Believe</a><br/>
+        <a href="#beliefs">What We Believe</a><br/>
         <a href="about.html">About Us</a><br/>
         <a href="prayer-request.html">Prayer Request</a><br/>
         <a href="publications.html">Publications</a>
@@ -365,7 +420,7 @@
         </a>
       </div>
     </div>
-    <div class="foot-note">© <span id="year"></span> ETMC - Ubungo. All rights reserved.</div>
+    <div class="foot-note">© <span id="year"></span> ETMC -  Ubungo. All rights reserved.</div>
   </footer>
 
   <script>
