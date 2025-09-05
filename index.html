@@ -12,7 +12,7 @@
       --brand:#2a4c7f;         /* primary */
       --ink:#10131a;           /* body text */
       --muted:#6b7280;
-      --bg:#665d08;            /* page background, dark to support glass */
+      --bg:#000000;            /* page background, dark to support glass */
       --ring:rgba(42,76,127,.35);
       --glass-bg:rgba(255,255,255,.12);
       --glass-brd:rgba(255,255,255,.22);
@@ -104,7 +104,10 @@
     .meta div{padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14)}
 
     /* ======= Sections & Cards (glass) ======= */
-    section{max-width:1200px; margin:0 auto; padding:56px 16px}
+  section{max-width:1200px; margin:0 auto; padding:56px 16px}
+  .section{min-height:70vh}
+  #board.section{min-height:50vh}
+    #board{min-height:70vh}
     .section-title{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:24px}
     .section-title h2{margin:0; font-size:clamp(1.3rem, 2.6vw, 2rem)}
     .section-title a{font-weight:800; color:#d2deff; text-decoration:none}
@@ -245,7 +248,7 @@
   </header>
 
   <!-- WHAT WE BELIEVE -->
-  <section id="beliefs" aria-labelledby="beliefs-title">
+  <section id="beliefs" class="section" aria-labelledby="beliefs-title">
     <div class="section-title">
       <h2 id="beliefs-title">What We Believe</h2>
       <a href="beliefs.html" title="Read all beliefs">Read full statement →</a>
@@ -273,7 +276,7 @@
   </section>
 
   <!-- ABOUT -->
-  <section id="about" aria-labelledby="about-title">
+  <section id="about" class="section" aria-labelledby="about-title">
     <div class="section-title">
       <h2 id="about-title">About Us</h2>
       <a href="about.html">Learn more →</a>
@@ -300,7 +303,7 @@
   </section>
 
   <!-- BOARD -->
-  <section id="board" aria-labelledby="board-title">
+  <section id="board" class="section" aria-labelledby="board-title">
     <div class="section-title">
       <h2 id="board-title">Church Board</h2>
       <a href="board.html">Meet the team →</a>
@@ -332,7 +335,7 @@
 
   
   <!-- PRAYER REQUEST CTA -->
-  <section id="prayer" aria-labelledby="prayer-title">
+  <!-- <section id="prayer" class="section" aria-labelledby="prayer-title">
     <div class="section-title">
       <h2 id="prayer-title">Prayer Request</h2>
     </div>
@@ -340,10 +343,10 @@
       <p><strong>Need prayer?</strong> Share your request and our ministry team will stand with you in faith.</p>
       <a class="btn primary" href="prayer-request.html">Send a Request</a>
     </div>
-  </section>
+  </section> -->
 
   <!-- PUBLICATIONS -->
-  <section id="publications" aria-labelledby="pub-title">
+  <section id="publications" class="section" aria-labelledby="pub-title">
     <div class="section-title">
       <h2 id="pub-title">Publications</h2>
       <a href="publications.html">View all →</a>
@@ -376,7 +379,7 @@
   </section>
 
   <!-- CONTACT + MAP -->
-  <section id="contact" aria-labelledby="contact-title">
+  <section id="contact" class="section" aria-labelledby="contact-title">
     <div class="section-title">
       <h2 id="contact-title">Contact Us</h2>
       <a href="contact.html">More contact options →</a>
