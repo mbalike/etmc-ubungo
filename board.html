@@ -415,17 +415,7 @@
     function initials(name){
       return name.split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
     }
-    function roleBadge(role){
-      // Only show badge for pastor, deacon-head, deacon-secretary, missionary
-      if (["pastor","deacon-head","deacon-secretary","missionary"].includes(role)) {
-        const icon = role==="pastor" ? "bi-person-badge"
-                   : role==="deacon-head" ? "bi-award"
-                   : role==="deacon-secretary" ? "bi-pencil-square"
-                   : "bi-geo-alt";
-        return `<span class="role-badge"><i class="bi ${icon}"></i>${roleTitles[role]||role}</span>`;
-      }
-      return "";
-    }
+  // Removed roleBadge function
     function areaChip(area){ return `<span class="area"><i class="bi bi-geo-alt"></i>${area}</span>`; }
 
     function cardHTML(p){
@@ -437,7 +427,6 @@
           <div class="card-inner">
             ${avatar}
             <div class="card-details">
-              ${roleBadge(p.role)}
               <h3>${p.name}</h3>
               ${p.area ? `<p class="muted" style="margin-top:2px">${areaChip(p.area)}</p>`:''}
               ${p.note ? `<p class="muted" style="margin-top:6px"><i class="bi bi-info-circle"></i> ${p.note}</p>`:''}
