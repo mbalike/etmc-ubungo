@@ -89,81 +89,205 @@
     .searchbox input, .searchbox select{
       background:transparent; border:0; color:#fff; outline:none
     }
-    .grid{display:grid; gap:16px}
+    .grid{display:grid; gap:24px}
     .cols-4{grid-template-columns:repeat(4,1fr)}
     .cols-3{grid-template-columns:repeat(3,1fr)}
     .cols-2{grid-template-columns:repeat(2,1fr)}
 
-    /* Cards */
+    /* Cards - Redesigned */
     .card {
-      padding: 0;
+      padding: 24px;
       border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(255,255,255,.08) 0%, rgba(42,76,127,.12) 100%);
+      box-shadow: 0 4px 20px rgba(0,0,0,.2);
+      border: 1px solid rgba(255,255,255,.15);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
       overflow: hidden;
-      background: linear-gradient(120deg, rgba(255,255,255,.10) 0%, rgba(42,76,127,.10) 100%);
-      box-shadow: 0 4px 18px rgba(0,0,0,.18);
-      border: 1px solid rgba(255,255,255,.13);
-      transition: transform .13s;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--brand), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
     }
     .card:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 8px 32px rgba(42,76,127,.18);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(42,76,127,.3);
+      border-color: rgba(255,255,255,.25);
+    }
+    .card:hover::before {
+      opacity: 1;
     }
     .card-inner {
+      width: 100%;
       display: flex;
-      gap: 16px;
+      flex-direction: column;
       align-items: center;
-      padding: 18px 18px 14px 18px;
+      gap: 16px;
+    }
+    .avatar-wrapper {
+      position: relative;
+      margin-bottom: 4px;
+      width: 100px;
+      height: 100px;
+      flex-shrink: 0;
     }
     .avatar {
-      width: 64px;
-      height: 64px;
+      width: 100px;
+      height: 100px;
+      min-width: 100px;
+      min-height: 100px;
+      max-width: 100px;
+      max-height: 100px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid rgba(255,255,255,.22);
-      background: rgba(255,255,255,.10);
-      box-shadow: 0 2px 8px rgba(42,76,127,.10);
+      object-position: center;
+      aspect-ratio: 1 / 1;
+      border: 3px solid rgba(255,255,255,.3);
+      background: rgba(255,255,255,.1);
+      box-shadow: 0 4px 20px rgba(42,76,127,.25);
+      transition: all 0.3s;
+      display: block;
+    }
+    .card:hover .avatar {
+      transform: scale(1.05);
+      border-color: rgba(255,255,255,.4);
+      box-shadow: 0 6px 30px rgba(42,76,127,.35);
     }
     .avatar-fallback {
-      width: 64px;
-      height: 64px;
+      width: 100px;
+      height: 100px;
+      min-width: 100px;
+      min-height: 100px;
+      max-width: 100px;
+      max-height: 100px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       font-weight: 900;
       letter-spacing: .02em;
-      background: linear-gradient(140deg, rgba(255,255,255,.18), rgba(42,76,127,.08));
-      border: 2px solid rgba(255,255,255,.22);
-      color: #2a4c7f;
-      font-size: 1.3rem;
+      background: linear-gradient(140deg, rgba(255,255,255,.2), rgba(42,76,127,.15));
+      border: 3px solid rgba(255,255,255,.3);
+      color: #eef2ff;
+      font-size: 2rem;
+      transition: all 0.3s;
+      aspect-ratio: 1 / 1;
+      flex-shrink: 0;
+    }
+    .card:hover .avatar-fallback {
+      transform: scale(1.05);
+      border-color: rgba(255,255,255,.4);
+    }
+    .card-details {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
     }
     .card-details h3 {
-      margin: 0 0 2px 0;
-      font-size: 1.08rem;
+      margin: 0;
+      font-size: 1.15rem;
       font-weight: 800;
       color: #eef2ff;
-    }
-    .card-details p {
-      margin: 0;
+      line-height: 1.3;
     }
     .role-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: .8rem;
-      padding: 4px 8px;
+      font-size: .85rem;
+      padding: 6px 14px;
       border-radius: 999px;
-      background: rgba(42,76,127,.18);
-      border: 1px solid rgba(255,255,255,.22);
-      font-weight: 800;
-      color: #d7e4ff;
-      margin-bottom: 4px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      margin-top: 4px;
     }
-    .area{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:12px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.08); color:#eaf0ff; font-size:.93rem}
-    .card h3{margin:.6rem 0 .25rem; font-size:1.06rem}
-    .card p{margin:.1rem 0 0}
-    .section-head{display:flex; align-items:center; justify-content:space-between; gap:10px; margin:24px 0 12px}
-    .section-head h2{margin:0; font-size:1.4rem}
-    .hint{font-size:.9rem}
+    .role-badge.pastor {
+      background: linear-gradient(135deg, rgba(255,215,0,.25), rgba(255,193,7,.15));
+      border: 1px solid rgba(255,215,0,.4);
+      color: #ffd700;
+    }
+    .role-badge.deacon-head {
+      background: linear-gradient(135deg, rgba(42,76,127,.35), rgba(42,76,127,.2));
+      border: 1px solid rgba(42,76,127,.5);
+      color: #8db4ff;
+    }
+    .role-badge.deacon-secretary {
+      background: linear-gradient(135deg, rgba(138,43,226,.3), rgba(138,43,226,.15));
+      border: 1px solid rgba(138,43,226,.4);
+      color: #c19fff;
+    }
+    .role-badge.deacon {
+      background: linear-gradient(135deg, rgba(42,76,127,.3), rgba(42,76,127,.15));
+      border: 1px solid rgba(42,76,127,.4);
+      color: #a8c5ff;
+    }
+    .role-badge.trustee {
+      background: linear-gradient(135deg, rgba(34,139,34,.3), rgba(34,139,34,.15));
+      border: 1px solid rgba(34,139,34,.4);
+      color: #7dd87d;
+    }
+    .role-badge.missionary {
+      background: linear-gradient(135deg, rgba(255,69,0,.3), rgba(255,69,0,.15));
+      border: 1px solid rgba(255,69,0,.4);
+      color: #ff9d6b;
+    }
+    .area {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.06);
+      color: #d0d9f0;
+      font-size: .88rem;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .card-note {
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,.05);
+      border-radius: 8px;
+      font-size: .85rem;
+      color: #c5cce6;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 32px 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid rgba(255,255,255,.1);
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #eef2ff, #a8c5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hint {
+      font-size: .9rem;
+      color: var(--muted);
+    }
 
     /* Footer */
     footer {
@@ -223,13 +347,43 @@
     padding:0 8px;
   }
 }
-    @media (max-width:1100px){ .cols-4{grid-template-columns:repeat(3,1fr)} }
-    @media (max-width:900px){ .cols-4,.cols-3{grid-template-columns:repeat(2,1fr)} .hero{min-height:48vh} }
+    @media (max-width:1100px){ 
+      .cols-4{grid-template-columns:repeat(3,1fr)} 
+    }
+    @media (max-width:900px){ 
+      .cols-4,.cols-3{grid-template-columns:repeat(2,1fr)} 
+      .hero{min-height:48vh}
+      .card { padding: 20px; }
+      .avatar-wrapper { width: 85px; height: 85px; }
+      .avatar, .avatar-fallback { 
+        width: 85px; 
+        height: 85px; 
+        min-width: 85px;
+        min-height: 85px;
+        max-width: 85px;
+        max-height: 85px;
+      }
+      .avatar-fallback { font-size: 1.7rem; }
+    }
     @media (max-width:640px){
-      .links{display:none} .menu-btn{display:block}
+      .links{display:none} 
+      .menu-btn{display:block}
       .links.open{display:flex; width:100%; flex-direction:column; padding:8px; gap:6px; margin-top:8px}
       .cols-4,.cols-3,.cols-2{grid-template-columns:1fr}
       .hero{min-height:42vh}
+      .card { padding: 18px; }
+      .avatar-wrapper { width: 80px; height: 80px; }
+      .avatar, .avatar-fallback { 
+        width: 80px; 
+        height: 80px; 
+        min-width: 80px;
+        min-height: 80px;
+        max-width: 80px;
+        max-height: 80px;
+      }
+      .avatar-fallback { font-size: 1.5rem; }
+      .card-details h3 { font-size: 1.05rem; }
+      .section-head { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -389,7 +543,7 @@
       { name:"Br. Lusajo", role:"deacon", area:"Kitonga" },
       { name:"Br. Magesa Mihayo", role:"deacon", area:"Kawe" },
       { name:"Br. Martin Mikongosho", role:"deacon", area:"Mbagala" },
-      { name:"Br. Raphael Mallya", role:"", area:"Manzese" },
+      { name:"Br. Raphael Mallya", role:"deacon", area:"Manzese" },
       // Trustees (4)
       { name:"Br. Samuel Tille", role:"trustee", area:"", photo:"assets/board/trustee1.jpg" },
       { name:"Br. Magesa Mihayo", role:"trustee", area:"" },
@@ -415,21 +569,59 @@
     function initials(name){
       return name.split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
     }
-  // Removed roleBadge function
-    function areaChip(area){ return `<span class="area"><i class="bi bi-geo-alt"></i>${area}</span>`; }
+
+    function getRoleIcon(role) {
+      const icons = {
+        "pastor": "bi-person-badge",
+        "deacon-head": "bi-star-fill",
+        "deacon-secretary": "bi-file-earmark-text",
+        "deacon": "bi-people",
+        "trustee": "bi-shield-check",
+        "missionary": "bi-geo-alt"
+      };
+      return icons[role] || "bi-person";
+    }
+
+    function getRoleClass(role) {
+      if (!role) return "";
+      return role.replace(/-/g, "-");
+    }
 
     function cardHTML(p){
+      if (!p.role) return ""; // Skip entries without roles
+      
+      const memberInitials = initials(p.name);
+      const avatarId = `avatar-${p.name.replace(/\s+/g, '-').toLowerCase()}`;
+      
       const avatar = p.photo
-        ? `<img class="avatar" src="${p.photo}" alt="${p.name} photo" loading="lazy">`
-        : `<div class="avatar-fallback">${initials(p.name)}</div>`;
+        ? `<img class="avatar" id="${avatarId}" src="${p.photo}" alt="${p.name} photo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+           <div class="avatar-fallback" style="display:none;">${memberInitials}</div>`
+        : `<div class="avatar-fallback">${memberInitials}</div>`;
+      
+      const roleTitle = roleTitles[p.role] || "";
+      const roleIcon = getRoleIcon(p.role);
+      const roleClass = getRoleClass(p.role);
+      
+      // Only show role badge for deacon-head and deacon-secretary
+      const showRoleBadge = p.role === "deacon-head" || p.role === "deacon-secretary";
+      
+      // Don't show area for pastor and deacon-secretary
+      const showArea = p.area && p.role !== "pastor" && p.role !== "deacon-secretary";
+      
       return `
         <article class="card glass-soft">
           <div class="card-inner">
-            ${avatar}
+            <div class="avatar-wrapper">
+              ${avatar}
+            </div>
             <div class="card-details">
               <h3>${p.name}</h3>
-              ${p.area ? `<p class="muted" style="margin-top:2px">${areaChip(p.area)}</p>`:''}
-              ${p.note ? `<p class="muted" style="margin-top:6px"><i class="bi bi-info-circle"></i> ${p.note}</p>`:''}
+              ${showRoleBadge ? `<span class="role-badge ${roleClass}">
+                <i class="bi ${roleIcon}"></i>
+                ${roleTitle}
+              </span>` : ''}
+              ${showArea ? `<span class="area"><i class="bi bi-geo-alt"></i> ${p.area}</span>` : ''}
+              ${p.note ? `<div class="card-note"><i class="bi bi-info-circle"></i> ${p.note}</div>` : ''}
             </div>
           </div>
         </article>

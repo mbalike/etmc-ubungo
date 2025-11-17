@@ -35,79 +35,599 @@
     .links a:hover, .links a[aria-current="page"]{background:rgba(255,255,255,.14)}
     .menu-btn{display:none; margin-left:8px; border:0; background:transparent; color:#fff; font-size:1.1rem; padding:8px 10px; border-radius:12px}
 
-    /* Hero full viewport */
-    .hero{position:relative; min-height:100vh; display:grid; place-items:end center; overflow:hidden; border-bottom:1px solid rgba(255,255,255,.08)}
-          .hero-bg{position:absolute; inset:0; background:
-        linear-gradient(to bottom, rgba(7,10,20,.35), rgba(7,10,20,.6)),
-        url('assets/pub.jpeg') center/cover no-repeat; filter:saturate(115%) contrast(105%) blur(8px); z-index:-1}
-    .hero-inner{max-width:1200px; width:100%; padding:160px 16px 28px}
-    .hero-title h1{margin:0; font-size:clamp(1.9rem, 3.8vw, 3.2rem)}
+    /* Hero full viewport - Enhanced with Content */
+    .hero{
+      position:relative; 
+      min-height:100vh; 
+      display:grid; 
+      place-items:center; 
+      overflow:hidden; 
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .hero-bg{
+      position:absolute; 
+      inset:0;
+      background:
+        linear-gradient(to bottom, rgba(7,10,20,.4), rgba(7,10,20,.7)),
+        url('assets/pub.jpeg') center/cover no-repeat;
+      filter:saturate(115%) contrast(105%); 
+      z-index:-1;
+    }
+    .hero-inner{
+      max-width:1200px; 
+      width:100%; 
+      padding:120px 16px 60px;
+      display: grid;
+      gap: 40px;
+      grid-template-columns: 1fr;
+    }
+    .hero-content{
+      display: grid;
+      gap: 32px;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    .hero-title{
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .hero-title h1{
+      margin:0 0 12px 0; 
+      font-size:clamp(2.2rem, 4.5vw, 4rem);
+      background: linear-gradient(135deg, #eef2ff, #a8c5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 900;
+    }
+    .hero-subtitle{
+      color:var(--muted);
+      font-size:1.2rem;
+      margin:0;
+    }
+    
+    /* Hero Stats Cards */
+    .hero-stat-card{
+      background: linear-gradient(135deg, rgba(255,255,255,.12) 0%, rgba(42,76,127,.15) 100%);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+      transition: all 0.3s;
+    }
+    .hero-stat-card:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 12px 48px rgba(42,76,127,.4);
+      border-color: rgba(255,255,255,.3);
+    }
+    .hero-stat-card .stat-icon{
+      font-size: 3rem;
+      color: #a8c5ff;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .hero-stat-card .stat-number{
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #eef2ff;
+      margin: 8px 0;
+      display: block;
+      background: linear-gradient(135deg, #eef2ff, #a8c5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-stat-card .stat-label{
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+    }
     .muted{color:var(--muted)}
 
     /* Main */
     main{max-width:1200px; margin:0 auto; padding:28px 16px 40px}
-    .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin:8px 0 14px}
-    .section-head h2{margin:0; font-size:clamp(1.3rem, 2.5vw, 1.8rem)}
 
-    /* Section styling - matching homepage */
-    section{max-width:1200px; margin:0 auto; padding:56px 16px}
-    .section-title{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:24px}
-    .section-title h2{margin:0; font-size:clamp(1.3rem, 2.6vw, 2rem)}
-    .section-title a{font-weight:800; color:#d2deff; text-decoration:none}
+    /* Section styling - Enhanced */
+    section{
+      max-width:1200px; 
+      margin:0 auto; 
+      padding:56px 16px;
+    }
+    .section-head{
+      display:flex; 
+      align-items:flex-end; 
+      justify-content:space-between; 
+      gap:12px; 
+      margin-bottom:32px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid rgba(255,255,255,.1);
+    }
+    .section-head h2{
+      margin:0; 
+      font-size:clamp(1.4rem, 2.8vw, 2.2rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #eef2ff, #a8c5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-title{
+      display:flex; 
+      align-items:flex-end; 
+      justify-content:space-between; 
+      gap:12px; 
+      margin-bottom:24px;
+    }
+    .section-title h2{
+      margin:0; 
+      font-size:clamp(1.3rem, 2.6vw, 2rem);
+    }
+    .section-title a{
+      font-weight:800; 
+      color:#d2deff; 
+      text-decoration:none;
+    }
 
-    /* Event cards grid */
-    .grid{display:grid; gap:16px}
+    /* Event cards grid - Enhanced */
+    .grid{display:grid; gap:24px}
     .cols-3{grid-template-columns:repeat(3,1fr)}
     .cols-2{grid-template-columns:repeat(2,1fr)}
     .cols-4{grid-template-columns:repeat(4,1fr)}
-    .card{border-radius:16px; overflow:hidden; position:relative}
-    .cover{width:100%; height:260px; object-fit:cover; display:block; background:rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.14)}
-    .meta{display:flex; align-items:center; justify-content:space-between; padding:12px 14px}
-    .title{font-weight:800}
-    .badge{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22); font-weight:800}
-    .date{font-size:.95rem; color:#d7e4ff}
-
-    /* Card styling - matching homepage */
-    .card{
-      border-radius:18px; padding:16px;
-      color:#eaf0ff;
+    
+    /* Photo Album Card */
+    .event-card{
+      border-radius:var(--radius); 
+      overflow:hidden; 
+      position:relative;
+      background: linear-gradient(135deg, rgba(255,255,255,.08) 0%, rgba(42,76,127,.12) 100%);
+      border: 1px solid rgba(255,255,255,.15);
+      box-shadow: 0 4px 20px rgba(0,0,0,.2);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
     }
-    .card h3{margin:6px 0 6px; font-size:1.06rem}
-    .muted{color:#c5cce6}
-    .badge{display:inline-block; font-size:.75rem; padding:4px 8px; border-radius:999px; background:rgba(255,255,255,.15); color:#fff; font-weight:800; border:1px solid rgba(255,255,255,.22)}
-
-    .card .overlay-tools{
-      position:absolute; left:12px; bottom:12px; display:flex; gap:8px;
+    .event-card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(42,76,127,.3);
+      border-color: rgba(255,255,255,.25);
     }
-    .mini-btn{display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:999px;
-      background:rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.25); color:#fff; cursor:pointer}
+    .event-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--brand), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 1;
+    }
+    .event-card:hover::before {
+      opacity: 1;
+    }
+    
+    .cover{
+      width:100%; 
+      height:280px; 
+      object-fit:cover; 
+      display:block; 
+      background:rgba(255,255,255,.06);
+      transition: transform 0.3s;
+    }
+    .event-card:hover .cover{
+      transform: scale(1.05);
+    }
+    
+    .meta{
+      display:flex; 
+      align-items:center; 
+      justify-content:space-between; 
+      padding:16px 18px;
+      background: rgba(255,255,255,.04);
+    }
+    .meta-left{
+      flex: 1;
+      min-width: 0;
+    }
+    .title{
+      font-weight:800;
+      font-size:1.1rem;
+      color:#eef2ff;
+      margin:0 0 4px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .date{
+      font-size:.9rem; 
+      color:#c5cce6;
+      margin:0;
+    }
+    
+    /* Badge - Photo count */
+    .photo-count-badge{
+      display:inline-flex; 
+      align-items:center; 
+      gap:6px; 
+      padding:8px 12px; 
+      border-radius:999px; 
+      background:rgba(42,76,127,.25); 
+      border:1px solid rgba(42,76,127,.4); 
+      font-weight:700;
+      font-size:.85rem;
+      color:#a8c5ff;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+    
+    /* Overlay tools - Fixed positioning */
+    .card-overlay{
+      position:absolute; 
+      inset:0;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.3) 70%, rgba(0,0,0,.6) 100%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .event-card:hover .card-overlay{
+      opacity: 1;
+    }
+    
+    .overlay-tools{
+      position:absolute; 
+      left:16px; 
+      top:16px; 
+      display:flex; 
+      gap:8px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: auto;
+    }
+    .event-card:hover .overlay-tools{
+      opacity: 1;
+    }
+    
+    .mini-btn{
+      display:inline-flex;
+      align-items:center; 
+      justify-content:center; 
+      width:42px; 
+      height:42px; 
+      border-radius:999px;
+      background:rgba(0,0,0,.6); 
+      backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,.3); 
+      color:#fff; 
+      cursor:pointer;
+      transition: all 0.2s;
+      font-size: 1.1rem;
+    }
+    .mini-btn:hover{
+      background:rgba(42,76,127,.8);
+      border-color: rgba(255,255,255,.5);
+      transform: scale(1.1);
+    }
+    
     .thumbs-stack{
-      position:absolute; right:12px; bottom:12px; display:flex;
+      position:absolute; 
+      right:16px; 
+      bottom:16px; 
+      display:flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(10px);
+      padding: 6px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.25);
+    }
+    .thumbs-count{
+      color: #fff;
+      font-weight: 700;
+      font-size: .85rem;
+      display: flex;
+      align-items: center;
+      margin-right: 2px;
     }
     .thumbs-stack img{
-      width:38px; height:38px; object-fit:cover; border-radius:8px; border:1px solid rgba(255,255,255,.5);
-      margin-left:-10px; background:rgba(255,255,255,.1)
+      width:32px; 
+      height:32px; 
+      object-fit:cover; 
+      border-radius:6px; 
+      border:2px solid rgba(255,255,255,.6);
+      background:rgba(255,255,255,.1);
+      margin-left: -6px;
+    }
+    .thumbs-stack img:first-of-type{
+      margin-left: 0;
     }
 
-    /* Lightbox (event) */
-    .lightbox{position:fixed; inset:0; z-index:100; display:none; place-items:center; background:rgba(10,14,25,.6); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px)}
+    /* Video Card styling */
+    .video-card{
+      border-radius:18px; 
+      padding:16px;
+      color:#eaf0ff;
+      background: linear-gradient(135deg, rgba(255,255,255,.08) 0%, rgba(42,76,127,.12) 100%);
+      border: 1px solid rgba(255,255,255,.15);
+      transition: all 0.3s;
+    }
+    .video-card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(42,76,127,.3);
+      border-color: rgba(255,255,255,.25);
+    }
+    .video-card h3{
+      margin:12px 0 6px; 
+      font-size:1.06rem;
+      color: #eef2ff;
+      font-weight: 800;
+    }
+
+    /* Lightbox (event) - Enhanced */
+    .lightbox{
+      position:fixed; 
+      inset:0; 
+      z-index:100; 
+      display:none; 
+      place-items:center; 
+      background:rgba(10,14,25,.85); 
+      -webkit-backdrop-filter:blur(15px); 
+      backdrop-filter:blur(15px);
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
     .lightbox.open{display:grid}
-    .viewer{width:min(98vw,1400px); height:min(92vh,900px); display:grid; grid-template-rows:auto 1fr auto; gap:12px; padding:16px}
-    .viewer .chrome{display:flex; align-items:center; justify-content:space-between; padding:8px 0}
-    .viewer .stage{position:relative; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.18); border-radius:18px; display:flex; align-items:center; justify-content:center; overflow:hidden; min-height:0}
-    .viewer .stage img{max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; border-radius:12px; display:block}
-    .viewer .toolbar{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; padding:8px 0}
-    .btn{border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.10); color:#fff; padding:10px 12px; border-radius:12px; font-weight:800; display:inline-flex; align-items:center; gap:8px; cursor:pointer}
-    .btn.primary{background:#3b5db1; border-color:#3b5db1}
-    .btn-icon{width:42px; height:42px; justify-content:center}
+    .viewer{
+      width:min(98vw,1600px); 
+      height:min(95vh,1000px); 
+      display:grid; 
+      grid-template-rows:auto 1fr auto auto; 
+      gap:16px; 
+      padding:20px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    }
+    .viewer .chrome{
+      display:flex; 
+      align-items:center; 
+      justify-content:space-between; 
+      padding:12px 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .viewer .chrome-left{
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    #viewerTitle{
+      font-weight:800;
+      font-size: 1.2rem;
+      color: #eef2ff;
+    }
+    .viewer-info{
+      font-size: .9rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .viewer .chrome-controls{
+      display:flex; 
+      gap:8px;
+    }
+    .viewer .stage{
+      position:relative; 
+      background:rgba(0,0,0,.4); 
+      border:1px solid rgba(255,255,255,.18); 
+      border-radius:18px; 
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      overflow:hidden; 
+      min-height:0;
+      cursor: grab;
+    }
+    .viewer .stage:active{
+      cursor: grabbing;
+    }
+    .viewer .stage img{
+      max-width:100%; 
+      max-height:100%; 
+      width:auto; 
+      height:auto; 
+      object-fit:contain; 
+      border-radius:12px; 
+      display:block;
+      transition: transform 0.3s;
+      user-select: none;
+    }
+    .viewer .stage.zoomed img{
+      cursor: zoom-in;
+    }
+    .viewer .toolbar{
+      display:flex; 
+      gap:10px; 
+      justify-content:center; 
+      flex-wrap:wrap; 
+      padding:12px 0;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .viewer .thumbnails{
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      background: rgba(0,0,0,.2);
+      border-radius: 12px;
+      max-height: 100px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,.3) transparent;
+    }
+    .viewer .thumbnails::-webkit-scrollbar{
+      height: 6px;
+    }
+    .viewer .thumbnails::-webkit-scrollbar-track{
+      background: transparent;
+    }
+    .viewer .thumbnails::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.3);
+      border-radius: 3px;
+    }
+    .viewer .thumbnails img{
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .viewer .thumbnails img:hover{
+      border-color: rgba(255,255,255,.5);
+      transform: scale(1.1);
+    }
+    .viewer .thumbnails img.active{
+      border-color: #3b5db1;
+      box-shadow: 0 0 0 2px rgba(59,93,177,.3);
+    }
+    .btn{
+      border:1px solid rgba(255,255,255,.22); 
+      background:rgba(255,255,255,.10); 
+      color:#fff; 
+      padding:10px 16px; 
+      border-radius:12px; 
+      font-weight:800; 
+      display:inline-flex; 
+      align-items:center; 
+      gap:8px; 
+      cursor:pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn:hover{
+      background:rgba(255,255,255,.18);
+      transform: translateY(-2px);
+    }
+    .btn.primary{
+      background:#3b5db1; 
+      border-color:#3b5db1;
+    }
+    .btn.primary:hover{
+      background:#4a6bc0;
+      box-shadow: 0 4px 16px rgba(59,93,177,.4);
+    }
+    .btn-icon{
+      width:44px; 
+      height:44px; 
+      justify-content:center;
+      padding: 0;
+    }
+    .btn-icon:hover{
+      background:rgba(42,76,127,.6);
+    }
+    .zoom-controls{
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .keyboard-hint{
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,.7);
+      backdrop-filter: blur(10px);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: .85rem;
+      color: var(--muted);
+      display: none;
+      gap: 12px;
+      align-items: center;
+    }
+    .keyboard-hint.show{
+      display: flex;
+      animation: fadeIn 0.3s;
+    }
+    .keyboard-hint kbd{
+      background: rgba(255,255,255,.15);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: .8rem;
+      border: 1px solid rgba(255,255,255,.2);
+    }
 
     /* Responsive */
-    @media (max-width:1100px){ .grid.cols-3{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:1100px){ 
+      .grid.cols-3{grid-template-columns:repeat(2,1fr)} 
+      .hero-content{
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero{min-height:90vh}
+    }
+    @media (max-width:768px){
+      .hero-content{
+        grid-template-columns: 1fr;
+      }
+      .hero-stat-card .stat-number{
+        font-size: 2rem;
+      }
+      .hero-stat-card .stat-icon{
+        font-size: 2.5rem;
+      }
+      .viewer .chrome{
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .viewer .chrome-controls{
+        width: 100%;
+        justify-content: space-between;
+      }
+      .zoom-controls{
+        order: -1;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    @media (max-width:900px){
+      .cover{height:240px}
+      .thumbs-stack{
+        right: 12px;
+        bottom: 12px;
+        padding: 4px 8px;
+        gap: 4px;
+      }
+      .thumbs-stack img{
+        width: 28px;
+        height: 28px;
+      }
+      .thumbs-count{
+        font-size: .8rem;
+      }
+    }
     @media (max-width:680px){
-      .links{display:none} .menu-btn{display:block}
+      .links{display:none} 
+      .menu-btn{display:block}
       .links.open{display:flex; width:100%; flex-direction:column; padding:8px; gap:6px; margin-top:8px}
       .grid.cols-3{grid-template-columns:1fr}
       .cover{height:220px}
+      .hero{min-height:42vh}
+      .section-head{
+        flex-direction: column;
+        align-items: flex-start;
+      }
       
       /* Mobile lightbox adjustments */
       .viewer{width:98vw; height:95vh; padding:12px; gap:8px}
@@ -117,12 +637,39 @@
       .btn-icon{width:38px; height:38px}
     }
 
-    /* Video grid styling - matching homepage */
-    .video-grid{display:grid; gap:16px; grid-template-columns:repeat(3,1fr)}
-    .video-grid iframe{width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#000}
-    .video-grid .card h3{margin:6px 0 6px; font-size:1.06rem; color:#eaf0ff}
-    .video-grid .card .muted{color:#c5cce6; font-size:0.9rem}
-    .video-grid .video-placeholder{height:200px; background:rgba(255,255,255,0.1); border-radius:14px; display:flex; align-items:center; justify-content:center; color:#c5cce6}
+    /* Video grid styling - Enhanced */
+    .video-grid{
+      display:grid; 
+      gap:24px; 
+      grid-template-columns:repeat(3,1fr);
+    }
+    .video-grid iframe{
+      width:100%; 
+      aspect-ratio:16/9; 
+      border:0; 
+      border-radius:14px; 
+      background:#000;
+      box-shadow: 0 4px 20px rgba(0,0,0,.3);
+    }
+    .video-grid .video-card h3{
+      margin:12px 0 6px; 
+      font-size:1.06rem; 
+      color:#eef2ff;
+      font-weight: 800;
+    }
+    .video-grid .video-card .muted{
+      color:#c5cce6; 
+      font-size:0.9rem;
+    }
+    .video-grid .video-placeholder{
+      height:200px; 
+      background:rgba(255,255,255,0.1); 
+      border-radius:14px; 
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      color:#c5cce6;
+    }
     
     /* Video grid responsive */
     @media (max-width: 980px){
@@ -225,10 +772,26 @@
   <header class="hero">
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="hero-inner">
-      <div class="glass" style="padding:16px">
-        <div class="hero-title">
-          <h1>Publications</h1>
-          <div class="muted">Events & photo albums (newest first)</div>
+      <div class="hero-title">
+        <h1>Publications</h1>
+        <div class="hero-subtitle">Events & photo albums · Latest videos</div>
+      </div>
+      <div class="hero-content" id="heroStats">
+        <!-- Stats will be populated by JavaScript -->
+        <div class="hero-stat-card glass">
+          <i class="bi bi-images stat-icon"></i>
+          <span class="stat-number" id="totalAlbums">0</span>
+          <p class="stat-label">Photo Albums</p>
+        </div>
+        <div class="hero-stat-card glass">
+          <i class="bi bi-camera-fill stat-icon"></i>
+          <span class="stat-number" id="totalPhotos">0</span>
+          <p class="stat-label">Total Photos</p>
+        </div>
+        <div class="hero-stat-card glass">
+          <i class="bi bi-youtube stat-icon"></i>
+          <span class="stat-number" id="totalVideos">0</span>
+          <p class="stat-label">Videos</p>
         </div>
       </div>
     </div>
@@ -239,8 +802,7 @@
       <div class="section-head">
         <h2 id="photos-title">Photo Albums</h2>
         <p class="muted" style="max-width:75ch">
-          Each card is an event. Click to view all photos from that event. Use ←/→ to navigate in the viewer and the
-          **Download** button to save the current photo.
+          Each card is an event. Click to view all photos from that event. The viewer includes zoom, fullscreen, thumbnail navigation, and keyboard shortcuts for an enhanced viewing experience.
         </p>
       </div>
 
@@ -258,49 +820,76 @@
 
       <div class="video-grid" id="youtube-videos">
         <!-- Videos will be loaded dynamically from YouTube API -->
-        <div class="card glass-soft">
+        <div class="video-card glass-soft">
           <div class="video-placeholder" style="height: 200px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #c5cce6;">
             <i class="bi bi-youtube" style="font-size: 2rem;"></i>
           </div>
-          <h3 style="margin-top:10px">Loading...</h3>
+          <h3>Loading...</h3>
           <p class="muted">Fetching video data...</p>
         </div>
-        <div class="card glass-soft">
+        <div class="video-card glass-soft">
           <div class="video-placeholder" style="height: 200px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #c5cce6;">
             <i class="bi bi-youtube" style="font-size: 2rem;"></i>
           </div>
-          <h3 style="margin-top:10px">Loading...</h3>
+          <h3>Loading...</h3>
           <p class="muted">Fetching video data...</p>
         </div>
-        <div class="card glass-soft">
+        <div class="video-card glass-soft">
           <div class="video-placeholder" style="height: 200px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #c5cce6;">
             <i class="bi bi-youtube" style="font-size: 2rem;"></i>
           </div>
-          <h3 style="margin-top:10px">Loading...</h3>
+          <h3>Loading...</h3>
           <p class="muted">Fetching video data...</p>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- LIGHTBOX (event) -->
+  <!-- LIGHTBOX (event) - Enhanced -->
   <div id="lightbox" class="lightbox" aria-hidden="true" aria-label="Album viewer">
     <div class="viewer">
       <div class="chrome">
-        <div id="viewerTitle" style="font-weight:800">Album</div>
-        <div style="display:flex; gap:8px">
+        <div class="chrome-left">
+          <div id="viewerTitle">Album</div>
+          <div class="viewer-info">
+            <i class="bi bi-image"></i>
+            <span id="viewerCounter">1 / 1</span>
+          </div>
+        </div>
+        <div class="chrome-controls">
+          <div class="zoom-controls">
+            <button class="btn btn-icon" id="btnZoomOut" title="Zoom Out (-)"><i class="bi bi-dash-lg"></i></button>
+            <button class="btn btn-icon" id="btnZoomIn" title="Zoom In (+)"><i class="bi bi-plus-lg"></i></button>
+            <button class="btn btn-icon" id="btnResetZoom" title="Reset Zoom (0)"><i class="bi bi-arrow-clockwise"></i></button>
+          </div>
+          <button class="btn btn-icon" id="btnFullscreen" title="Fullscreen (F)"><i class="bi bi-fullscreen"></i></button>
           <button class="btn btn-icon" id="btnPrev" title="Previous (←)"><i class="bi bi-chevron-left"></i></button>
           <button class="btn btn-icon" id="btnNext" title="Next (→)"><i class="bi bi-chevron-right"></i></button>
           <button class="btn btn-icon" id="btnClose" title="Close (Esc)"><i class="bi bi-x-lg"></i></button>
         </div>
       </div>
 
-      <div class="stage"><img id="viewImg" alt="Photo"></div>
+      <div class="stage" id="stage">
+        <img id="viewImg" alt="Photo">
+      </div>
+
+      <div class="thumbnails" id="thumbnails">
+        <!-- Thumbnails will be populated by JavaScript -->
+      </div>
 
       <div class="toolbar">
         <a class="btn primary" id="btnDownload" title="Download"><i class="bi bi-download"></i> Download</a>
         <a class="btn" id="btnOpen" target="_blank" rel="noopener" title="Open original"><i class="bi bi-box-arrow-up-right"></i> Open Original</a>
+        <button class="btn" id="btnInfo" title="Image Info"><i class="bi bi-info-circle"></i> Info</button>
+        <button class="btn" id="btnShare" title="Share"><i class="bi bi-share"></i> Share</button>
       </div>
+    </div>
+    <div class="keyboard-hint" id="keyboardHint">
+      <span>Keyboard shortcuts:</span>
+      <kbd>←</kbd><kbd>→</kbd> Navigate
+      <kbd>+</kbd><kbd>-</kbd> Zoom
+      <kbd>F</kbd> Fullscreen
+      <kbd>Esc</kbd> Close
     </div>
   </div>
 
@@ -454,6 +1043,37 @@
     }
     albums.sort((a,b)=> parseDateStr(b.date) - parseDateStr(a.date));
 
+    // ===== Update Hero Stats =====
+    function updateHeroStats(){
+      const totalAlbums = albums.length;
+      const totalPhotos = albums.reduce((sum, album) => sum + (album.photos?.length || 0), 0);
+      const totalVideos = typeof YOUTUBE_VIDEO_IDS !== 'undefined' ? YOUTUBE_VIDEO_IDS.length : 0;
+      
+      // Animate numbers
+      function animateValue(el, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          el.textContent = Math.floor(progress * (end - start) + start);
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            el.textContent = end;
+          }
+        };
+        window.requestAnimationFrame(step);
+      }
+      
+      const albumsEl = document.getElementById('totalAlbums');
+      const photosEl = document.getElementById('totalPhotos');
+      const videosEl = document.getElementById('totalVideos');
+      
+      if (albumsEl) animateValue(albumsEl, 0, totalAlbums, 1000);
+      if (photosEl) animateValue(photosEl, 0, totalPhotos, 1200);
+      if (videosEl) animateValue(videosEl, 0, totalVideos, 800);
+    }
+
     // ===== Render Event Cards =====
     const eventsEl = document.getElementById('events');
 
@@ -461,21 +1081,30 @@
       const cover = ev.cover || (ev.photos && ev.photos[0] && ev.photos[0].src) || '';
       // stack up to 3 thumb previews
       const stack = (ev.photos||[]).slice(0,3).map(p=>`<img src="${p.src}" alt="" loading="lazy">`).join('');
+      const photoCount = ev.photos?.length || 0;
       const dateFmt = parseDateStr(ev.date).toLocaleDateString('en-US', {year:'numeric', month:'long', day: ev.date.length>7?'2-digit':undefined});
       return `
-        <article class="card glass-soft">
+        <article class="event-card glass-soft" data-open-album="${i}">
+          <div class="card-overlay"></div>
           ${cover ? `<img class="cover" src="${cover}" alt="${ev.title} cover" loading="lazy">` : `<div class="cover"></div>`}
+          <div class="overlay-tools">
+            <button class="mini-btn" data-open-album="${i}" title="Open album" onclick="event.stopPropagation()">
+              <i class="bi bi-arrows-fullscreen"></i>
+            </button>
+          </div>
+          <div class="thumbs-stack" aria-hidden="true">
+            <span class="thumbs-count">${photoCount}</span>
+            ${stack}
+          </div>
           <div class="meta">
-            <div>
+            <div class="meta-left">
               <div class="title">${ev.title}</div>
               <div class="date">${dateFmt}</div>
             </div>
-            <span class="badge"><i class="bi bi-images"></i> ${ev.photos?.length || 0}</span>
+            <span class="photo-count-badge">
+              <i class="bi bi-images"></i> ${photoCount}
+            </span>
           </div>
-          <div class="overlay-tools">
-            <button class="mini-btn" data-open-album="${i}" title="Open album"><i class="bi bi-arrows-fullscreen"></i></button>
-          </div>
-          <div class="thumbs-stack" aria-hidden="true">${stack}</div>
         </article>
       `;
     }
@@ -484,61 +1113,242 @@
       eventsEl.innerHTML = albums.map(eventCardHTML).join('');
     }
     renderEvents();
+    updateHeroStats();
 
-    // ===== Lightbox (per album) =====
+    // ===== Lightbox (per album) - Enhanced =====
     const lb = document.getElementById('lightbox');
     const viewImg = document.getElementById('viewImg');
     const viewerTitle = document.getElementById('viewerTitle');
+    const viewerCounter = document.getElementById('viewerCounter');
+    const stage = document.getElementById('stage');
+    const thumbnails = document.getElementById('thumbnails');
     const btnClose = document.getElementById('btnClose');
     const btnPrev  = document.getElementById('btnPrev');
     const btnNext  = document.getElementById('btnNext');
     const btnDownload = document.getElementById('btnDownload');
     const btnOpen = document.getElementById('btnOpen');
+    const btnZoomIn = document.getElementById('btnZoomIn');
+    const btnZoomOut = document.getElementById('btnZoomOut');
+    const btnResetZoom = document.getElementById('btnResetZoom');
+    const btnFullscreen = document.getElementById('btnFullscreen');
+    const btnInfo = document.getElementById('btnInfo');
+    const btnShare = document.getElementById('btnShare');
+    const keyboardHint = document.getElementById('keyboardHint');
 
     let currentAlbum = null;
     let slide = 0;
+    let zoomLevel = 1;
+    let isDragging = false;
+    let dragStart = { x: 0, y: 0 };
+    let imageOffset = { x: 0, y: 0 };
+
+    function updateThumbnails(){
+      if (!currentAlbum) return;
+      thumbnails.innerHTML = currentAlbum.photos.map((photo, idx) => 
+        `<img src="${photo.src}" alt="Thumbnail ${idx + 1}" data-index="${idx}" class="${idx === slide ? 'active' : ''}">`
+      ).join('');
+      
+      // Scroll active thumbnail into view
+      const activeThumb = thumbnails.querySelector('.active');
+      if (activeThumb) {
+        activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+      
+      // Add click handlers
+      thumbnails.querySelectorAll('img').forEach((thumb, idx) => {
+        thumb.addEventListener('click', () => {
+          slide = idx;
+          updateViewer();
+        });
+      });
+    }
+
+    function updateViewer(){
+      if (!currentAlbum) return;
+      const p = currentAlbum.photos[slide];
+      viewImg.src = p.src;
+      const dateFmt = parseDateStr(currentAlbum.date).toLocaleDateString('en-US', {year:'numeric', month:'long', day: currentAlbum.date.length>7?'2-digit':undefined});
+      viewerTitle.textContent = `${currentAlbum.title} — ${dateFmt}`;
+      viewerCounter.textContent = `${slide+1} / ${currentAlbum.photos.length}`;
+      btnDownload.href = p.src;
+      btnOpen.href = p.src;
+      
+      // Reset zoom when changing images
+      zoomLevel = 1;
+      imageOffset = { x: 0, y: 0 };
+      applyTransform();
+      updateThumbnails();
+    }
 
     function openAlbumAt(albumIndex, photoIndex=0){
       currentAlbum = albums[albumIndex];
       slide = (photoIndex || 0) % currentAlbum.photos.length;
-      const p = currentAlbum.photos[slide];
-      viewImg.src = p.src;
-      const dateFmt = parseDateStr(currentAlbum.date).toLocaleDateString('en-US', {year:'numeric', month:'long', day: currentAlbum.date.length>7?'2-digit':undefined});
-      viewerTitle.textContent = `${currentAlbum.title} — ${dateFmt} (${slide+1}/${currentAlbum.photos.length})`;
-      btnDownload.href = p.src;
-      btnOpen.href = p.src;
-      lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+      updateViewer();
+      updateThumbnails();
+      lb.classList.add('open'); 
+      lb.setAttribute('aria-hidden','false');
+      
+      // Show keyboard hint briefly
+      keyboardHint.classList.add('show');
+      setTimeout(() => keyboardHint.classList.remove('show'), 3000);
     }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); }
+
+    function closeLb(){ 
+      lb.classList.remove('open'); 
+      lb.setAttribute('aria-hidden','true');
+      zoomLevel = 1;
+      imageOffset = { x: 0, y: 0 };
+      applyTransform();
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
+    }
+
     function prev(){
       if (!currentAlbum) return;
       slide = (slide - 1 + currentAlbum.photos.length) % currentAlbum.photos.length;
-      openAlbumAt(albums.indexOf(currentAlbum), slide);
+      updateViewer();
     }
+
     function next(){
       if (!currentAlbum) return;
       slide = (slide + 1) % currentAlbum.photos.length;
-      openAlbumAt(albums.indexOf(currentAlbum), slide);
+      updateViewer();
     }
 
-    // Card click
+    function zoomIn(){
+      zoomLevel = Math.min(zoomLevel + 0.25, 3);
+      applyTransform();
+    }
+
+    function zoomOut(){
+      zoomLevel = Math.max(zoomLevel - 0.25, 0.5);
+      applyTransform();
+    }
+
+    function resetZoom(){
+      zoomLevel = 1;
+      imageOffset = { x: 0, y: 0 };
+      applyTransform();
+    }
+
+    function applyTransform(){
+      viewImg.style.transform = `translate(${imageOffset.x}px, ${imageOffset.y}px) scale(${zoomLevel})`;
+      if (zoomLevel > 1) {
+        stage.classList.add('zoomed');
+      } else {
+        stage.classList.remove('zoomed');
+      }
+    }
+
+    function toggleFullscreen(){
+      if (!document.fullscreenElement) {
+        lb.requestFullscreen().catch(err => {
+          console.log('Fullscreen error:', err);
+        });
+        btnFullscreen.innerHTML = '<i class="bi bi-fullscreen-exit"></i>';
+      } else {
+        document.exitFullscreen();
+        btnFullscreen.innerHTML = '<i class="bi bi-fullscreen"></i>';
+      }
+    }
+
+    // Drag to pan when zoomed
+    stage.addEventListener('mousedown', (e) => {
+      if (zoomLevel > 1) {
+        isDragging = true;
+        dragStart.x = e.clientX - imageOffset.x;
+        dragStart.y = e.clientY - imageOffset.y;
+        stage.style.cursor = 'grabbing';
+      }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (isDragging && zoomLevel > 1) {
+        imageOffset.x = e.clientX - dragStart.x;
+        imageOffset.y = e.clientY - dragStart.y;
+        applyTransform();
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        stage.style.cursor = zoomLevel > 1 ? 'grab' : 'default';
+      }
+    });
+
+    // Image info
+    btnInfo.addEventListener('click', () => {
+      if (!currentAlbum) return;
+      const p = currentAlbum.photos[slide];
+      const info = `Title: ${p.title || 'Untitled'}\nAlbum: ${currentAlbum.title}\nDate: ${parseDateStr(currentAlbum.date).toLocaleDateString()}\nImage ${slide + 1} of ${currentAlbum.photos.length}`;
+      alert(info);
+    });
+
+    // Share functionality
+    btnShare.addEventListener('click', async () => {
+      if (!currentAlbum) return;
+      const p = currentAlbum.photos[slide];
+      const shareData = {
+        title: `${currentAlbum.title} - Photo ${slide + 1}`,
+        text: `Check out this photo from ${currentAlbum.title}`,
+        url: p.src
+      };
+      
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          console.log('Share failed:', err);
+        }
+      } else {
+        // Fallback: copy to clipboard
+        navigator.clipboard.writeText(p.src).then(() => {
+          alert('Image URL copied to clipboard!');
+        });
+      }
+    });
+
+    // Card click - Enhanced
     eventsEl.addEventListener('click', e=>{
+      const card = e.target.closest('.event-card');
       const btn = e.target.closest('[data-open-album]');
-      if (btn){
+      if (card && !btn){
+        const idx = Number(card.dataset.openAlbum);
+        openAlbumAt(idx, 0);
+      } else if (btn){
         const idx = Number(btn.dataset.openAlbum);
         openAlbumAt(idx, 0);
       }
     });
 
     // Controls
-    btnClose.onclick = closeLb; btnPrev.onclick = prev; btnNext.onclick = next;
+    btnClose.onclick = closeLb;
+    btnPrev.onclick = prev;
+    btnNext.onclick = next;
+    btnZoomIn.onclick = zoomIn;
+    btnZoomOut.onclick = zoomOut;
+    btnResetZoom.onclick = resetZoom;
+    btnFullscreen.onclick = toggleFullscreen;
 
-    // Keyboard
+    // Fullscreen change handler
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) {
+        btnFullscreen.innerHTML = '<i class="bi bi-fullscreen"></i>';
+      }
+    });
+
+    // Keyboard shortcuts
     window.addEventListener('keydown', e=>{
       if (!lb.classList.contains('open')) return;
       if (e.key==='Escape') closeLb();
       if (e.key==='ArrowLeft') prev();
       if (e.key==='ArrowRight') next();
+      if (e.key==='+' || e.key==='=') { e.preventDefault(); zoomIn(); }
+      if (e.key==='-' || e.key==='_') { e.preventDefault(); zoomOut(); }
+      if (e.key==='0') { e.preventDefault(); resetZoom(); }
+      if (e.key==='f' || e.key==='F') { e.preventDefault(); toggleFullscreen(); }
     });
 
     // Backdrop
@@ -585,7 +1395,7 @@
       }
     }
 
-    // Function to update video cards
+    // Function to update video cards - Enhanced
     async function updateVideoCards() {
       const videoGrid = document.getElementById('youtube-videos');
       if (!videoGrid) return;
@@ -599,12 +1409,12 @@
         
         // Create loading card
         const card = document.createElement('div');
-        card.className = 'card glass-soft';
+        card.className = 'video-card glass-soft';
         card.innerHTML = `
           <div class="video-placeholder" style="height: 200px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #c5cce6;">
             <i class="bi bi-youtube" style="font-size: 2rem;"></i>
           </div>
-          <h3 style="margin-top:10px">Loading...</h3>
+          <h3>Loading...</h3>
           <p class="muted">Fetching video data...</p>
         `;
         videoGrid.appendChild(card);
@@ -619,10 +1429,16 @@
               loading="lazy" 
               src="https://www.youtube.com/embed/${videoId}" 
               title="${videoData.title}"
-              style="width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#000">
+              style="width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#000; box-shadow: 0 4px 20px rgba(0,0,0,.3);">
             </iframe>
-            <h3 style="margin-top:10px">${videoData.title}</h3>
-            <p class="muted">${formatDate(videoData.publishedAt)} · ${videoData.channelTitle}</p>
+            <h3>${videoData.title}</h3>
+            <p class="muted" style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+              <i class="bi bi-calendar3" style="font-size: 0.85rem;"></i>
+              <span>${formatDate(videoData.publishedAt)}</span>
+              <span style="margin: 0 4px;">·</span>
+              <i class="bi bi-youtube" style="font-size: 0.85rem;"></i>
+              <span>${videoData.channelTitle}</span>
+            </p>
           `;
         } else {
           // Show error state
@@ -630,7 +1446,7 @@
             <div class="video-placeholder" style="height: 200px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #c5cce6;">
               <i class="bi bi-exclamation-triangle" style="font-size: 2rem;"></i>
             </div>
-            <h3 style="margin-top:10px">Video Unavailable</h3>
+            <h3>Video Unavailable</h3>
             <p class="muted">Could not load video data</p>
           `;
         }
