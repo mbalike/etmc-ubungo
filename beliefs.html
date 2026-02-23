@@ -1,451 +1,396 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>What We Believe — ETMC - Ubungo</title>
-  <link rel="icon" href="assets/logo.png" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <style>
-    :root{
-      --brand:#2a4c7f; --muted:#c5cce6; --bg:#000000;
-      --ring:rgba(42,76,127,.35);
-      --glass-bg:rgba(255,255,255,.12); --glass-brd:rgba(255,255,255,.22);
-      --glass-shadow:0 10px 30px rgba(0,0,0,.35); --radius:20px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0; font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
-      color:#eef2ff; background:radial-gradient(1200px 600px at 20% -10%, #1a2440 0, transparent 60%), var(--bg);
-      line-height:1.6;
-    }
-    a{color:#d2deff; text-decoration:none}
-    a:focus, button:focus{outline:3px solid var(--ring); outline-offset:2px; border-radius:10px}
-    h1,h2,h3{margin:0}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What We Believe — ETMC-Ubungo</title>
+<meta name="description" content="ETMC-Ubungo's statement of faith: Bible, Godhead, the end-time messenger, apostolic church, baptism, rapture, and more." />
+<link rel="icon" href="assets/logo.png" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --orange: #e8541e;
+    --dark:   #111;
+    --navy:   #1e3a5f;
+    --light-bg: #f7f7f7;
+    --text-muted: #555;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Lato', sans-serif; color: #333; background: #fff; overflow-x: hidden; line-height: 1.75; }
+  a { text-decoration: none; color: inherit; }
 
-    /* ======= Glass helpers ======= */
-    .glass{
-      background:var(--glass-bg);
-      -webkit-backdrop-filter:saturate(180%) blur(14px);
-      backdrop-filter:saturate(180%) blur(14px);
-      border:1px solid var(--glass-brd);
-      box-shadow:var(--glass-shadow);
-      border-radius:var(--radius);
-    }
-    .glass-soft{
-      background:rgba(255,255,255,.08);
-      -webkit-backdrop-filter:saturate(160%) blur(10px);
-      backdrop-filter:saturate(160%) blur(10px);
-      border:1px solid rgba(255,255,255,.16);
-      box-shadow:0 8px 24px rgba(0,0,0,.25);
-      border-radius:var(--radius);
-    }
+  /* CONTAINER */
+  .container { max-width: 1200px; margin: 0 auto; padding-left: 60px; padding-right: 60px; }
 
-    /* ======= Pill Navigation (iOS-like) ======= */
-    .nav-wrap{
-      position:fixed; top:16px; z-index:60; display:flex; justify-content:center; padding:0 16px; width:100%;
-    }
-    .nav{
-      display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:999px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px; text-decoration:none; color:#eef2ff; font-weight:800;
-      padding:6px 10px; border-radius:999px;
-    }
-    .brand img{width:28px; height:28px; object-fit:contain}
-    .links{display:flex; gap:4px; flex-wrap:wrap}
-    .links a{
-      color:#f0f4ff; text-decoration:none; font-weight:700; font-size:.95rem;
-      padding:8px 12px; border-radius:999px; opacity:.95;
-    }
-    .links a:hover, .links a[aria-current="page"]{background:rgba(255,255,255,.14)}
-    .menu-btn{display:none; margin-left:8px; border:0; background:transparent; color:#fff; font-size:1.1rem; padding:8px 10px; border-radius:12px}
+  /* ── NAVBAR (ALL selectors scoped to #mainNav) ── */
+  #mainNav {
+    position: fixed; top: 0; left: 0; width: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 60px; z-index: 1000;
+    transition: background .3s, box-shadow .3s, padding .3s;
+  }
+  #mainNav.scrolled                    { background: #fff; box-shadow: 0 2px 20px rgba(0,0,0,.1); padding: 14px 60px; }
+  #mainNav.scrolled .logo-text         { color: var(--dark); }
+  #mainNav.scrolled .logo-sub          { color: #777; }
+  #mainNav.scrolled ul li a            { color: #333; }
+  #mainNav.scrolled .btn-cta           { border-color: var(--dark); color: var(--dark); }
+  #mainNav.scrolled .btn-cta:hover     { background: var(--dark); color: #fff; }
+  #mainNav .logo                       { display: flex; align-items: center; gap: 10px; }
+  #mainNav .logo-img                   { width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; }
+  #mainNav .logo-text                  { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 22px; line-height: 1; transition: color .3s; }
+  #mainNav .logo-sub                   { color: #aaa; font-size: 10px; letter-spacing: 1.5px; transition: color .3s; }
+  #mainNav ul                          { list-style: none; display: flex; gap: 36px; }
+  #mainNav ul li a                     { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.5px; transition: color .2s; }
+  #mainNav ul li a:hover,
+  #mainNav ul li a[aria-current="page"] { color: var(--orange); }
+  #mainNav .btn-cta {
+    border: 2px solid #fff; color: #fff; padding: 10px 22px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px;
+    letter-spacing: 1px; transition: all .2s; text-transform: uppercase; white-space: nowrap;
+  }
+  #mainNav .btn-cta:hover { background: #fff; color: var(--dark); }
 
-    /* ======= HERO ======= */
-    .hero {
-      position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid rgba(255,255,255,.08);
-      flex-direction:row;
-      gap:40px;
-    }
-    .hero::before {
-      content:""; position:absolute; inset:0;
-      background:
-        linear-gradient(to bottom, rgba(10,12,22,.5), rgba(10,12,22,.7)),
-        url('assets/pub.jpeg') center/cover no-repeat;
-      z-index:-1;
-      filter: blur(18px);
-    }
-    .hero-content {
-      position:relative;
-      z-index:1;
-      text-align:left;
-      max-width:600px;
-      margin-bottom:0;
-      flex:1 1 0;
-    }
-    .hero-content h1 {
-      font-size:clamp(2rem, 4vw, 3rem);
-      margin-bottom:.35rem;
-    }
-    .hero-content p {
-      color:#dfe6ff;
-      margin:0;
-      font-size:1.15rem;
-    }
-    .hero-card {
-      width: 520px;           /* Fixed width for 2x2 grid */
-      max-width: 95vw;
-      min-width: 320px;
-      height: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 2;
-      padding: 32px 28px;
-      box-sizing: border-box;
-    }
-    .hero-right {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      width: 100%;
-    }
-    .verse-pill {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 16px 32px;     /* Wider pills */
-      border-radius: 999px;
-      background: rgba(255,255,255,.14);
-      border: 1px solid rgba(255,255,255,.22);
-      font-weight: 800;
-      color: #fff;
-      width: 100%;
-      justify-content: center;
-      font-size: 1.08rem;
-      white-space: nowrap; /* Prevent line breaks */
-    }
-    @media (max-width: 900px) {
-      .hero { flex-direction:column; gap:24px; }
-      .hero-card { max-width:100%; width:100%; height:auto; }
-      .hero-content { text-align:center; }
-    }
-    /* Responsive: stack pills on small screens */
-    @media (max-width: 600px) {
-      .hero-card {
-        width: 100%;
-        padding: 18px 6px;
-      }
-      .hero-right {
-        grid-template-columns: 1fr;
-      }
-    }
+  /* PAGE BANNER */
+  .page-banner {
+    position: relative;
+    background: url('assets/cloud1.jpg') center 40%/cover no-repeat;
+    color: #fff; min-height: 58vh; display: flex; align-items: center;
+    padding: 170px 0 90px; text-align: center;
+  }
+  .page-banner::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,.62); }
+  .page-banner .container { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+  .page-title {
+    font-family: 'Montserrat', sans-serif; font-weight: 900;
+    font-size: clamp(40px, 5vw, 80px); letter-spacing: 0.5px; line-height: 1.05;
+    margin-bottom: 14px; text-shadow: 0 12px 40px rgba(0,0,0,.55);
+  }
+  .page-subtitle {
+    font-family: 'Montserrat', sans-serif; font-size: clamp(13px, 1.4vw, 16px); font-weight: 600;
+    color: rgba(255,255,255,.82); max-width: 640px;
+    margin-bottom: 20px; text-shadow: 0 4px 16px rgba(0,0,0,.5); text-wrap: balance;
+  }
+  .breadcrumb {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 12px;
+    letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.9);
+  }
+  .breadcrumb a                  { color: rgba(255,255,255,.95); transition: color .2s; }
+  .breadcrumb a:hover             { color: var(--orange); }
+  .breadcrumb span                { opacity: .7; }
 
-    /* ======= Main layout ======= */
-    main{max-width:1300px; margin:0 auto; display:grid; grid-template-columns:260px 1fr; gap:24px; padding:40px 16px}
-    aside{position:sticky; top:100px; align-self:start}
-    aside nav{display:flex; flex-direction:column; gap:8px}
-    aside a{padding:8px 12px; border-radius:12px; transition:.2s}
-    aside a:hover, aside a.active{background:rgba(255,255,255,.14)}
+  /* ── BODY LAYOUT ── */
+  .body-wrap { padding: 70px 0 90px; }
+  .layout    { display: grid; grid-template-columns: 220px 1fr; gap: 50px; align-items: start; }
 
-    section{margin-bottom:80px; display:grid; grid-template-columns:1fr; gap:24px; align-items:center}
-    .content{padding:20px}
-    .content h2{margin-bottom:.4em; font-size:1.6rem}
-    .content p{color:#cfd6fb; margin:.6em 0}
-    /* Remove photo column styling */
-    .photo {display:none;}
+  /* ── TOC SIDEBAR (uses class selectors only, not bare nav) ── */
+  .toc-sidebar { position: sticky; top: 100px; }
+  .toc-label {
+    font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--orange);
+    margin-bottom: 14px;
+  }
+  .toc-sidebar .toc-nav { display: flex; flex-direction: column; gap: 2px; }
+  .toc-sidebar .toc-nav a {
+    display: block; padding: 9px 14px; border-radius: 4px;
+    font-family: 'Montserrat', sans-serif; font-size: 12.5px; font-weight: 600;
+    color: #666; transition: background .2s, color .2s;
+    border-left: 3px solid transparent;
+  }
+  .toc-sidebar .toc-nav a:hover  { background: var(--light-bg); color: var(--dark); }
+  .toc-sidebar .toc-nav a.active { background: rgba(232,84,30,.08); color: var(--orange); border-left-color: var(--orange); }
 
-    /* ======= Footer ======= */
-    footer {
-      margin-top:40px;
-      background:rgba(255,255,255,.06);
-      border-top:1px solid rgba(255,255,255,.12);
-    }
-    footer .wrap {
-      max-width:1200px;
-      margin:auto;
-      padding:48px 32px;
-      display:grid;
-      gap:0;
-      grid-template-columns:1fr 1fr 1fr;
-      justify-items:center;
-      align-items:center;
-      text-align:center;
-      column-gap:48px;
-    }
-    footer .wrap > div {
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      padding:0 24px;
-    }
-    .social-icons {
-      display:flex;
-      gap:12px;
-      margin-top:15px;
-      justify-content:center;
-    }
-    footer a {
-      color:#d7e4ff;
-      text-decoration:none;
-      text-align:center;
-      display:inline-flex;
-      justify-content:center;
-      align-items:center;
-    }
-    .foot-note {
-      border-top:1px solid rgba(255,255,255,.12);
-      text-align:center;
-      padding:14px;
-      font-size:.9rem;
-      color:#c8d4f7;
-    }
+  /* ── BELIEF SECTIONS ── */
+  .belief-section {
+    margin-bottom: 48px; padding-bottom: 48px;
+    border-bottom: 1px solid #eee;
+    scroll-margin-top: 110px;
+  }
+  .belief-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .belief-section h2 {
+    font-family: 'Montserrat', sans-serif; font-weight: 900;
+    font-size: clamp(18px, 2.2vw, 24px); color: var(--dark);
+    margin-bottom: 16px; padding-left: 14px;
+    border-left: 4px solid var(--orange);
+  }
+  .belief-section p {
+    color: var(--text-muted); font-size: 15.5px; line-height: 1.85;
+    margin-bottom: 12px;
+  }
+  .belief-section p:last-child { margin-bottom: 0; }
 
-    /* Responsive */
-    @media (max-width: 1000px){
-      .hero-card{grid-template-columns:1fr}
-    }
-    @media (max-width: 900px){
-      main{grid-template-columns:1fr}
-      aside{display:none}
-      section{grid-template-columns:1fr}
-    }
-    @media (max-width: 760px){
-      .links{display:none}
-      .menu-btn{display:block}
-      .links.open{display:flex; width:100%; flex-direction:column; padding:8px; gap:6px; margin-top:8px}
-    }
-    @media (max-width: 700px) {
-      footer .wrap {
-        grid-template-columns:1fr;
-      }
-      footer .wrap > div {
-        margin-bottom:18px;
-      }
-    }
-  </style>
+  /* FOOTER */
+  footer { background: #111; color: #ccc; padding: 70px 0 30px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
+  .footer-logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+  .footer-logo-img { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
+  .footer-logo-text { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; }
+  .footer-desc { font-size: 14px; line-height: 1.8; color: #888; margin-bottom: 24px; }
+  .footer-social { display: flex; gap: 10px; }
+  .footer-soc-btn { width: 34px; height: 34px; border: 1px solid #333; color: #888; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all .2s; text-decoration: none; }
+  .footer-soc-btn:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
+  .footer-col-title { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 2px solid var(--orange); display: inline-block; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a { color: #888; font-size: 14px; transition: color .2s; display: flex; align-items: center; gap: 8px; }
+  .footer-col ul li a i { font-size: 10px; color: var(--orange); }
+  .footer-col ul li a:hover { color: var(--orange); }
+  .footer-service-time { font-size: 14px; color: #888; line-height: 2; }
+  .footer-service-time span { color: var(--orange); font-weight: 600; }
+  .footer-bottom { border-top: 1px solid #222; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 13px; color: #555; }
+  .footer-copy a { color: var(--orange); }
+  .footer-bottom-links { display: flex; gap: 20px; }
+  .footer-bottom-links a { font-size: 13px; color: #555; transition: color .2s; }
+  .footer-bottom-links a:hover { color: var(--orange); }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .container { padding-left: 32px; padding-right: 32px; }
+    #mainNav, #mainNav.scrolled { padding: 18px 32px; }
+    .layout { grid-template-columns: 190px 1fr; gap: 36px; }
+  }
+  @media (max-width: 900px) {
+    .container { padding-left: 24px; padding-right: 24px; }
+    .layout { grid-template-columns: 1fr; }
+    .toc-sidebar { display: none; }
+  }
+  @media (max-width: 768px) {
+    #mainNav ul { display: none; }
+    .container { padding-left: 20px; padding-right: 20px; }
+    #mainNav, #mainNav.scrolled { padding: 16px 20px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+    .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+  }
+  @media (max-width: 520px) {
+    .container { padding-left: 16px; padding-right: 16px; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- Glass Pill NAV -->
-  <div class="nav-wrap" role="banner">
-    <div class="nav glass" role="navigation" aria-label="Primary">
-      <a class="brand" href="index.html#home" aria-label="Home">
-        <img src="assets/logo.png" alt="Church Logo" />
-        <span>ETMC-Ubungo</span>
-      </a>
-
-      <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" title="Toggle navigation">☰</button>
-
-      <nav id="nav-links" class="links">
-        <a href="index.html#home">Home</a>
-        <a href="index.html#beliefs" aria-current="page">What We Believe</a>
-        <a href="about.html">About</a>
-        <a href="board.html">Church Board</a>
-        <a href="publications.html">Publications</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+<!-- NAVBAR -->
+<nav id="mainNav" aria-label="Primary navigation">
+  <div class="logo">
+    <img class="logo-img" src="assets/logo.png" alt="ETMC-Ubungo logo">
+    <div>
+      <div class="logo-text">ETMC-Ubungo</div>
+      <div class="logo-sub">Ubungo End Time Message Church</div>
     </div>
   </div>
+  <ul>
+    <li><a href="index2.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="beliefs.html" aria-current="page">Beliefs</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="board2.html">Board</a></li>
+    <li><a href="contact2.html">Contact</a></li>
+  </ul>
+  <a href="contact2.html" class="btn-cta">GET IN TOUCH</a>
+</nav>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-content">
-      <h1>What We Believe</h1>
-      <p>
-        We believe the Bible is the infallible Word of God, the Absolute and Ultimate Truth, i.e. every chapter, every verse and every line.
-      </p>
-    </div>
-    <div class="hero-card glass">
-      <div class="hero-right">
-        <a href="#malachi4" class="verse-pill"><i class="bi bi-journal-bookmark"></i> Malachi 4:5</a>
-        <a href="#malachi4" class="verse-pill"><i class="bi bi-journal-bookmark"></i> Revelation 10:7</a>
-        <a href="#baptism"  class="verse-pill"><i class="bi bi-journal-bookmark"></i> Acts 2:38</a>
-        <a href="#godhead"  class="verse-pill"><i class="bi bi-journal-bookmark"></i> Hebrews 13:8</a>
-      </div>
-    </div>
-  </header>
+<!-- PAGE BANNER -->
+<header class="page-banner" aria-label="Page banner">
+  <div class="container">
+    <div class="page-title">What We Believe</div>
+    <p class="page-subtitle">We believe the Bible is the infallible Word of God — the Absolute and Ultimate Truth, every chapter, every verse and every line.</p>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index2.html">Home</a>
+      <span aria-hidden="true">/</span>
+      <span>Beliefs</span>
+    </nav>
+  </div>
+</header>
 
-  <main>
-    <!-- Sticky TOC -->
-    <aside>
-      <nav>
-        <a href="#bible">The Bible</a>
-        <a href="#godhead">The Godhead</a>
-        <a href="#malachi4">Malachi 4 Messenger</a>
-        <a href="#restored">Restored Word</a>
-        <a href="#apostolic">Apostolic Church</a>
-        <a href="#fivefold">Five-Fold Ministry</a>
-        <a href="#fellowship">Fellowship</a>
-        <a href="#salvation">Justification & Sanctification</a>
-        <a href="#holyspirit">Baptism of the Holy Spirit</a>
-        <a href="#baptism">Water Baptism</a>
-        <a href="#gifts">Gifts & Order</a>
-        <a href="#rapture">Rapture</a>
-        <a href="#newjerusalem">New Jerusalem</a>
-      </nav>
-    </aside>
+<!-- MAIN BODY -->
+<div class="body-wrap">
+  <div class="container">
+    <div class="layout">
 
-    <!-- Sections (content is your original wording) -->
-    <div>
-      <section id="bible">
-        <div class="content glass">
+      <!-- STICKY TOC -->
+      <aside class="toc-sidebar" aria-label="Table of contents">
+        <p class="toc-label">Contents</p>
+        <nav class="toc-nav">
+          <a href="#bible">The Bible</a>
+          <a href="#godhead">The Godhead</a>
+          <a href="#malachi4">Malachi 4 Messenger</a>
+          <a href="#restored">Restored Word</a>
+          <a href="#apostolic">Apostolic Church</a>
+          <a href="#fivefold">Five-Fold Ministry</a>
+          <a href="#fellowship">Fellowship</a>
+          <a href="#salvation">Justification &amp; Sanctification</a>
+          <a href="#holyspirit">Holy Spirit Baptism</a>
+          <a href="#baptism">Water Baptism</a>
+          <a href="#gifts">Gifts &amp; Order</a>
+          <a href="#rapture">Rapture</a>
+          <a href="#newjerusalem">New Jerusalem</a>
+        </nav>
+      </aside>
+
+      <!-- BELIEF SECTIONS -->
+      <div>
+        <section id="bible" class="belief-section">
           <h2>The Bible</h2>
           <p>We believe the Bible is the infallible Word of God, the Absolute and Ultimate Truth, i.e. every chapter, every verse and every line.</p>
-        </div>
-      </section>
-      <section id="godhead">
-        <div class="content glass">
+        </section>
+
+        <section id="godhead" class="belief-section">
           <h2>The Godhead</h2>
-          <p>We believe that Jehovah of the Old Testament is the Lord Jesus Christ of the New Testament and that there is no other God but Him. (Isaiah 9.6, 1 Timothy 3:16 etc.). We believe this Lord Jesus Christ is real and alive today, even GOVERNING IN THE AFFAIRS OF MEN RIGHT NOW. HE IS BOTH CREATOR AND SUSTAINER.  (Hebrews 13:8; Colossians 1:16&17).</p>
-        </div>
-      </section>
-      <section id="malachi4">
-        <div class="content glass">
-          <h2>Malachi 4 Messenger & Revelation 10:7</h2>
-          <p>We believe that the Word of the Lord according to Malachi 4:5 & 6 has promised that God would send to the earth once again the spirit of Elijah in the form of that End time Messenger who was the angel to the Seventh Church Age in these final closing days of time (Revelation 3:14 & Revelation 10:7). We believe firmly that this promise was fulfilled in the vindicated ministry of our Precious Brother, William Marrion Branham.</p>
-        </div>
-      </section>
-      <section id="restored">
-        <div class="content glass">
+          <p>We believe that Jehovah of the Old Testament is the Lord Jesus Christ of the New Testament and that there is no other God but Him. (Isaiah 9:6, 1 Timothy 3:16 etc.). We believe this Lord Jesus Christ is real and alive today, even GOVERNING IN THE AFFAIRS OF MEN RIGHT NOW. HE IS BOTH CREATOR AND SUSTAINER. (Hebrews 13:8; Colossians 1:16&amp;17).</p>
+        </section>
+
+        <section id="malachi4" class="belief-section">
+          <h2>Malachi 4 Messenger &amp; Revelation 10:7</h2>
+          <p>We believe that the Word of the Lord according to Malachi 4:5 &amp; 6 has promised that God would send to the earth once again the spirit of Elijah in the form of that End Time Messenger who was the angel to the Seventh Church Age in these final closing days of time (Revelation 3:14 &amp; Revelation 10:7). We believe firmly that this promise was fulfilled in the vindicated ministry of our Precious Brother, William Marrion Branham.</p>
+        </section>
+
+        <section id="restored" class="belief-section">
           <h2>Restored Word of the Hour</h2>
-          <p>We, thus, believe in the Restored Word of the hour according to Malachi 4:5&6, Matthew 17:11 and Revelation 10:1-7. We sincerely believe that the prophet-messenger was sent to do  two things. One: According to Malachi 4 he was to turn the hearts of the children back to the fathers, the apostles and Two: He was to reveal the mysteries of the seven thunders in Revelation 10 which are the revelations contained in the seven seals of Revelation chapters 6 and 8. We believe it is these Divinely revealed “mystery-truths” that are literally turning the hearts of the children back to the Pentecostal fathers.</p>
-        </div>
-      </section>
-      <section id="apostolic">
-        <div class="content glass">
-          <h2>Apostolic Church & Full Gospel</h2>
-          <p>We believe in an apostolic Church, teaching apostolic Blessing for people of this day. We believe in the Full gospel, and believe that all of the signs and wonders that were spoken of by our Lord Jesus Christ would accompany his Church until he returned. We believe in those things, and believe that they are to be set in order. We believe that the church has its order. And each Church has its doctrine, and order, and discipline.</p>
-        </div>
-      </section>
-      <section id="fivefold">
-        <div class="content glass">
+          <p>We, thus, believe in the Restored Word of the hour according to Malachi 4:5&amp;6, Matthew 17:11 and Revelation 10:1–7. We sincerely believe that the prophet-messenger was sent to do two things. One: According to Malachi 4 he was to turn the hearts of the children back to the fathers, the apostles and Two: He was to reveal the mysteries of the seven thunders in Revelation 10 which are the revelations contained in the seven seals of Revelation chapters 6 and 8. We believe it is these Divinely revealed "mystery-truths" that are literally turning the hearts of the children back to the Pentecostal fathers.</p>
+        </section>
+
+        <section id="apostolic" class="belief-section">
+          <h2>Apostolic Church &amp; Full Gospel</h2>
+          <p>We believe in an apostolic Church, teaching apostolic Blessing for people of this day. We believe in the Full Gospel, and believe that all of the signs and wonders that were spoken of by our Lord Jesus Christ would accompany his Church until he returned. We believe in those things, and believe that they are to be set in order. We believe that the church has its order. And each Church has its doctrine, and order, and discipline.</p>
+        </section>
+
+        <section id="fivefold" class="belief-section">
           <h2>Five-Fold Ministry</h2>
-          <p>We believe in the five-fold ministry according to Ephesians chapter 4 verse 11 to 16 for the saints to be perfected, edified and for the work of the ministry to the end that the whole Church of the Living God the world over should be the Living Tabernacle of the Living God where God can dwell in in this time of the Bride-coming of Christ (Colossians 1:27) and recognize that She is the final voice to this final age according to Revelation 10:8-11 and Revelation 22;17.</p>
-        </div>
-      </section>
-      <section id="fellowship">
-        <div class="content glass">
+          <p>We believe in the five-fold ministry according to Ephesians chapter 4 verse 11 to 16 for the saints to be perfected, edified and for the work of the ministry to the end that the whole Church of the Living God the world over should be the Living Tabernacle of the Living God where God can dwell in this time of the Bride-coming of Christ (Colossians 1:27) and recognize that She is the final voice to this final age according to Revelation 10:8–11 and Revelation 22:17.</p>
+        </section>
+
+        <section id="fellowship" class="belief-section">
           <h2>Fellowship</h2>
           <p>Our Church has no members as joiners. We believe that the whole universal Church of the living God is our brothers and sisters; and that all people are always welcome regardless of what denomination they belong to.</p>
-        </div>
-      </section>
-      <section id="salvation">
-        <div class="content glass">
-          <h2>Justification & Sanctification</h2>
-          <p>We believe in “justification by faith,” Romans 5:1. We believe that after a person being justified by faith, he has peace with the Lord Jesus Christ. But it’s possible that this same person could have habits such as drinking, smoking, doing things that he should not do, filthy habits of the flesh.</p>
-          <p>Then we believe that the blood of Jesus Christ sanctifies this person for the service of the Lord. And, that’s, we believe in ‘sanctification” according to Hebrews 13:12 and 13, “Where Jesus also, that he might sanctify the people with His Own Blood, suffered without the gate.” And we believe that sanctification is taught in the New Testament age, which we’re now living. And we believe that after the person has been sanctified, unclean habits have gone from the person.</p>
-        </div>
-      </section>
-      <section id="holyspirit">
-        <div class="content glass">
+        </section>
+
+        <section id="salvation" class="belief-section">
+          <h2>Justification &amp; Sanctification</h2>
+          <p>We believe in "justification by faith," Romans 5:1. We believe that after a person being justified by faith, he has peace with the Lord Jesus Christ. But it is possible that this same person could have habits such as drinking, smoking, doing things that he should not do, filthy habits of the flesh.</p>
+          <p>Then we believe that the blood of Jesus Christ sanctifies this person for the service of the Lord. And, that is, we believe in "sanctification" according to Hebrews 13:12 and 13, "Where Jesus also, that he might sanctify the people with His Own Blood, suffered without the gate." And we believe that sanctification is taught in the New Testament age, which we are now living. And we believe that after the person has been sanctified, unclean habits have gone from the person.</p>
+        </section>
+
+        <section id="holyspirit" class="belief-section">
           <h2>Baptism of the Holy Spirit</h2>
-          <p>He is a believer on the Lord Jesus Christ, and his habits are gone, we believe that then he is a candidate for ‘the baptism of the Holy Spirit,” which comes as a filling of the believer. We believe that the Holy Spirit is putting this person in service. That, the Holy Spirit is not another step of grace, but more of the same grace, that fills the believer to the extent where that signs and wonders such as the apostolic gifts spoken of in First Corinthians 12 manifest themselves through this believer, when the Holy Spirit comes in to take up the gifts.</p>
-        </div>
-      </section>
-      <section id="baptism">
-        <div class="content glass">
+          <p>He is a believer on the Lord Jesus Christ, and his habits are gone, we believe that then he is a candidate for "the baptism of the Holy Spirit," which comes as a filling of the believer. We believe that the Holy Spirit is putting this person in service. That the Holy Spirit is not another step of grace, but more of the same grace, that fills the believer to the extent where that signs and wonders such as the apostolic gifts spoken of in First Corinthians 12 manifest themselves through this believer, when the Holy Spirit comes in to take up the gifts.</p>
+        </section>
+
+        <section id="baptism" class="belief-section">
           <h2>Water Baptism (Acts 2:38)</h2>
-          <p>We believe in “water baptism,” by immersing, “in the Name of the Lord Jesus Christ,” which is the apostolic Teaching of the Bible (Acts 2:38). This does bring those who have been baptized into the fellowship of the believers. We believe that by water baptism we are brought into a fellowship. But, by the baptism of the Holy Spirit, we are brought into the members, being members of the Body of Jesus Christ, which is all over the world.(1 Corinthians 12:13).</p>
-        </div>
-      </section>
-      <section id="gifts">
-        <div class="content glass">
-          <h2>Gifts & Order in the Church</h2>
-          <p>Now, another thing that we believe is that, “The manifestation of the Spirit is given to every man to profit withal.” Now we believe that the spiritual gifts, among the believers, are the order of the day and must be set in order in the church according to the Bible. (1 Corinthians 12:1-28;1 Corinthians 14:26-33; Romans 12:3-8).</p>
-        </div>
-      </section>
-      <section id="rapture">
-        <div class="content glass">
-          <h2>Rapture & Marriage Supper</h2>
-          <p>We believe the whole Church of the living God, the Bride, will eventually be changed in a moment in a twinkling of an eye and be caught away by the Lord Jesus Christ to the Marriage Supper of the Lamb in the sky before the great tribulation sets in. (1 Corinthians 15:51-56; 1 Thessalonians 4:13 to 18; Revelation 19:7-9).</p>
-        </div>
-      </section>
-      <section id="newjerusalem">
-        <div class="content glass">
+          <p>We believe in "water baptism," by immersing, "in the Name of the Lord Jesus Christ," which is the apostolic Teaching of the Bible (Acts 2:38). This does bring those who have been baptized into the fellowship of the believers. We believe that by water baptism we are brought into a fellowship. But, by the baptism of the Holy Spirit, we are brought into the members, being members of the Body of Jesus Christ, which is all over the world. (1 Corinthians 12:13).</p>
+        </section>
+
+        <section id="gifts" class="belief-section">
+          <h2>Gifts &amp; Order in the Church</h2>
+          <p>Another thing that we believe is that, "The manifestation of the Spirit is given to every man to profit withal." Now we believe that the spiritual gifts, among the believers, are the order of the day and must be set in order in the church according to the Bible. (1 Corinthians 12:1–28; 1 Corinthians 14:26–33; Romans 12:3–8).</p>
+        </section>
+
+        <section id="rapture" class="belief-section">
+          <h2>Rapture &amp; Marriage Supper</h2>
+          <p>We believe the whole Church of the living God, the Bride, will eventually be changed in a moment, in a twinkling of an eye, and be caught away by the Lord Jesus Christ to the Marriage Supper of the Lamb in the sky before the great tribulation sets in. (1 Corinthians 15:51–56; 1 Thessalonians 4:13–18; Revelation 19:7–9).</p>
+        </section>
+
+        <section id="newjerusalem" class="belief-section">
           <h2>Final Destiny — New Jerusalem</h2>
-          <p>We believe our final destiny is New Jerusalem, the pyramid-like city on Mount Zion where the Lamb will be the Light and everything will be HOLINESS UNTO THE LORD and there will be ONE LORD and His NAME ONE. (Revelation 21 & 22)</p>
+          <p>We believe our final destiny is New Jerusalem, the pyramid-like city on Mount Zion where the Lamb will be the Light and everything will be HOLINESS UNTO THE LORD and there will be ONE LORD and His NAME ONE. (Revelation 21 &amp; 22)</p>
+        </section>
+      </div>
+
+    </div><!-- /.layout -->
+  </div><!-- /.container -->
+</div><!-- /.body-wrap -->
+
+<!-- FOOTER -->
+<footer aria-label="Site footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-col">
+        <div class="footer-logo-row">
+          <img class="footer-logo-img" src="assets/logo.png" alt="ETMC-Ubungo logo">
+          <div>
+            <div class="footer-logo-text">ETMC-Ubungo</div>
+            <div style="color:#555;font-size:10px;letter-spacing:1.5px;">Ubungo End Time Message Church</div>
+          </div>
         </div>
-      </section>
+        <p class="footer-desc">A community of believers dedicated to spreading love, faith, and hope — growing together in Christ and serving our community with joy.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/ubungoendtime" target="_blank" rel="noopener" class="footer-soc-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener" class="footer-soc-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://wa.me/255742398600" target="_blank" rel="noopener" class="footer-soc-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="footer-soc-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Quick Links</div>
+        <ul>
+          <li><a href="index2.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="beliefs.html"><i class="fas fa-chevron-right"></i> Beliefs</a></li>
+          <li><a href="publications.html"><i class="fas fa-chevron-right"></i> Publications</a></li>
+          <li><a href="board2.html"><i class="fas fa-chevron-right"></i> Board</a></li>
+          <li><a href="contact2.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Resources</div>
+        <ul>
+          <li><a href="https://branham.org" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> VGR</a></li>
+          <li><a href="https://table.branham.org" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> The Table</a></li>
+          <li><a href="https://branham.org/messageaudio" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Sermon Audio</a></li>
+          <li><a href="https://www.messagehub.info" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Message Hub</a></li>
+          <li><a href="https://play.google.com/store/apps/details?id=org.branham.table.app" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Play Store</a></li>
+          <li><a href="https://apps.apple.com/us/app/the-table-mobile/id589296925" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> App Store</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title">Service Times</div>
+        <div class="footer-service-time">
+          <p><span>Sunday</span><br>9:00 AM &ndash; 3:00 PM</p><br>
+          <p><span>Wednesday</span><br>6:00 PM &ndash; 7:00 PM</p><br>
+          <p><span>Saturday</span><br>4:00 PM &ndash; 6:00 PM</p>
+        </div>
+      </div>
+
     </div>
-  </main>
-
-  <!-- FOOTER -->
-  <footer role="contentinfo" class="glass-soft">
-    <div class="wrap">
-      <div>
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px">
-          <img src="assets/logo.png" alt="Church logo" width="36" height="36" />
-          <strong>ETMC - Ubungo</strong>
-        </div>
-        <p style="margin:0 0 15px; color:#c8d4f7; line-height:1.5; max-width:220px">
-          A Bible-believing fellowship in Ubungo proclaiming the Gospel of Jesus Christ.
-        </p>
-        <div class="social-icons" style="display:flex; gap:12px; margin-top:15px">
-          <a href="https://www.instagram.com/ubungoendtime" target="_blank" rel="noopener" aria-label="Follow us on Instagram" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1); transition:all 0.2s">
-            <i class="bi bi-instagram"></i>
-          </a>
-          <a href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener" aria-label="Subscribe to our YouTube channel" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1); transition:all 0.2s">
-            <i class="bi bi-youtube"></i>
-          </a>
-          <a href="https://wa.me/255742398600" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1); transition:all 0.2s">
-            <i class="bi bi-whatsapp"></i>
-          </a>
-        </div>
-      </div>
-      <div>
-        <strong>Quick Links</strong><br/>
-        <a href="#beliefs">What We Believe</a><br/>
-        <a href="about.html">About Us</a><br/>
-        <a href="prayer-request.html">Prayer Request</a><br/>
-        <a href="publications.html">Publications</a>
-      </div>
-      <div>
-        <strong>Contact</strong><br/>
-        <a href="mailto:info@etmc.org" style="display:flex; align-items:center; gap:8px; margin-bottom:8px">
-          <i class="bi bi-envelope" style="color:#d7e4ff; font-size:0.9rem"></i>
-          info@etmc.org
-        </a>
-        <a href="tel:+255742398600" style="display:flex; align-items:center; gap:8px; margin-bottom:8px">
-          <i class="bi bi-telephone" style="color:#d7e4ff; font-size:0.9rem"></i>
-          +255 742 398 600
-        </a>
-        <a href="https://maps.app.goo.gl/AmmTMawztCnETcYY9" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px; color:#d7e4ff; text-decoration:none">
-          <i class="bi bi-geo-alt" style="color:#d7e4ff; font-size:0.9rem"></i>
-          Ubungo, Dar es Salaam
-        </a>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; <span id="year"></span> <a href="index2.html">Ubungo End Time Message Church</a>. All Rights Reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="about.html">About</a>
+        <a href="beliefs.html">Beliefs</a>
+        <a href="contact2.html">Contact</a>
       </div>
     </div>
-    <div class="foot-note">© <span id="year"></span> ETMC -  Ubungo. All rights reserved.</div>
-  </footer>
+  </div>
+</footer>
 
-  <script>
-    // Mobile nav toggle
-    const btn = document.querySelector('.menu-btn');
-    const links = document.querySelector('.links');
-    btn?.addEventListener('click', () => {
-      const open = links.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    document.getElementById('year').textContent = new Date().getFullYear();
+<script>
+  // Navbar scroll effect
+  const mainNav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => mainNav.classList.toggle('scrolled', window.scrollY > 40));
 
-    // Highlight active TOC link on scroll
-    const tocLinks = document.querySelectorAll("aside nav a");
-    const sections = [...document.querySelectorAll("main section")];
-    window.addEventListener("scroll", () => {
-      let fromTop = window.scrollY + 120;
-      sections.forEach((sec) => {
-        if (sec.offsetTop <= fromTop && sec.offsetTop + sec.offsetHeight > fromTop) {
-          tocLinks.forEach(a => a.classList.remove("active"));
-          const match = document.querySelector(`aside nav a[href="#${sec.id}"]`);
-          match && match.classList.add("active");
-        }
-      });
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Highlight active TOC link on scroll
+  const tocLinks = document.querySelectorAll('.toc-nav a');
+  const sections = [...document.querySelectorAll('.belief-section')];
+  window.addEventListener('scroll', () => {
+    const fromTop = window.scrollY + 130;
+    sections.forEach(sec => {
+      if (sec.offsetTop <= fromTop && sec.offsetTop + sec.offsetHeight > fromTop) {
+        tocLinks.forEach(a => a.classList.remove('active'));
+        const match = document.querySelector(`.toc-nav a[href="#${sec.id}"]`);
+        if (match) match.classList.add('active');
+      }
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>

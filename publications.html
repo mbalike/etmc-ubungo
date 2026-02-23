@@ -7,6 +7,8 @@
   <meta name="description" content="Photos from ETMC - Ubungo, organized by events." />
   <link rel="icon" href="assets/logo.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root{
       --brand:#2a4c7f; --muted:#c5cce6; --bg:#000000; --ring:rgba(42,76,127,.35);
@@ -747,56 +749,178 @@
         padding:0 8px;
       }
     }
+
+    /* ====================================================
+       NEW THEME OVERRIDES
+       ==================================================== */
+    :root{
+      --orange:#e8541e; --dark:#111; --navy:#1e3a5f; --light-bg:#f7f7f7;
+    }
+    body{background:#fff !important; color:#333 !important; font-family:'Lato',sans-serif !important;}
+    a{color:inherit;}
+
+    /* Container */
+    .container{max-width:1200px;margin:0 auto;padding:0 60px;}
+
+    /* NAVBAR (all selectors scoped to #mainNav) */
+    #mainNav{
+      position:fixed;top:0;left:0;width:100%;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:22px 60px;z-index:1000;
+      transition:background .3s,box-shadow .3s,padding .3s;
+    }
+    #mainNav.scrolled{background:#fff;box-shadow:0 2px 20px rgba(0,0,0,.1);padding:14px 60px;}
+    #mainNav.scrolled .logo-text{color:var(--dark);}
+    #mainNav.scrolled .logo-sub{color:#777;}
+    #mainNav.scrolled ul li a{color:#333;}
+    #mainNav.scrolled .btn-cta{border-color:var(--dark);color:var(--dark);}
+    #mainNav.scrolled .btn-cta:hover{background:var(--dark);color:#fff;}
+    #mainNav .logo{display:flex;align-items:center;gap:10px;}
+    #mainNav .logo-img{width:38px;height:38px;object-fit:contain;flex-shrink:0;}
+    #mainNav .logo-text{color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:22px;line-height:1;transition:color .3s;}
+    #mainNav .logo-sub{color:#aaa;font-size:10px;letter-spacing:1.5px;transition:color .3s;}
+    #mainNav ul{list-style:none;display:flex;gap:36px;}
+    #mainNav ul li a{color:#fff;font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;letter-spacing:.5px;transition:color .2s;text-decoration:none;}
+    #mainNav ul li a:hover,
+    #mainNav ul li a[aria-current="page"]{color:var(--orange);}
+    #mainNav .btn-cta{border:2px solid #fff;color:#fff;padding:10px 22px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:1px;transition:all .2s;text-transform:uppercase;white-space:nowrap;text-decoration:none;}
+    #mainNav .btn-cta:hover{background:#fff;color:var(--dark);}
+
+    /* PAGE BANNER */
+    .page-banner{
+      position:relative;
+      background:url('assets/pub.jpeg') center/cover no-repeat;
+      color:#fff;min-height:52vh;display:flex;align-items:center;
+      padding:160px 0 80px;text-align:center;
+    }
+    .page-banner::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.62);}
+    .page-banner .container{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;}
+    .page-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(44px,5vw,84px);letter-spacing:.5px;line-height:1.05;margin-bottom:14px;text-shadow:0 12px 40px rgba(0,0,0,.55);}
+    .page-subtitle{font-family:'Montserrat',sans-serif;font-size:clamp(13px,1.4vw,16px);font-weight:600;color:rgba(255,255,255,.82);max-width:580px;margin-bottom:20px;text-shadow:0 4px 16px rgba(0,0,0,.5);}
+    .breadcrumb{display:inline-flex;align-items:center;gap:10px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.9);}
+    .breadcrumb a{color:rgba(255,255,255,.95);transition:color .2s;text-decoration:none;}
+    .breadcrumb a:hover{color:var(--orange);}
+    .breadcrumb span{opacity:.7;}
+
+    /* STATS STRIP */
+    .stats-strip{background:var(--navy);padding:32px 0;}
+    .stats-inner{display:flex;justify-content:center;}
+    .stat-item{text-align:center;padding:16px 56px;border-right:1px solid rgba(255,255,255,.15);}
+    .stat-item:last-child{border-right:none;}
+    .stat-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(28px,4vw,42px);color:#fff;display:block;line-height:1;margin-bottom:6px;}
+    .stat-lbl{font-family:'Montserrat',sans-serif;font-weight:600;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);}
+
+    /* Light body & sections */
+    main{background:#fff;padding-top:0;}
+    main section{background:#fff;}
+    .section-head{border-bottom:2px solid #f0f0f0 !important;background:none !important;}
+    .section-head h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(22px,2.8vw,34px);color:var(--dark) !important;-webkit-text-fill-color:initial;background:none;margin-bottom:8px;}
+    .section-head p{color:#666 !important;}
+    main .wrap{max-width:1200px;margin:0 auto;padding:0 60px;}
+
+    /* Event cards - light theme */
+    .event-card{background:#fff !important;border:1px solid #e8e8e8 !important;border-radius:4px !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;box-shadow:0 2px 12px rgba(0,0,0,.05) !important;}
+    .event-card:hover{box-shadow:0 6px 30px rgba(0,0,0,.10) !important;border-color:#d0d0d0 !important;}
+    .event-card .title{color:var(--dark) !important;font-family:'Montserrat',sans-serif;font-weight:700;}
+    .event-card .date{color:#888 !important;}
+    .event-card .photo-count-badge{background:rgba(232,84,30,.08) !important;border-color:rgba(232,84,30,.3) !important;color:var(--orange) !important;}
+    .event-card .meta{background:transparent !important;}
+    .mini-btn{background:rgba(0,0,0,.55) !important;border-color:rgba(255,255,255,.25) !important;}
+    .mini-btn:hover{background:var(--orange) !important;border-color:var(--orange) !important;}
+    .card-overlay{background:linear-gradient(transparent 40%,rgba(0,0,0,.70)) !important;}
+
+    /* Video cards - light theme */
+    .video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    .video-card{background:#fff !important;border:1px solid #e8e8e8 !important;border-radius:4px !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;overflow:hidden;transition:box-shadow .25s,border-color .25s;}
+    .video-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.09) !important;border-color:#ccc !important;}
+    .video-card h3{color:var(--dark) !important;font-family:'Montserrat',sans-serif;}
+    .video-card .muted{color:#888 !important;}
+    .video-placeholder{background:var(--light-bg) !important;border-radius:0 !important;color:#bbb !important;}
+
+    /* NEW FOOTER */
+    footer.new-footer{background:#111 !important;color:#ccc;padding:70px 0 30px;border-top:none !important;}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:50px;margin-bottom:50px;}
+    .footer-logo-row{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+    .footer-logo-img{width:36px;height:36px;object-fit:contain;flex-shrink:0;}
+    .footer-logo-text{color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;}
+    .footer-desc{font-size:14px;line-height:1.8;color:#888;margin-bottom:24px;}
+    .footer-social{display:flex;gap:10px;}
+    .footer-soc-btn{width:34px;height:34px;border:1px solid #333;color:#888;display:flex;align-items:center;justify-content:center;font-size:13px;transition:all .2s;text-decoration:none;}
+    .footer-soc-btn:hover{background:var(--orange);border-color:var(--orange);color:#fff;}
+    .footer-col-title{color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;margin-bottom:22px;padding-bottom:12px;border-bottom:2px solid var(--orange);display:inline-block;}
+    footer.new-footer .footer-col ul{list-style:none;padding:0;margin:0;}
+    footer.new-footer .footer-col ul li{margin-bottom:10px;}
+    footer.new-footer .footer-col ul li a{color:#888;font-size:14px;transition:color .2s;display:flex;align-items:center;gap:8px;text-decoration:none;}
+    footer.new-footer .footer-col ul li a i{font-size:10px;color:var(--orange);}
+    footer.new-footer .footer-col ul li a:hover{color:var(--orange);}
+    .footer-service-time{font-size:14px;color:#888;line-height:2;}
+    .footer-service-time span{color:var(--orange);font-weight:600;}
+    .footer-bottom{border-top:1px solid #222;padding-top:24px;display:flex;justify-content:space-between;align-items:center;}
+    .footer-copy{font-size:13px;color:#555;}
+    .footer-copy a{color:var(--orange);text-decoration:none;}
+    .footer-bottom-links{display:flex;gap:20px;}
+    .footer-bottom-links a{font-size:13px;color:#555;transition:color .2s;text-decoration:none;}
+    .footer-bottom-links a:hover{color:var(--orange);}
+
+    /* Responsive overrides */
+    @media(max-width:1024px){.container{padding:0 32px;}#mainNav,#mainNav.scrolled{padding:18px 32px;}main .wrap{padding:0 32px;}}
+    @media(max-width:768px){#mainNav ul{display:none;}#mainNav,#mainNav.scrolled{padding:16px 20px;}.container{padding:0 20px;}main .wrap{padding:0 20px;}.footer-grid{grid-template-columns:1fr 1fr;gap:30px;}.footer-bottom{flex-direction:column;gap:14px;text-align:center;}.stats-inner{flex-wrap:wrap;}.stat-item{flex:1;min-width:120px;border-right:none;padding:12px 20px;}.video-grid{grid-template-columns:1fr;}.grid.cols-3{grid-template-columns:1fr 1fr !important;}}
+    @media(max-width:520px){.container{padding:0 16px;}.grid.cols-3{grid-template-columns:1fr !important;}}
   </style>
 </head>
 <body>
-  <!-- Pill NAV -->
-  <div class="nav-wrap" role="banner">
-    <div class="nav glass" role="navigation" aria-label="Primary">
-      <a class="brand" href="index.html#home" aria-label="Home">
-        <img src="assets/logo.png" alt="Church Logo" />
-        <span>ETMC-Ubungo</span>
-      </a>
-      <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" title="Toggle navigation">☰</button>
-      <nav id="nav-links" class="links">
-        <a href="index.html#home">Home</a>
-        <a href="index.html#beliefs">What We Believe</a>
-        <a href="about.html">About</a>
-        <a href="board.html">Church Board</a>
-        <a href="publications.html" aria-current="page">Publications</a>
-        <a href="contact.html">Contact</a>
+  <!-- NAVBAR -->
+  <nav id="mainNav" aria-label="Primary navigation">
+    <div class="logo">
+      <img class="logo-img" src="assets/logo.png" alt="ETMC-Ubungo logo">
+      <div>
+        <div class="logo-text">ETMC-Ubungo</div>
+        <div class="logo-sub">Ubungo End Time Message Church</div>
+      </div>
+    </div>
+    <ul>
+      <li><a href="index2.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="beliefs.html">Beliefs</a></li>
+      <li><a href="publications.html" aria-current="page">Publications</a></li>
+      <li><a href="board2.html">Board</a></li>
+      <li><a href="contact2.html">Contact</a></li>
+    </ul>
+    <a href="contact2.html" class="btn-cta">GET IN TOUCH</a>
+  </nav>
+
+  <!-- PAGE BANNER -->
+  <header class="page-banner" aria-label="Page banner">
+    <div class="container">
+      <div class="page-title">Publications</div>
+      <p class="page-subtitle">Events &amp; photo albums &middot; Latest videos</p>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index2.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <span>Publications</span>
       </nav>
     </div>
-  </div>
+  </header>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-bg" aria-hidden="true"></div>
-    <div class="hero-inner">
-      <div class="hero-title">
-        <h1>Publications</h1>
-        <div class="hero-subtitle">Events & photo albums · Latest videos</div>
-      </div>
-      <div class="hero-content" id="heroStats">
-        <!-- Stats will be populated by JavaScript -->
-        <div class="hero-stat-card glass">
-          <i class="bi bi-images stat-icon"></i>
-          <span class="stat-number" id="totalAlbums">0</span>
-          <p class="stat-label">Photo Albums</p>
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="container">
+      <div class="stats-inner">
+        <div class="stat-item">
+          <span class="stat-num" id="totalAlbums">0</span>
+          <span class="stat-lbl">Photo Albums</span>
         </div>
-        <div class="hero-stat-card glass">
-          <i class="bi bi-camera-fill stat-icon"></i>
-          <span class="stat-number" id="totalPhotos">0</span>
-          <p class="stat-label">Total Photos</p>
+        <div class="stat-item">
+          <span class="stat-num" id="totalPhotos">0</span>
+          <span class="stat-lbl">Total Photos</span>
         </div>
-        <div class="hero-stat-card glass">
-          <i class="bi bi-youtube stat-icon"></i>
-          <span class="stat-number" id="totalVideos">0</span>
-          <p class="stat-label">Videos</p>
+        <div class="stat-item">
+          <span class="stat-num" id="totalVideos">0</span>
+          <span class="stat-lbl">Videos</span>
         </div>
       </div>
     </div>
-  </header>
+  </div>
 
   <main>
     <section aria-labelledby="photos-title">
@@ -895,62 +1019,76 @@
   </div>
 
   <!-- FOOTER -->
-  <footer role="contentinfo" class="glass-soft">
-    <div class="wrap">
-      <div>
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px">
-          <img src="assets/logo.png" alt="Church logo" width="36" height="36" />
-          <strong>ETMC - Ubungo</strong>
+  <footer role="contentinfo" class="new-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-col">
+          <div class="footer-logo-row">
+            <img class="footer-logo-img" src="assets/logo.png" alt="ETMC-Ubungo logo">
+            <div>
+              <div class="footer-logo-text">ETMC-Ubungo</div>
+              <div style="color:#555;font-size:10px;letter-spacing:1.5px;">Ubungo End Time Message Church</div>
+            </div>
+          </div>
+          <p class="footer-desc">A community of believers dedicated to spreading love, faith, and hope — growing together in Christ and serving our community with joy.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/ubungoendtime" target="_blank" rel="noopener" class="footer-soc-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener" class="footer-soc-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://wa.me/255742398600" target="_blank" rel="noopener" class="footer-soc-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="footer-soc-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
         </div>
-        <p style="margin:0 0 15px; color:#c8d4f7; line-height:1.5; max-width:220px">
-          A Bible-believing fellowship in Ubungo proclaiming the Gospel of Jesus Christ.
-        </p>
-        <div class="social-icons" style="display:flex; gap:12px; margin-top:15px">
-          <a href="https://www.instagram.com/ubungoendtime" target="_blank" rel="noopener" aria-label="Follow us on Instagram" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1); transition:all 0.2s">
-            <i class="bi bi-instagram"></i>
-          </a>
-          <a href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener" aria-label="Subscribe to our YouTube channel" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1); transition:all 0.2s">
-            <i class="bi bi-youtube"></i>
-          </a>
-          <a href="https://wa.me/255742398600" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1); transition:all 0.2s">
-            <i class="bi bi-whatsapp"></i>
-          </a>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Quick Links</div>
+          <ul>
+            <li><a href="index2.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="beliefs.html"><i class="fas fa-chevron-right"></i> Beliefs</a></li>
+            <li><a href="publications.html"><i class="fas fa-chevron-right"></i> Publications</a></li>
+            <li><a href="board2.html"><i class="fas fa-chevron-right"></i> Board</a></li>
+            <li><a href="contact2.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          </ul>
         </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Resources</div>
+          <ul>
+            <li><a href="https://branham.org" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> VGR</a></li>
+            <li><a href="https://table.branham.org" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> The Table</a></li>
+            <li><a href="https://branham.org/messageaudio" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Sermon Audio</a></li>
+            <li><a href="https://www.messagehub.info" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Message Hub</a></li>
+            <li><a href="https://play.google.com/store/apps/details?id=org.branham.table.app" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Play Store</a></li>
+            <li><a href="https://apps.apple.com/us/app/the-table-mobile/id589296925" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> App Store</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Service Times</div>
+          <div class="footer-service-time">
+            <p><span>Sunday</span><br>9:00 AM &ndash; 3:00 PM</p><br>
+            <p><span>Wednesday</span><br>6:00 PM &ndash; 7:00 PM</p><br>
+            <p><span>Saturday</span><br>4:00 PM &ndash; 6:00 PM</p>
+          </div>
+        </div>
+
       </div>
-      <div>
-        <strong>Quick Links</strong><br/>
-        <a href="index.html#beliefs">What We Believe</a><br/>
-        <a href="about.html">About Us</a><br/>
-        <a href="prayer-request.html">Prayer Request</a><br/>
-        <a href="publications.html">Publications</a>
-      </div>
-      <div>
-        <strong>Contact</strong><br/>
-        <a href="mailto:info@etmc.org" style="display:flex; align-items:center; gap:8px; margin-bottom:8px">
-          <i class="bi bi-envelope" style="color:#d7e4ff; font-size:0.9rem"></i>
-          info@etmc.org
-        </a>
-        <a href="tel:+255742398600" style="display:flex; align-items:center; gap:8px; margin-bottom:8px">
-          <i class="bi bi-telephone" style="color:#d7e4ff; font-size:0.9rem"></i>
-          +255 742 398 600
-        </a>
-        <a href="https://maps.app.goo.gl/AmmTMawztCnETcYY9" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px; color:#d7e4ff; text-decoration:none">
-          <i class="bi bi-geo-alt" style="color:#d7e4ff; font-size:0.9rem"></i>
-          Ubungo, Dar es Salaam
-        </a>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; <span id="year"></span> <a href="index2.html">Ubungo End Time Message Church</a>. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="about.html">About</a>
+          <a href="beliefs.html">Beliefs</a>
+          <a href="contact2.html">Contact</a>
+        </div>
       </div>
     </div>
-    <div class="foot-note">© <span id="year"></span> ETMC - Ubungo. All rights reserved.</div>
   </footer>
 
   <script>
-    // Mobile nav toggle & year
-    const btn = document.querySelector('.menu-btn');
-    const links = document.querySelector('.links');
-    btn?.addEventListener('click', () => {
-      const open = links.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
+    // Navbar scroll effect
+    const mainNav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => mainNav.classList.toggle('scrolled', window.scrollY > 40));
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // ===== Define EVENTS (preferred) =====
