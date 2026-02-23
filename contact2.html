@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETMC-Ubungo — Contact</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --orange: #e8541e;
+    --dark: #111;
+    --teal: #2ea89a;
+    --blue: #3a8fbf;
+    --pink: #c93f8e;
+    --navy: #1e3a5f;
+    --light-bg: #f2f2f2;
+    --text-muted: #888;
+  }
+  body { font-family: 'Lato', sans-serif; color: #333; background: #f7f7f7; overflow-x: hidden; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ===== CONTAINER — consistent side margins ===== */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+  /* ===== NAVBAR (from index2) ===== */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 60px;
+    z-index: 1000;
+    transition: background .3s, box-shadow .3s, padding .3s;
+  }
+  nav.scrolled {
+    background: #fff;
+    box-shadow: 0 2px 20px rgba(0,0,0,.1);
+    padding: 14px 60px;
+  }
+  nav.scrolled .logo-text { color: var(--dark); }
+  nav.scrolled .logo-sub  { color: #777; }
+  nav.scrolled ul li a    { color: #333; }
+  nav.scrolled .btn-live-prayer { border-color: var(--dark); color: var(--dark); }
+  nav.scrolled .btn-live-prayer:hover { background: var(--dark); color: #fff; }
+
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-img { width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; }
+  .logo-text { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 22px; line-height: 1; transition: color .3s; }
+  .logo-sub { color: #aaa; font-size: 10px; letter-spacing: 1.5px; transition: color .3s; }
+
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul li a { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.5px; transition: color .2s; }
+  nav ul li a:hover { color: var(--orange); }
+
+  .btn-live-prayer {
+    border: 2px solid #fff; color: #fff; padding: 10px 22px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 1px;
+    transition: all .2s; text-transform: uppercase; white-space: nowrap;
+  }
+  .btn-live-prayer:hover { background: #fff; color: var(--dark); }
+
+  /* ===== PAGE BANNER ===== */
+  .page-banner {
+    position: relative;
+    background: url('assets/cloud1.jpg') center/cover no-repeat;
+    color: #fff;
+    min-height: 58vh;
+    display: flex;
+    align-items: center;
+    padding: 170px 0 90px;
+    text-align: center;
+  }
+  .page-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.62);
+  }
+  .page-banner .container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .page-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(44px, 5vw, 84px);
+    letter-spacing: 0.5px;
+    line-height: 1.05;
+    margin-bottom: 14px;
+    text-shadow: 0 12px 40px rgba(0,0,0,.55);
+  }
+  .breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.9);
+  }
+  .breadcrumb a { color: rgba(255,255,255,.95); }
+  .breadcrumb span { opacity: .7; }
+
+  /* ===== CONTACT SECTION (page body) ===== */
+  .contact-section {
+    padding: 70px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .contact-wrapper {
+    display: flex;
+    align-items: stretch;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 6px 40px rgba(0,0,0,.08);
+  }
+
+  /* ---- LEFT PANEL ---- */
+  .contact-info {
+    background: var(--orange);
+    color: #fff;
+    padding: 56px 48px;
+    flex: 0 0 44%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .contact-info h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .contact-info p {
+    font-size: 14px;
+    line-height: 1.75;
+    opacity: .92;
+    margin-bottom: 36px;
+  }
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+  .info-icon {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.18);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 15px;
+  }
+  .info-text { font-size: 14px; line-height: 1.6; padding-top: 8px; }
+  .info-text strong { font-weight: 700; }
+
+  .connect-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 36px;
+    margin-bottom: 14px;
+    opacity: .85;
+  }
+  .social-row { display: flex; gap: 10px; }
+  .soc-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    color: #fff;
+    transition: opacity .2s;
+    text-decoration: none;
+  }
+  .soc-btn:hover { opacity: .8; }
+  .soc-fb { background: #E1306C; }
+  .soc-tw { background: #1da1f2; }
+  .soc-pi { background: #bd081c; }
+  .soc-li { background: #0077b5; }
+
+  /* ---- RIGHT PANEL (form) ---- */
+  .contact-form {
+    background: #fff;
+    padding: 56px 48px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form-field label {
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: #888;
+    letter-spacing: 0.5px;
+  }
+  .form-field input,
+  .form-field textarea {
+    background: #f5f5f5;
+    border: 1px solid transparent;
+    padding: 14px 16px;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    color: #333;
+    outline: none;
+    transition: border-color .2s, background .2s;
+    border-radius: 1px;
+    resize: vertical;
+  }
+  .form-field input:focus,
+  .form-field textarea:focus {
+    background: #fff;
+    border-color: var(--orange);
+  }
+  .form-field textarea { min-height: 130px; }
+
+  .btn-submit {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 16px 36px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity .2s;
+    align-self: flex-start;
+    border-radius: 1px;
+  }
+  .btn-submit:hover { opacity: .88; }
+
+  /* ===== FULL-WIDTH MAP ===== */
+  .map-wrapper { width: 100%; }
+  .map-wrapper iframe {
+    display: block;
+    width: 100%;
+    height: 450px;
+    border: none;
+  }
+
+  /* ===== FOOTER (from index2) ===== */
+  footer { background: #111; color: #ccc; padding: 70px 0 30px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
+  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+  .footer-logo-img { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
+  .footer-logo-text { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; }
+  .footer-desc { font-size: 14px; line-height: 1.8; color: #888; margin-bottom: 24px; }
+  .footer-social { display: flex; gap: 10px; }
+  .footer-soc-btn { width: 34px; height: 34px; border: 1px solid #333; color: #888; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all .2s; }
+  .footer-soc-btn:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
+  .footer-col-title { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 2px solid var(--orange); display: inline-block; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a { color: #888; font-size: 14px; transition: color .2s; display: flex; align-items: center; gap: 8px; }
+  .footer-col ul li a i { font-size: 10px; color: var(--orange); }
+  .footer-col ul li a:hover { color: var(--orange); }
+  .footer-service-time { font-size: 14px; color: #888; line-height: 2; }
+  .footer-service-time span { color: var(--orange); font-weight: 600; }
+  .footer-bottom { border-top: 1px solid #222; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 13px; color: #555; }
+  .footer-copy a { color: var(--orange); }
+  .footer-bottom-links { display: flex; gap: 20px; }
+  .footer-bottom-links a { font-size: 13px; color: #555; transition: color .2s; }
+  .footer-bottom-links a:hover { color: var(--orange); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .container { padding-left: 32px; padding-right: 32px; }
+    nav, nav.scrolled { padding: 18px 32px; }
+    .contact-section { padding: 50px 24px; }
+  }
+  @media (max-width: 900px) {
+    .contact-wrapper { flex-direction: column; }
+    .contact-info { flex: none; padding: 40px 30px; }
+    .contact-form { padding: 40px 30px; }
+  }
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .container { padding-left: 20px; padding-right: 20px; }
+    nav, nav.scrolled { padding: 16px 20px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+    .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+  }
+  @media (max-width: 520px) {
+    .contact-section { padding: 36px 16px; }
+    .contact-info, .contact-form { padding: 30px 20px; }
+    .map-wrapper iframe { height: 300px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="mainNav">
+  <div class="logo">
+    <img class="logo-img" src="assets/logo.png" alt="ETMC-Ubungo logo">
+    <div>
+      <div class="logo-text">ETMC-Ubungo</div>
+      <div class="logo-sub">Ubungo End Time Message Church</div>
+    </div>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="beliefs.html">Beliefs</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="board2.html">Board</a></li>
+    <li><a href="contact2.html">Contact</a></li>
+  </ul>
+  <a href="about.html" class="btn-live-prayer">OUR CHURCH</a>
+</nav>
+
+<!-- PAGE BANNER -->
+<header class="page-banner" aria-label="Page banner">
+  <div class="container">
+    <div class="page-title">Contact</div>
+    <div class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <div>Contact</div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTACT SECTION -->
+<div class="contact-section">
+  <div class="contact-wrapper">
+
+    <!-- LEFT: Info -->
+    <div class="contact-info">
+      <h2>Get In Touch</h2>
+      <p>Questions, testimonies, or prayer needs? Reach out by form, WhatsApp, or email. You’re welcome to visit us during our regular services.</p>
+
+      <div class="info-item">
+        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="info-text"><strong>Address :</strong> Ubungo, Dar es Salaam, Tanzania</div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+        <div class="info-text"><strong>Phone :</strong> +255 742 398 600</div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+        <div class="info-text"><strong>Email :</strong> info@etmc.org</div>
+      </div>
+
+      <div class="connect-label">Connect With Us:</div>
+      <div class="social-row">
+        <a href="#" class="soc-btn soc-fb"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="soc-btn soc-tw"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="soc-btn soc-pi"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="contact-form">
+      <div class="form-field">
+        <label>FULL NAME</label>
+        <input type="text" placeholder="Full Name">
+      </div>
+      <div class="form-field">
+        <label>YOUR EMAIL</label>
+        <input type="email" placeholder="Your email">
+      </div>
+      <div class="form-field">
+        <label>PHONE NUMBER</label>
+        <input type="tel" placeholder="Phone Number">
+      </div>
+      <div class="form-field">
+        <label>MESSAGE (OPTIONAL)</label>
+        <textarea placeholder="Message (optional)"></textarea>
+      </div>
+      <button class="btn-submit">Submit</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- FULL-WIDTH MAP -->
+<div class="map-wrapper">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.7011818848173!2d39.2058714!3d-6.8061577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c492fd319aafb%3A0x5754399bcd4d4b8!2sUbungo%20EndTime%20Message%20Church!5e0!3m2!1sen!2stz!4v1756116179655!5m2!1sen!2stz"
+    width="100%"
+    height="450"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img class="footer-logo-img" src="assets/logo.png" alt="ETMC-Ubungo logo">
+          <div>
+            <div class="footer-logo-text">ETMC-Ubungo</div>
+            <div style="color:#555; font-size:10px; letter-spacing:1.5px;">Ubungo End Time Message Church</div>
+          </div>
+        </div>
+        <p class="footer-desc">We are a community of believers dedicated to spreading love, faith, and hope. Join us as we grow together in Christ and serve our community with joy.</p>
+        <div class="footer-social">
+          <a href="#" class="footer-soc-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer-soc-btn"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-soc-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-soc-btn"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Quick Links</div>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="beliefs.html"><i class="fas fa-chevron-right"></i> Beliefs</a></li>
+          <li><a href="publications.html"><i class="fas fa-chevron-right"></i> Publications</a></li>
+          <li><a href="board2.html"><i class="fas fa-chevron-right"></i> Board</a></li>
+          <li><a href="contact2.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Resources</div>
+        <ul>
+          <li><a href="https://branham.org" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> VGR</a></li>
+          <li><a href="https://table.branham.org" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> The Table</a></li>
+          <li><a href="https://branham.org/messageaudio" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Sermon Audio</a></li>
+          <li><a href="https://www.messagehub.info" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Message Hub</a></li>
+          <li><a href="https://play.google.com/store/apps/details?id=org.branham.table.app" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Play Store</a></li>
+          <li><a href="https://apps.apple.com/us/app/the-table-mobile/id589296925" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> App Store</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Service Times</div>
+        <div class="footer-service-time">
+          <p><span>Sun</span><br>9:00 AM - 3:00 PM</p><br>
+          <p><span>Wed</span><br>6:00 PM - 7:00 PM</p><br>
+          <p><span>Sat</span><br>4:00 PM - 6:00 PM</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 <a href="#">Ubungo End Time Message Church</a>. All Rights Reserved.</div>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  });
+</script>
+
+</body>
+</html>

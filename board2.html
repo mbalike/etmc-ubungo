@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETMC-Ubungo — Church Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --orange: #e8541e;
+    --dark: #111;
+    --navy: #1e3a5f;
+    --text-muted: #888;
+  }
+  body { font-family: 'Lato', sans-serif; color: #333; background: #fff; overflow-x: hidden; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ===== CONTAINER — consistent side margins ===== */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+  /* ===== NAVBAR (from index2) ===== */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 60px;
+    z-index: 1000;
+    transition: background .3s, box-shadow .3s, padding .3s;
+  }
+  nav.scrolled {
+    background: #fff;
+    box-shadow: 0 2px 20px rgba(0,0,0,.1);
+    padding: 14px 60px;
+  }
+  nav.scrolled .logo-text { color: var(--dark); }
+  nav.scrolled .logo-sub  { color: #777; }
+  nav.scrolled ul li a    { color: #333; }
+  nav.scrolled .btn-live-prayer { border-color: var(--dark); color: var(--dark); }
+  nav.scrolled .btn-live-prayer:hover { background: var(--dark); color: #fff; }
+
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-img { width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; }
+  .logo-text { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 22px; line-height: 1; transition: color .3s; }
+  .logo-sub { color: #aaa; font-size: 10px; letter-spacing: 1.5px; transition: color .3s; }
+
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul li a { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.5px; transition: color .2s; }
+  nav ul li a:hover { color: var(--orange); }
+
+  .btn-live-prayer {
+    border: 2px solid #fff; color: #fff; padding: 10px 22px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 1px;
+    transition: all .2s; text-transform: uppercase; white-space: nowrap;
+  }
+  .btn-live-prayer:hover { background: #fff; color: var(--dark); }
+
+  /* ===== PAGE BANNER ===== */
+  .page-banner {
+    position: relative;
+    background: url('assets/cloud1.jpg') center/cover no-repeat;
+    color: #fff;
+    min-height: 58vh;
+    display: flex;
+    align-items: center;
+    padding: 170px 0 90px;
+    text-align: center;
+  }
+  .page-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.62);
+  }
+  .page-banner .container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .page-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(44px, 5vw, 84px);
+    letter-spacing: 0.5px;
+    line-height: 1.05;
+    margin-bottom: 14px;
+    text-shadow: 0 12px 40px rgba(0,0,0,.55);
+  }
+  .breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.9);
+  }
+  .breadcrumb a { color: rgba(255,255,255,.95); }
+  .breadcrumb span { opacity: .7; }
+
+  /* ===== BOARD PAGE BODY (provided) ===== */
+  .board-section { padding: 70px 0 50px; }
+  .section-heading { text-align: center; margin-bottom: 50px; }
+  .section-heading h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(26px, 3vw, 40px);
+    color: var(--dark);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .divider::before,
+  .divider::after {
+    content: '';
+    height: 1px;
+    width: 100px;
+    background: #ccc;
+    display: block;
+  }
+  .divider i { color: #bbb; font-size: 20px; }
+
+  .position-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    text-align: center;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .position-label::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--orange);
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+
+  .members-grid {
+    display: grid;
+    gap: 0;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 60px;
+  }
+  .members-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .members-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .members-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .member-card {
+    border: 1px solid #e5e5e5;
+    padding: 36px 24px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    transition: box-shadow .25s;
+    background: #fff;
+    margin: -1px;
+  }
+  .member-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,.09); z-index: 1; position: relative; }
+
+  .member-avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    margin-bottom: 22px;
+    background: #f0f0f0;
+  }
+  .member-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+  .member-role { font-size: 14px; color: #888; }
+
+  /* ===== FOOTER (from index2) ===== */
+  footer { background: #111; color: #ccc; padding: 70px 0 30px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
+  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+  .footer-logo-img { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
+  .footer-logo-text { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; }
+  .footer-desc { font-size: 14px; line-height: 1.8; color: #888; margin-bottom: 24px; }
+  .footer-social { display: flex; gap: 10px; }
+  .footer-soc-btn { width: 34px; height: 34px; border: 1px solid #333; color: #888; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all .2s; }
+  .footer-soc-btn:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
+  .footer-col-title { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 2px solid var(--orange); display: inline-block; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a { color: #888; font-size: 14px; transition: color .2s; display: flex; align-items: center; gap: 8px; }
+  .footer-col ul li a i { font-size: 10px; color: var(--orange); }
+  .footer-col ul li a:hover { color: var(--orange); }
+  .footer-service-time { font-size: 14px; color: #888; line-height: 2; }
+  .footer-service-time span { color: var(--orange); font-weight: 600; }
+  .footer-bottom { border-top: 1px solid #222; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 13px; color: #555; }
+  .footer-copy a { color: var(--orange); }
+  .footer-bottom-links { display: flex; gap: 20px; }
+  .footer-bottom-links a { font-size: 13px; color: #555; transition: color .2s; }
+  .footer-bottom-links a:hover { color: var(--orange); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .container { padding-left: 32px; padding-right: 32px; }
+    nav, nav.scrolled { padding: 18px 32px; }
+  }
+  @media (max-width: 900px) {
+    .container { padding-left: 24px; padding-right: 24px; }
+    .members-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+    .members-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .container { padding-left: 20px; padding-right: 20px; }
+    nav, nav.scrolled { padding: 16px 20px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+    .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+  }
+  @media (max-width: 520px) {
+    .members-grid.cols-4,
+    .members-grid.cols-3,
+    .members-grid.cols-2 { grid-template-columns: 1fr; }
+    .container { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="mainNav">
+  <div class="logo">
+    <img class="logo-img" src="assets/logo.png" alt="ETMC-Ubungo logo">
+    <div>
+      <div class="logo-text">ETMC-Ubungo</div>
+      <div class="logo-sub">Ubungo End Time Message Church</div>
+    </div>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="beliefs.html">Beliefs</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="board2.html">Board</a></li>
+    <li><a href="contact2.html">Contact</a></li>
+  </ul>
+  <a href="about.html" class="btn-live-prayer">OUR CHURCH</a>
+</nav>
+
+<!-- PAGE BANNER -->
+<header class="page-banner" aria-label="Page banner">
+  <div class="container">
+    <div class="page-title">Church Board</div>
+    <div class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <div>Church Board</div>
+    </div>
+  </div>
+</header>
+
+<section class="board-section">
+  <div class="container">
+
+    <!-- Main heading -->
+    <div class="section-heading">
+      <h2>Our Church Board</h2>
+      <div class="divider"><i class="fas fa-church"></i></div>
+    </div>
+
+    <!-- ====== PASTOR (1) ====== -->
+    <div class="position-label">Pastors</div>
+    <div class="members-grid cols-2">
+
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Pr. Daniel M.">
+        <div class="member-name">Pr. Shindano Shija</div>
+        <div class="member-role">Pastor</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Pr. Daniel M.">
+        <div class="member-name">Pr. Japp Mgalla</div>
+        <div class="member-role">Pastor</div>
+      </div>
+
+    </div><!-- /pastor -->
+
+    <!-- ====== DEACONS (11) ====== -->
+    <div class="position-label">Deacons</div>
+    <div class="members-grid cols-4">
+
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/11.jpg" alt="Br. William Mbenyange">
+        <div class="member-name">Br. William Mbenyange</div>
+        <div class="member-role">Head Deacon</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/12.jpg" alt="Br. Simion Mgode">
+        <div class="member-name">Br. Simion Mgode</div>
+        <div class="member-role">Pastor’s Secretary</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/13.jpg" alt="Br. Aloyce Mwakyeja">
+        <div class="member-name">Br. Aloyce Mwakyeja</div>
+        <div class="member-role">Deacon</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/14.jpg" alt="Br. Angelous Kasongwa">
+        <div class="member-name">Br. Angelous Kasongwa</div>
+        <div class="member-role">Deacon</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/15.jpg" alt="Br. Ahazi Mwasandube">
+        <div class="member-name">Br. Ahazi Mwasandube</div>
+        <div class="member-role">Deacon</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/16.jpg" alt="Br. Jonas Sango">
+        <div class="member-name">Br. Jonas Sango</div>
+        <div class="member-role">Deacon</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/17.jpg" alt="Br. Joshua Laiton">
+        <div class="member-name">Br. Joshua Laiton</div>
+        <div class="member-role">Deacon</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/18.jpg" alt="Br. Lusajo">
+        <div class="member-name">Br. Lusajo</div>
+        <div class="member-role">Deacon</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/19.jpg" alt="Br. Magesa Mihayo">
+        <div class="member-name">Br. Magesa Mihayo</div>
+        <div class="member-role">Deacon</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/20.jpg" alt="Br. Martin Mikongosho">
+        <div class="member-name">Br. Martin Mikongosho</div>
+        <div class="member-role">Deacon</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/21.jpg" alt="Br. Raphael Mallya">
+        <div class="member-name">Br. Raphael Mallya</div>
+        <div class="member-role">Deacon</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/21.jpg" alt="Br. Raphael Mallya">
+        <div class="member-name">Br. Lusajo Mwakyambange</div>
+        <div class="member-role">Deacon</div>
+      </div>
+
+    </div><!-- /deacons -->
+
+    <!-- ====== TRUSTEES (4) ====== -->
+    <div class="position-label">Trustees</div>
+    <div class="members-grid cols-4">
+
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/52.jpg" alt="Br. Samuel Tille">
+        <div class="member-name">Br. Samuel Tille</div>
+        <div class="member-role">Trustee</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/55.jpg" alt="Br. Magesa Mihayo">
+        <div class="member-name">Br. Magesa Mihayo</div>
+        <div class="member-role">Trustee</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/60.jpg" alt="Br. David Nganila">
+        <div class="member-name">Br. David Nganila</div>
+        <div class="member-role">Trustee</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/61.jpg" alt="Br. Kennedy Mwaitete">
+        <div class="member-name">Br. Kennedy Mwaitete</div>
+        <div class="member-role">Trustee</div>
+      </div>
+
+    </div><!-- /trustees -->
+
+    <!-- ====== MISSIONARIES (2) ====== -->
+    <div class="position-label">Missionaries</div>
+    <div class="members-grid cols-2">
+
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/70.jpg" alt="Br. William Mwangalaba">
+        <div class="member-name">Br. William Mwangalaba</div>
+        <div class="member-role">Missionary</div>
+      </div>
+      <div class="member-card">
+        <img class="member-avatar" src="https://randomuser.me/api/portraits/men/72.jpg" alt="Br. Fredy Mwantingo">
+        <div class="member-name">Br. Fredy Mwantingo</div>
+        <div class="member-role">Missionary</div>
+      </div>
+
+    </div><!-- /missionaries -->
+
+  </div><!-- /container -->
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img class="footer-logo-img" src="assets/logo.png" alt="ETMC-Ubungo logo">
+          <div>
+            <div class="footer-logo-text">ETMC-Ubungo</div>
+            <div style="color:#555; font-size:10px; letter-spacing:1.5px;">Ubungo End Time Message Church</div>
+          </div>
+        </div>
+        <p class="footer-desc">We are a community of believers dedicated to spreading love, faith, and hope. Join us as we grow together in Christ and serve our community with joy.</p>
+        <div class="footer-social">
+          <a href="#" class="footer-soc-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer-soc-btn"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-soc-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-soc-btn"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Quick Links</div>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="beliefs.html"><i class="fas fa-chevron-right"></i> Beliefs</a></li>
+          <li><a href="publications.html"><i class="fas fa-chevron-right"></i> Publications</a></li>
+          <li><a href="board2.html"><i class="fas fa-chevron-right"></i> Board</a></li>
+          <li><a href="contact2.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Resources</div>
+        <ul>
+          <li><a href="https://branham.org" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> VGR</a></li>
+          <li><a href="https://table.branham.org" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> The Table</a></li>
+          <li><a href="https://branham.org/messageaudio" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Sermon Audio</a></li>
+          <li><a href="https://www.messagehub.info" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Message Hub</a></li>
+          <li><a href="https://play.google.com/store/apps/details?id=org.branham.table.app" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Play Store</a></li>
+          <li><a href="https://apps.apple.com/us/app/the-table-mobile/id589296925" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> App Store</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Service Times</div>
+        <div class="footer-service-time">
+          <p><span>Sun</span><br>9:00 AM - 3:00 PM</p><br>
+          <p><span>Wed</span><br>6:00 PM - 7:00 PM</p><br>
+          <p><span>Sat</span><br>4:00 PM - 6:00 PM</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 <a href="#">Ubungo End Time Message Church</a>. All Rights Reserved.</div>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  });
+</script>
+
+</body>
+</html>

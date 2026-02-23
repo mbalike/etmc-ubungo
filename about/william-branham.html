@@ -1,0 +1,852 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who is W. M. Branham? — ETMC-Ubungo</title>
+<meta name="description" content="An overview of the ministry of William Marrion Branham as understood by ETMC-Ubungo, with Scripture references." />
+<link rel="icon" href="../assets/logo.png" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --orange: #e8541e;
+    --dark: #111;
+    --navy: #1e3a5f;
+    --light-bg: #f7f7f7;
+    --text-muted: #666;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Lato', sans-serif; color: #333; background: #fff; overflow-x: hidden; line-height: 1.7; }
+  a { text-decoration: none; color: inherit; }
+  a:focus, button:focus { outline: 3px solid rgba(232,84,30,.4); outline-offset: 2px; border-radius: 4px; }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+  /* ===== NAVBAR ===== */
+  #mainNav {
+    position: fixed; top: 0; left: 0; width: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 60px;
+    z-index: 1000;
+    transition: background .3s, box-shadow .3s, padding .3s;
+  }
+  #mainNav.scrolled {
+    background: #fff;
+    box-shadow: 0 2px 20px rgba(0,0,0,.1);
+    padding: 14px 60px;
+  }
+  #mainNav.scrolled .logo-text { color: var(--dark); }
+  #mainNav.scrolled .logo-sub  { color: #777; }
+  #mainNav.scrolled ul li a    { color: #333; }
+  #mainNav.scrolled .btn-live-prayer { border-color: var(--dark); color: var(--dark); }
+  #mainNav.scrolled .btn-live-prayer:hover { background: var(--dark); color: #fff; }
+
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-img { width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; }
+  .logo-text { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 22px; line-height: 1; transition: color .3s; }
+  .logo-sub { color: #aaa; font-size: 10px; letter-spacing: 1.5px; transition: color .3s; }
+
+  #mainNav ul { list-style: none; display: flex; gap: 36px; }
+  #mainNav ul li a { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.5px; transition: color .2s; }
+  #mainNav ul li a:hover, #mainNav ul li a[aria-current="page"] { color: var(--orange); }
+
+  .btn-live-prayer {
+    border: 2px solid #fff; color: #fff; padding: 10px 22px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 1px;
+    transition: all .2s; text-transform: uppercase; white-space: nowrap;
+  }
+  .btn-live-prayer:hover { background: #fff; color: var(--dark); }
+
+  /* ===== PAGE BANNER ===== */
+  .page-banner {
+    position: relative;
+    background: url('../assets/william-branham.jpg') top/cover no-repeat;
+    color: #fff;
+    min-height: 58vh;
+    display: flex;
+    align-items: center;
+    padding: 170px 0 90px;
+    text-align: center;
+  }
+  .page-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.65);
+  }
+  .page-banner .container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .page-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(34px, 4.5vw, 72px);
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+    margin-bottom: 14px;
+    text-shadow: 0 12px 40px rgba(0,0,0,.55);
+  }
+  .page-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(13px, 1.4vw, 16px);
+    font-weight: 600;
+    color: rgba(255,255,255,.8);
+    letter-spacing: 0.5px;
+    max-width: 700px;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 16px rgba(0,0,0,.5);
+  }
+  .breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.9);
+  }
+  .breadcrumb a { color: rgba(255,255,255,.95); transition: color .2s; }
+  .breadcrumb a:hover { color: var(--orange); }
+  .breadcrumb span { opacity: .7; }
+
+  /* ===== SCRIPTURE CHIPS ===== */
+  .scripture-chips-section {
+    background: var(--navy);
+    padding: 32px 0;
+  }
+  .scripture-chips {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .scripture-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    color: #eef2ff;
+    padding: 10px 18px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    transition: background .2s, border-color .2s;
+    cursor: pointer;
+  }
+  .scripture-chip:hover { background: rgba(232,84,30,.25); border-color: var(--orange); color: #fff; }
+  .scripture-chip i { color: var(--orange); font-size: 14px; }
+  .scripture-chip small { font-weight: 400; font-size: 11px; color: rgba(255,255,255,.65); display: block; margin-top: 1px; }
+
+  /* ===== MAIN CONTENT LAYOUT ===== */
+  .content-wrap { padding: 60px 0 80px; }
+  .content-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr 280px;
+    gap: 36px;
+    align-items: start;
+  }
+
+  /* ===== TABLE OF CONTENTS ===== */
+  .toc {
+    position: sticky;
+    top: 100px;
+    background: var(--light-bg);
+    border-radius: 4px;
+    border-left: 4px solid var(--orange);
+    padding: 24px 20px;
+  }
+  .toc-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+  .toc nav { display: flex; flex-direction: column; gap: 4px; }
+  .toc nav a {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 7px 10px;
+    border-radius: 3px;
+    transition: background .2s, color .2s;
+    line-height: 1.4;
+  }
+  .toc nav a:hover, .toc nav a.active {
+    background: rgba(232,84,30,.1);
+    color: var(--orange);
+  }
+
+  /* ===== ARTICLE SECTIONS ===== */
+  section.belief { margin-bottom: 40px; }
+  .belief-card {
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    padding: 32px 36px;
+    background: #fff;
+    transition: box-shadow .25s;
+  }
+  .belief-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,.07); }
+  .belief-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f0f0f0;
+  }
+  .belief-heading h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: clamp(17px, 2vw, 22px);
+    color: var(--dark);
+    margin: 0;
+  }
+  .heading-num {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    color: #fff;
+    background: var(--orange);
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .belief-card p {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+  .belief-card p:last-child { margin-bottom: 0; }
+
+  /* ===== VERSE COPY BLOCKS ===== */
+  .copy-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    background: var(--light-bg);
+    border: 1px solid #e0e0e0;
+    border-left: 4px solid var(--orange);
+    border-radius: 4px;
+    padding: 16px 18px;
+    margin: 16px 0;
+  }
+  .copy-container.copied { outline: 3px solid rgba(39,174,96,.4); }
+  .copy-text {
+    margin: 0;
+    color: #444;
+    font-size: 14px;
+    line-height: 1.7;
+    flex: 1;
+  }
+  .copy-btn {
+    appearance: none; border: 1px solid #ccc; cursor: pointer;
+    background: #fff; color: #555;
+    padding: 6px 12px; border-radius: 4px; font-weight: 700; font-size: 12px;
+    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    transition: background .2s, color .2s, border-color .2s;
+    font-family: 'Montserrat', sans-serif;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .copy-btn:hover { background: var(--orange); color: #fff; border-color: var(--orange); }
+
+  /* ===== RIGHT RAIL ===== */
+  .right-rail {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .rail-card {
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    padding: 22px 20px;
+    background: #fff;
+  }
+  .rail-card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--orange);
+    display: inline-block;
+  }
+  .key-verses-list { list-style: none; padding: 0; margin: 0; }
+  .key-verses-list li { margin-bottom: 8px; }
+  .key-verses-list li a {
+    font-size: 14px; color: var(--text-muted); display: flex; align-items: center; gap: 8px;
+    padding: 6px 8px; border-radius: 3px; transition: color .2s, background .2s;
+  }
+  .key-verses-list li a i { font-size: 10px; color: var(--orange); }
+  .key-verses-list li a:hover { color: var(--orange); background: rgba(232,84,30,.06); }
+
+  .ref-list { list-style: none; padding: 0; margin: 0; }
+  .ref-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .ref-item img.fav { width: 16px; height: 16px; border-radius: 3px; flex-shrink: 0; background: #eee; }
+  .ref-item a { font-size: 13px; color: var(--text-muted); transition: color .2s; line-height: 1.4; }
+  .ref-item a:hover { color: var(--orange); }
+  .ref-note { font-size: 12px; color: #aaa; margin-top: 10px; }
+
+  .explore-links { display: flex; flex-direction: column; gap: 8px; }
+  .explore-links a {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--text-muted);
+    padding: 7px 10px; border-radius: 3px; transition: color .2s, background .2s;
+  }
+  .explore-links a i { font-size: 10px; color: var(--orange); }
+  .explore-links a:hover { color: var(--orange); background: rgba(232,84,30,.06); }
+
+  /* ===== FOOTER ===== */
+  footer { background: #111; color: #ccc; padding: 70px 0 30px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
+  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+  .footer-logo-img { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
+  .footer-logo-text { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; }
+  .footer-desc { font-size: 14px; line-height: 1.8; color: #888; margin-bottom: 24px; }
+  .footer-social { display: flex; gap: 10px; }
+  .footer-soc-btn { width: 34px; height: 34px; border: 1px solid #333; color: #888; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all .2s; }
+  .footer-soc-btn:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
+  .footer-col-title { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 2px solid var(--orange); display: inline-block; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a { color: #888; font-size: 14px; transition: color .2s; display: flex; align-items: center; gap: 8px; }
+  .footer-col ul li a i { font-size: 10px; color: var(--orange); }
+  .footer-col ul li a:hover { color: var(--orange); }
+  .footer-service-time { font-size: 14px; color: #888; line-height: 2; }
+  .footer-service-time span { color: var(--orange); font-weight: 600; }
+  .footer-bottom { border-top: 1px solid #222; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 13px; color: #555; }
+  .footer-copy a { color: var(--orange); }
+  .footer-bottom-links { display: flex; gap: 20px; }
+  .footer-bottom-links a { font-size: 13px; color: #555; transition: color .2s; }
+  .footer-bottom-links a:hover { color: var(--orange); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1100px) {
+    .content-layout { grid-template-columns: 1fr; }
+    .toc, .right-rail { position: static; }
+    .container { padding-left: 32px; padding-right: 32px; }
+    #mainNav, #mainNav.scrolled { padding: 18px 32px; }
+  }
+  @media (max-width: 900px) {
+    .container { padding-left: 24px; padding-right: 24px; }
+  }
+  @media (max-width: 768px) {
+    #mainNav ul { display: none; }
+    .container { padding-left: 20px; padding-right: 20px; }
+    #mainNav, #mainNav.scrolled { padding: 16px 20px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+    .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+    .belief-card { padding: 22px 20px; }
+  }
+  @media (max-width: 520px) {
+    .container { padding-left: 16px; padding-right: 16px; }
+    .scripture-chips { gap: 8px; }
+    .scripture-chip { font-size: 12px; padding: 8px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="mainNav">
+  <div class="logo">
+    <img class="logo-img" src="../assets/logo.png" alt="ETMC-Ubungo logo">
+    <div>
+      <div class="logo-text">ETMC-Ubungo</div>
+      <div class="logo-sub">Ubungo End Time Message Church</div>
+    </div>
+  </div>
+  <ul>
+    <li><a href="../index2.html">Home</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../beliefs.html">Beliefs</a></li>
+    <li><a href="../publications.html">Publications</a></li>
+    <li><a href="../board2.html">Board</a></li>
+    <li><a href="../contact2.html">Contact</a></li>
+  </ul>
+  <a href="../about.html" class="btn-live-prayer">OUR CHURCH</a>
+</nav>
+
+<!-- ===== PAGE BANNER ===== -->
+<header class="page-banner" aria-label="Page banner">
+  <div class="container">
+    <div class="page-title">William Marrion Branham</div>
+    <p class="page-subtitle">The prophet-messenger sent to restore apostolic faith and reveal the mysteries of the Bible. (Malachi 4:5&ndash;6 &middot; Revelation 10:7)</p>
+    <div class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index2.html">Home</a>
+      <span>/</span>
+      <a href="../about.html">About</a>
+      <span>/</span>
+      <span>William Branham</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== SCRIPTURE CHIPS ===== -->
+<!-- <div class="scripture-chips-section">
+  <div class="container">
+    <div class="scripture-chips">
+      <a class="scripture-chip" href="#malachi-4">
+        <i class="fas fa-book"></i>
+        <div><div>Malachi 4:5&ndash;6</div><small>Elijah before the great day</small></div>
+      </a>
+      <a class="scripture-chip" href="#revelation-10-7">
+        <i class="fas fa-book"></i>
+        <div><div>Revelation 10:7</div><small>Mystery of God finished</small></div>
+      </a>
+      <a class="scripture-chip" href="#isaiah-40">
+        <i class="fas fa-book"></i>
+        <div><div>Isaiah 40:3</div><small>Voice in the wilderness</small></div>
+      </a>
+      <a class="scripture-chip" href="#luke-1-17">
+        <i class="fas fa-book"></i>
+        <div><div>Luke 1:17</div><small>Spirit &amp; power of Elias</small></div>
+      </a>
+      <a class="scripture-chip" href="#amos-3-7">
+        <i class="fas fa-book"></i>
+        <div><div>Amos 3:7</div><small>God reveals to His prophets</small></div>
+      </a>
+    </div>
+  </div>
+</div> -->
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="content-wrap">
+  <div class="container">
+    <div class="content-layout">
+
+      <!-- TABLE OF CONTENTS -->
+      <aside class="toc" aria-label="Table of contents">
+        <div class="toc-title">Contents</div>
+        <nav>
+          <a href="#intro">1.0 Introduction</a>
+          <a href="#john-elijah">2.0 John &amp; the Spirit of Elijah</a>
+          <a href="#doctrines">3.0 The Doctrines of Branham</a>
+          <a href="#malachi-4">4.0 Prophet of Malachi 4 &amp; Rev. 10</a>
+          <a href="#ministries">5.0 Ministries Compared</a>
+          <a href="#tishbite">6.0 Elijah, John &amp; Branham</a>
+          <a href="#conclusion">7.0 Conclusion</a>
+        </nav>
+      </aside>
+
+      <!-- ARTICLE -->
+      <main>
+
+        <!-- 1.0 Introduction -->
+        <section id="intro" class="belief">
+          <div class="belief-card">
+            <div class="belief-heading">
+              <span class="heading-num">1</span>
+              <h2>Introduction</h2>
+            </div>
+            <p>
+              God promised that at the end time dispensation there would be a prophet on earth and would be identified by scriptures.
+              According to Malachi four this man would be a prophet in the spirit of Elijah to the Gentiles Church to bring back faith of Pentecostal Apostles.
+              And according to Revelation chapter ten this man will be a messenger from God to reveal mysteries of the Bible.
+            </p>
+
+            <div class="copy-container" data-copy="true">
+              <p class="copy-text"><strong id="amos-3-7">Amos 3:7</strong> Surely the Lord GOD will do nothing, but he revealeth his secret unto his servants the prophets.</p>
+              <button class="copy-btn" aria-label="Copy verse"><i class="fas fa-clipboard"></i> Copy</button>
+            </div>
+
+            <p>
+              God does things kind of strange and odd, He works in peculiar ways and mysterious ways and that's why people get away from the Word of God.
+              He promised that He will do nothing unless He revealed his secrets to His prophets. We cannot scientifically prove these promises of God, but we find that
+              every one of them happened just as God said they would.
+            </p>
+          </div>
+        </section>
+
+        <!-- 2.0 John the Baptist -->
+        <section id="john-elijah" class="belief">
+          <div class="belief-card">
+            <div class="belief-heading">
+              <span class="heading-num">2</span>
+              <h2>John the Baptist came into the Spirit of Elijah</h2>
+            </div>
+
+            <div class="copy-container" data-copy="true">
+              <p class="copy-text" id="isaiah-40"><strong>Isaiah 40:3</strong> the voice of him that crieth in the wilderness, prepare ye the way of the LORD, make straight in the desert a highway for our God.</p>
+              <button class="copy-btn" aria-label="Copy verse"><i class="fas fa-clipboard"></i> Copy</button>
+            </div>
+
+            <p>
+              When Isaiah spoke of John the Baptist that he would forerun the first advent of Jesus Christ, Israel didn't recognize him. John came in the spirit of Elias to turn the hearts of Israel to faith of son who was among them.
+            </p>
+
+            <div class="copy-container" data-copy="true">
+              <p class="copy-text" id="luke-1-17"><strong>Luke 1:17</strong> 'and he shall go before him in the spirit and power of Elias, to turn the hearts of the fathers to the children...'</p>
+              <button class="copy-btn" aria-label="Copy verse"><i class="fas fa-clipboard"></i> Copy</button>
+            </div>
+
+            <p>
+              John the Baptist was proving to Israel that he comes so that they can recognize Jesus Christ, but they missed Jesus Christ because they fail to see fulfillment of God's word into him. He said "Behold (means to look at) the Lamb of God that takes away the sin of the world."
+            </p>
+
+            <div class="copy-container" data-copy="true">
+              <p class="copy-text"><strong>John 1:29</strong> the next day John seeth Jesus coming unto him, and saith, Behold the Lamb of God, which taketh away the sin of the world. He came an ordinary man introducing Jesus to the world.</p>
+              <button class="copy-btn" aria-label="Copy verse"><i class="fas fa-clipboard"></i> Copy</button>
+            </div>
+
+            <p>
+              Today, most of us are convinced that John came according to scriptures, but that helps nothing to them people of that day who rejected him. God who is full in mercy has done same thing to our day. He sent us a prophet according to scriptures of Malachi 4 in the spirit of Elijah, as it was in the days of John the Baptist so will be in the days of Branham.
+            </p>
+            <p>
+              How did they miss John the Baptist? Because they were looking for something else so is today they are missing Branham because they are looking for something else. They missed Jesus Christ at His first advent because they didn't recognize Prophet John so is today they will not see the second coming of Jesus Christ and going of the rapture because they don't recognize Prophet Branham.
+            </p>
+          </div>
+        </section>
+
+        <!-- 3.0 Doctrines -->
+        <section id="doctrines" class="belief">
+          <div class="belief-card">
+            <div class="belief-heading">
+              <span class="heading-num">3</span>
+              <h2>The Doctrines of William Branham is God's Word</h2>
+            </div>
+            <p>
+              If you go into denominational churches you would find Pentecostal faith is deferent to that of Roman Catholic, and Catholic faith is deferent to Baptist faith and Baptist is different to Anglican faith etc. every church is contending on her own faith. Now here comes a question which faith Jesus was talking about in Saint Luke when He says <em>Luke 18:8</em> &mdash; Nevertheless when the Son of man cometh, shall he find faith on the earth? It was necessary for God Himself to send His Prophet on earth at this denominational confusion to restore back a faith Jesus talked about.
+            </p>
+            <p>
+              William Marrion Branham was a prophet of God combating with intellectual denominational doctrines. According to his life history William Branham was a seventh grade educational level but he was able to show the truth and power of God by spirit and signs before educational ecclesiastical. He was ordained to see past and future things and tell and God proved to be truth before people.
+            </p>
+            <p>
+              Though he was not a popular, he was vindicated by God. As Jesus authenticated John, and the Holy Ghost authenticated Jesus, William Branham was first of all authenticated by the Spirit working in his life in acts of power that are indisputable and found nowhere else; and Jesus Himself, in returning, will authenticate him, even as He authenticated John. John witnessed that Jesus was coming, and so will this man, like John, witness that Jesus is coming.
+            </p>
+            <p>
+              And the very return of Christ will prove that William Branham indeed was the forerunner of His second coming. This is the final evidence that this indeed is the prophet of Malachi 4, for the end of the Gentile period will be Jesus, Himself, appearing. Then it will be too late for those who have rejected him.
+            </p>
+            <p>
+              People will say it was told that Jesus should not come until one to forerun Him as in the days of John <em>Matthew 17:10</em>, "His disciples asked Him saying, Why then say the scribes that Elias must first come?" And Jesus said, "Elias truly shall first come, and restore all things." But I say unto you, that Elias is come already, and you knew him not.
+            </p>
+            <p>
+              Jesus said "He's already come, and you didn't know him." He spoke of John to forerun His first coming but John the Baptist wasn't the Elijah that He spoke of the last days, because the world never burnt and the millennium set in.
+            </p>
+          </div>
+        </section>
+
+        <!-- 4.0 Malachi 4 / Rev 10 -->
+        <section id="malachi-4" class="belief">
+          <div class="belief-card">
+            <div class="belief-heading">
+              <span class="heading-num">4</span>
+              <h2>Branham a prophet of Malachi 4 and Messenger of Revelation 10</h2>
+            </div>
+
+            <div class="copy-container" data-copy="true">
+              <p class="copy-text"><strong>Malachi 4:5&ndash;6</strong> 'Behold, I will send you Elijah the prophet before the coming of the great and dreadful day of the LORD: And he shall turn the heart of the fathers to the children, and the heart of the children to their fathers, lest I come and smite the earth with a curse'.</p>
+              <button class="copy-btn" aria-label="Copy verse"><i class="fas fa-clipboard"></i> Copy</button>
+            </div>
+
+            <p>
+              Before the coming of our Lord, Elijah must come back for a work of restoration in the church. This is what Malachi 4:6 says &mdash; "he shall turn the heart of the children to their fathers, lest I come and smite the earth with a curse."
+            </p>
+            <p>
+              There is absolutely no doubt that Elijah must return before the coming of Jesus. He has a specific work to accomplish. That work is the part of Malachi 4:6 that says "he will turn the hearts of the children to their fathers". The reason that we know this is his specific work to do at that time is because he has already accomplished the part that says "he shall turn the hearts of the fathers to the children," when the Elijah ministry was here in John the Baptist.
+            </p>
+            <p>
+              We know that in the ministry of John the "hearts of the fathers were turned to the children". But it does not say that the hearts of the children were turned to the fathers that are yet to take place. The hearts of the children will be turned back to the Pentecostal fathers at the last days. Brother Branham upon by the Spirit of Elijah is preparing the children to welcome back Jesus.
+            </p>
+            <p>
+              The first time Elijah come (John the Baptist), he turned the hearts of the old patriarch fathers, (old Jews, to the faith of the children and believed of the coming Messiah). When He comes the second time (William Branham) will be turning the hearts of the children back to the Pentecostal fathers.
+            </p>
+
+            <div class="copy-container" data-copy="true">
+              <p class="copy-text" id="revelation-10-7"><strong>Revelation 10:7</strong> But in the days of the voice of the seventh angel, when he shall begin to sound, the mystery of God should be finished, as he hath declared to his servants the prophets.</p>
+              <button class="copy-btn" aria-label="Copy verse"><i class="fas fa-clipboard"></i> Copy</button>
+            </div>
+
+            <p>
+              Now this person, who in this verse is called an 'angel' is NOT a heavenly being. He is a man, and he is to bring a message from God and his message and ministry is going to finish the mystery of God as declared to His servants, the prophets. God is going to treat this last messenger as a prophet.
+            </p>
+            <p>
+              This messenger will have the prophetic ministry based solidly on the Word because when he prophesies or sees vision, it will always be "Word oriented" and it will ALWAYS come to pass. He will be vindicated as a prophet because of his accuracy.
+            </p>
+            <p>
+              We find in scriptures that the messenger to this last age, will take all those loose ends out there and reveal the whole secret of God for the rupturing of the Church. Also we find that there are seven mysterious thunders that were not even written at all (in Revelation 10:1-7). We believe that this messenger will revealed these seven thunders in the last days in order to get the Bride together for rupturing faith.
+            </p>
+          </div>
+        </section>
+
+        <!-- 5.0 Ministries -->
+        <section id="ministries" class="belief">
+          <div class="belief-card">
+            <div class="belief-heading">
+              <span class="heading-num">5</span>
+              <h2>Ministries of John the Baptist and William Branham</h2>
+            </div>
+            <p>
+              In order to let no one confused with Malachi 4;5-6 where you note compound coming, His first coming spoke of turning of father's heart to the children and His second coming spoke of turning the hearts of children to their fathers but both coming is operated by one spirit of Elijah.
+            </p>
+            <p>
+              The first coming was fulfilled by John the Baptist and the second is fulfilled by William Branham. The second coming will be just before the great and dreadful day of the LORD which did not happen at the first coming. It said the earth will be burnt and cleaned off, and saints will walk out upon the ashes of wicked. This didn't happen at the time of John the Baptist, because the dreadful day of the Lord wasn't then.
+            </p>
+
+            <div class="copy-container" data-copy="true">
+              <p class="copy-text"><strong>Matthew 17:12</strong> "But I say unto you that Elias is come already, and they knew him not, but have done unto him what they listed." The reason that he called John Elijah, was because the same Spirit that was upon Elijah had come back upon John, even as that Spirit had come back upon Elisha after the reign of King Ahab.</p>
+              <button class="copy-btn" aria-label="Copy verse"><i class="fas fa-clipboard"></i> Copy</button>
+            </div>
+
+            <p>
+              Now once again that Spirit will come back upon another man just before Jesus comes. He will be a prophet. He will be vindicated as such by God. It will be done by the Holy Spirit so that this prophet's ministry will be attended by great and wonderful manifestation, for every revelation will come to pass. Wonderful acts of power will be performed at his commands in faith. Then will be brought forth the message that God has given him in the Word to turn the people back to truth and the true power of God. Some will listen, but the majority will reject him. The ministry of William Marrion Branham has already proved that he was the one to come in the spirit of Elijah at the end time.
+            </p>
+          </div>
+        </section>
+
+        <!-- 6.0 Elijah the Tishbite -->
+        <section id="tishbite" class="belief">
+          <div class="belief-card">
+            <div class="belief-heading">
+              <span class="heading-num">6</span>
+              <h2>Ministry of Elijah the Tishbite and John the Baptist</h2>
+            </div>
+            <p>
+              God always sends a forerunning before some great event. Elijah and John, Both were men set apart from the accepted religious schools of their day. Both were men of the wilderness. Both acted only when they had "Thus saith the Lord," straight from God by revelation. Both lashed out against the religious orders and leaders of their day. And notice, both prophesied much against immoral women and their ways. Elijah cried out against painted-faced Jezebels of his day, and John rebuked Herodias, Philip's wife. Women rebuking was the cause of their death. Both dressed sheepskin wrapped around, and a piece of leather.
+            </p>
+            <p>
+              This man William Branham will be naturally like Elijah the Tishbite, and John the Baptist. He will be a prophet of God, his ministry will be turning the hearts of children to their fathers or in other words he will be restoring the faith of disciples of Jesus Christ which was first preached by Paul to the Gentiles. He hated immoral woman and he was called woman hater, he was firm against denominations. He hated denominations system, his life in the wilderness, comes forth with his Message. He was a humble man, poor preacher even below his trophies.
+            </p>
+            <p>
+              This prophet, Elijah Tishbite, we know he was the servant of God for that hour. And God used his Spirit five times. He used it upon Elijah; it came on Elisha in a double portion; was on John the Baptist; and came into Branham just to issue in the Gentile Bride; and supposed to come with Moses (Revelations the 11th) to take the Jews home. Five times that God promises to use the Spirit of Elijah, and already done it four times.
+            </p>
+          </div>
+        </section>
+
+        <!-- 7.0 Conclusion -->
+        <section id="conclusion" class="belief">
+          <div class="belief-card">
+            <div class="belief-heading">
+              <span class="heading-num">7</span>
+              <h2>Conclusion</h2>
+            </div>
+            <p>
+              In further clarification on the introduction of this last day prophet, let us particularly note that the prophet of Matthew 17;12, was John the Baptist, who was the one foretold in Malachi 3:1 "Behold, I will send My messenger, and he shall prepare the way before Me; and the Lord, Whom ye seek, shall suddenly come to His temple, even the Messenger of the Covenant, Whom ye delight in; behold, He shall come, saith the Lord of Hosts."
+            </p>
+            <p>
+              John was a messenger of the covenant. He was the one that introduced and said, "This is Him." All other prophets spoke of Him, but John said, "This is Him." In his simple way of coming, it just blinded the intellectual.
+            </p>
+
+            <div class="copy-container" data-copy="true">
+              <p class="copy-text"><strong>II Peter 1:20&ndash;21</strong> knowing this first that no prophecy of the scripture is of any private interpretation. For the prophecy came not in old time by the will of man: but holy men of God spake as they were moved by the Holy Ghost. Now, remember, the Word of the Lord comes to the prophet, not the theologian, the prophet. A prophet is a reflector of God's Word. He can't say his own thoughts; he can only speak what God reveals.</p>
+              <button class="copy-btn" aria-label="Copy verse"><i class="fas fa-clipboard"></i> Copy</button>
+            </div>
+
+            <p>
+              William Branham is a prophet of God ordained to fulfill Malachi chapter 4 and Revelation chapter 10. His ministry started early 1930s when he was a youth preacher and in 1965 he was called home for a rest at the age of 56 years. His ministry has all around shook the world through great signs, wonders, visions and manifestation of power of God under first, second and third pulls. No wonder Branham has successfully accomplished his duty as a prophet and messenger of God.
+            </p>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- RIGHT RAIL -->
+      <aside class="right-rail" aria-label="Quick references">
+
+        <div class="rail-card">
+          <div class="rail-card-title">Key Verses</div>
+          <ul class="key-verses-list">
+            <li><a href="#malachi-4"><i class="fas fa-chevron-right"></i> Malachi 4:5&ndash;6</a></li>
+            <li><a href="#revelation-10-7"><i class="fas fa-chevron-right"></i> Revelation 10:7</a></li>
+            <li><a href="#isaiah-40"><i class="fas fa-chevron-right"></i> Isaiah 40:3</a></li>
+            <li><a href="#luke-1-17"><i class="fas fa-chevron-right"></i> Luke 1:17</a></li>
+            <li><a href="#amos-3-7"><i class="fas fa-chevron-right"></i> Amos 3:7</a></li>
+          </ul>
+        </div>
+
+        <div class="rail-card">
+          <div class="rail-card-title">Resources</div>
+          <ul class="ref-list">
+            <li class="ref-item">
+              <img class="fav" data-fav="branham.org" alt="">
+              <a href="https://branham.org" target="_blank" rel="noopener">Voice Of God Recordings</a>
+            </li>
+            <li class="ref-item">
+              <img class="fav" data-fav="table.branham.org" alt="">
+              <a href="https://table.branham.org" target="_blank" rel="noopener">The Table (Web App)</a>
+            </li>
+            <li class="ref-item">
+              <img class="fav" data-fav="branham.org" alt="">
+              <a href="https://branham.org/messageaudio" target="_blank" rel="noopener">All Sermon Audio</a>
+            </li>
+            <li class="ref-item">
+              <img class="fav" data-fav="messagehub.info" alt="">
+              <a href="https://www.messagehub.info" target="_blank" rel="noopener">Message Hub</a>
+            </li>
+            <li class="ref-item">
+              <img class="fav" data-fav="play.google.com" alt="">
+              <a href="https://play.google.com/store/apps/details?id=org.branham.table.app" target="_blank" rel="noopener">The Table &mdash; Play Store</a>
+            </li>
+            <li class="ref-item">
+              <img class="fav" data-fav="apps.apple.com" alt="">
+              <a href="https://apps.apple.com/us/app/the-table-mobile/id589296925" target="_blank" rel="noopener">The Table &mdash; App Store</a>
+            </li>
+          </ul>
+          <p class="ref-note">Sermons, downloads, translations &amp; official resources.</p>
+        </div>
+
+        <div class="rail-card">
+          <div class="rail-card-title">Explore More</div>
+          <div class="explore-links">
+            <a href="../about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+            <a href="../beliefs.html"><i class="fas fa-chevron-right"></i> What We Believe</a>
+            <a href="../publications.html"><i class="fas fa-chevron-right"></i> Publications</a>
+            <a href="../contact2.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div><!-- /content-layout -->
+  </div><!-- /container -->
+</div><!-- /content-wrap -->
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img class="footer-logo-img" src="../assets/logo.png" alt="ETMC-Ubungo logo">
+          <div>
+            <div class="footer-logo-text">ETMC-Ubungo</div>
+            <div style="color:#555; font-size:10px; letter-spacing:1.5px;">Ubungo End Time Message Church</div>
+          </div>
+        </div>
+        <p class="footer-desc">We are a community of believers dedicated to spreading love, faith, and hope. Join us as we grow together in Christ and serve our community with joy.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/ubungoendtime" target="_blank" rel="noopener" class="footer-soc-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener" class="footer-soc-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://wa.me/255742398600" target="_blank" rel="noopener" class="footer-soc-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="footer-soc-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Quick Links</div>
+        <ul>
+          <li><a href="../index2.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="../about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="../beliefs.html"><i class="fas fa-chevron-right"></i> Beliefs</a></li>
+          <li><a href="../publications.html"><i class="fas fa-chevron-right"></i> Publications</a></li>
+          <li><a href="../board2.html"><i class="fas fa-chevron-right"></i> Board</a></li>
+          <li><a href="../contact2.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Resources</div>
+        <ul>
+          <li><a href="https://branham.org" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> VGR</a></li>
+          <li><a href="https://table.branham.org" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> The Table</a></li>
+          <li><a href="https://branham.org/messageaudio" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Sermon Audio</a></li>
+          <li><a href="https://www.messagehub.info" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Message Hub</a></li>
+          <li><a href="https://play.google.com/store/apps/details?id=org.branham.table.app" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Play Store</a></li>
+          <li><a href="https://apps.apple.com/us/app/the-table-mobile/id589296925" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> App Store</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Service Times</div>
+        <div class="footer-service-time">
+          <p><span>Sun</span><br>9:00 AM &ndash; 3:00 PM</p><br>
+          <p><span>Wed</span><br>6:00 PM &ndash; 7:00 PM</p><br>
+          <p><span>Sat</span><br>4:00 PM &ndash; 6:00 PM</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 <a href="../index2.html">Ubungo End Time Message Church</a>. All Rights Reserved.</div>
+      <div class="footer-bottom-links">
+        <a href="../about.html">About</a>
+        <a href="../contact2.html">Contact</a>
+        <a href="../beliefs.html">Beliefs</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll state
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Active TOC link on scroll
+const tocLinks = document.querySelectorAll('.toc nav a');
+const sections = [...document.querySelectorAll('main section.belief')];
+window.addEventListener('scroll', () => {
+  let fromTop = window.scrollY + 130;
+  sections.forEach((sec) => {
+    if (sec.offsetTop <= fromTop && sec.offsetTop + sec.offsetHeight > fromTop) {
+      tocLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector('.toc nav a[href="#' + sec.id + '"]');
+      active?.classList.add('active');
+    }
+  });
+});
+
+// Copy-to-clipboard
+function copyText(el) {
+  const textEl = el.querySelector('.copy-text');
+  const button = el.querySelector('.copy-btn');
+  const text = textEl.innerText.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    el.classList.add('copied');
+    button.innerHTML = '<i class="fas fa-check"></i> Copied';
+    setTimeout(() => {
+      el.classList.remove('copied');
+      button.innerHTML = '<i class="fas fa-clipboard"></i> Copy';
+    }, 1700);
+  }).catch(() => {});
+}
+document.querySelectorAll('.copy-container[data-copy="true"]').forEach(box => {
+  box.querySelector('.copy-btn')?.addEventListener('click', () => copyText(box));
+});
+
+// Favicon badges
+document.querySelectorAll('img.fav[data-fav]').forEach(img => {
+  const domain = img.getAttribute('data-fav');
+  img.src = 'https://www.google.com/s2/favicons?domain=' + encodeURIComponent(domain) + '&sz=64';
+  img.alt = domain + ' favicon';
+});
+</script>
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Who is William Marrion Branham?",
+  "url": "https://etmc.org/about/william-branham",
+  "about": { "@type": "Person", "name": "William Marrion Branham" },
+  "publisher": { "@type": "Organization", "name": "ETMC-Ubungo" }
+}
+</script>
+</body>
+</html>
