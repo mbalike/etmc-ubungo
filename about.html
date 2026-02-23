@@ -6,7 +6,7 @@
 <title>About Us — ETMC-Ubungo</title>
 <meta name="description" content="Learn about ETMC-Ubungo: our story, mission, core distinctives, and the end-time message we hold." />
 <link rel="icon" href="assets/logo.png" />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -80,34 +80,61 @@
   .breadcrumb a:hover { color: var(--orange); }
   .breadcrumb span { opacity: .7; }
 
-  /* SCRIPTURE PILLARS STRIP */
-  .pillars-strip { background: var(--navy); padding: 26px 0; }
-  .pillars-inner { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
-  .pillar-chip {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
-    color: #eef2ff; padding: 10px 18px; border-radius: 50px;
-    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px;
-    transition: background .2s, border-color .2s;
-  }
-  .pillar-chip:hover { background: rgba(232,84,30,.25); border-color: var(--orange); }
-  .pillar-chip i { color: var(--orange); font-size: 14px; }
-  .pillar-chip small { font-weight: 400; font-size: 11px; color: rgba(255,255,255,.65); display: block; margin-top: 2px; }
-
   /* CONTENT SECTIONS */
-  .content-wrap { padding: 80px 0 90px; }
+  .content-wrap { padding: 60px 0 90px; }
   .content-section { margin-bottom: 80px; }
   .content-section:last-child { margin-bottom: 0; }
   .section-label {
-    font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 11px;
-    letter-spacing: 3px; text-transform: uppercase; color: var(--orange);
-    margin-bottom: 6px;
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 20px; font-weight: 400;
+    color: var(--orange); margin-bottom: 10px;
+    display: block; line-height: 1.2;
   }
   .section-heading {
     font-family: 'Montserrat', sans-serif; font-weight: 900;
     font-size: clamp(22px, 3vw, 34px); color: var(--dark);
     margin-bottom: 32px;
   }
+
+  /* EDITORIAL FIRST SECTION (Image 1 + 2 inspired) */
+  .editorial-intro {
+    background: #ffffff; text-align: center;
+    padding: 58px 0 52px;
+  }
+  .editorial-heading {
+    font-family: 'Montserrat', sans-serif; font-weight: 900;
+    font-size: clamp(30px, 4.5vw, 34px); color:black;
+    line-height: 1.1; max-width: 720px; margin: 8px auto 0;
+  }
+  .section-photo { overflow: hidden; }
+  .section-photo img { width: 100%; height: 420px; object-fit: cover; display: block; }
+  .stat-content-wrap { padding: 56px 0 64px; border-bottom: 1px solid #eee; margin-bottom: 60px; }
+  .stat-content-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center;
+  }
+  .stat-blocks-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .stat-block {
+    display: flex; flex-direction: column; text-decoration: none; color: inherit;
+    padding: 0 44px 28px 0; border-bottom: 1px solid #eee;
+  }
+  .stat-block:nth-child(even) { padding-left: 44px; padding-right: 0; border-left: 1px solid #eee; }
+  .stat-block:nth-child(n+3) { border-bottom: none; padding-bottom: 0; padding-top: 28px; }
+  .stat-top-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .stat-top-row i { font-size: 20px; color: var(--dark); }
+  .stat-block-num {
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 35px; color: var(--orange); line-height: 1;
+  }
+  .stat-block-label { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 19px; color: var(--dark); margin-bottom: 5px; }
+  .stat-block-desc { font-size: 13px; color: var(--text-muted); }
+  .stat-text-body > p { color: var(--text-muted); font-size: 15.5px; line-height: 1.85; margin-bottom: 16px; }
+  .btn-solid {
+    display: inline-block; background: var(--orange); color: #fff;
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 15px 28px; margin-top: 10px; transition: background .2s;
+  }
+  .btn-solid:hover { background: #c94418; }
 
   /* Grid layouts */
   .two-col { display: grid; grid-template-columns: 1.1fr 1fr; gap: 30px; align-items: start; }
@@ -117,7 +144,7 @@
 
   /* Content card */
   .content-card {
-    border: 1px solid #e8e8e8; border-radius: 4px; padding: 32px;
+    border: 1px solid #e8e8e8; padding: 32px;
     background: #fff; transition: box-shadow .25s, border-color .25s;
   }
   .content-card:hover { box-shadow: 0 6px 28px rgba(0,0,0,.07); border-color: #d4d4d4; }
@@ -131,7 +158,7 @@
     display: inline-block; background: var(--orange); color: #fff;
     font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 10px;
     letter-spacing: 2px; text-transform: uppercase; padding: 5px 10px;
-    border-radius: 3px; margin-bottom: 14px;
+    margin-bottom: 14px;
   }
   .cta-link {
     display: inline-flex; align-items: center; gap: 8px;
@@ -143,7 +170,7 @@
 
   /* Image card */
   .img-card {
-    border-radius: 4px; overflow: hidden; border: 1px solid #e8e8e8;
+    overflow: hidden; border: 1px solid #e8e8e8;
     min-height: 280px; display: flex; align-items: stretch;
   }
   .img-card img { width: 100%; height: 100%; min-height: 280px; object-fit: cover; display: block; }
@@ -187,6 +214,7 @@
     .container { padding-left: 24px; padding-right: 24px; }
     .two-col, .two-col.flip { grid-template-columns: 1fr; direction: ltr; }
     .three-col { grid-template-columns: 1fr 1fr; }
+    .stat-content-grid { grid-template-columns: 1fr; gap: 40px; }
   }
   @media (max-width: 768px) {
     #mainNav ul { display: none; }
@@ -194,11 +222,13 @@
     #mainNav, #mainNav.scrolled { padding: 16px 20px; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
     .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+    .section-photo img { height: 280px; }
   }
   @media (max-width: 520px) {
     .container { padding-left: 16px; padding-right: 16px; }
     .three-col { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
+    .stat-blocks-2x2 { gap: 24px 28px; }
   }
 </style>
 </head>
@@ -237,50 +267,61 @@
   </div>
 </header>
 
-<!-- SCRIPTURE PILLARS STRIP -->
-<div class="pillars-strip">
-  <div class="container">
-    <div class="pillars-inner">
-      <a class="pillar-chip" href="beliefs.html#malachi4">
-        <i class="fas fa-book-open"></i>
-        <div><div>Malachi 4:5</div><small>Elijah before the great day</small></div>
-      </a>
-      <a class="pillar-chip" href="beliefs.html#restored">
-        <i class="fas fa-book-open"></i>
-        <div><div>Revelation 10:7</div><small>Mystery of God finished</small></div>
-      </a>
-      <a class="pillar-chip" href="beliefs.html#baptism">
-        <i class="fas fa-book-open"></i>
-        <div><div>Acts 2:38</div><small>Repent &amp; be baptized</small></div>
-      </a>
-      <a class="pillar-chip" href="beliefs.html#fivefold">
-        <i class="fas fa-book-open"></i>
-        <div><div>Ephesians 4:11&ndash;16</div><small>Five-fold ministry</small></div>
-      </a>
-    </div>
-  </div>
-</div>
-
 <!-- MAIN CONTENT -->
-<main class="content-wrap">
-  <div class="container">
+<main>
 
-    <!-- 1 · WHO WE ARE -->
-    <div class="content-section">
-      <p class="section-label">Our Story</p>
-      <h2 class="section-heading">Who We Are</h2>
-      <div class="two-col">
-        <div class="content-card">
-          <h3>Rooted in Scripture, Led by the Spirit</h3>
-          <p>We are a local body pursuing Christlike character, worship, discipleship, and service. We cherish apostolic doctrine and church order — walking in love and humility before God and one another.</p>
-          <p><em>&ldquo;That in all things He might have the preeminence.&rdquo;</em> &nbsp;(Colossians&nbsp;1:18)</p>
-          <a class="cta-link" href="beliefs.html">Explore What We Believe <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="img-card">
-          <div class="img-card-placeholder" aria-label="Church building photo coming soon"><i class="fas fa-church"></i></div>
+  <!-- 1 · WHO WE ARE — Editorial layout (Image 1+2 style) -->
+  <section>
+    <div class="editorial-intro">
+      <div class="container">
+        <span class="section-label">Our Story</span>
+        <h2 class="editorial-heading">Who We Are</h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="section-photo">
+        <img src="assets/pub.jpeg" alt="ETMC-Ubungo congregation" />
+      </div>
+    </div>
+
+    <div class="stat-content-wrap">
+      <div class="container">
+        <div class="stat-content-grid">
+          <div class="stat-blocks-2x2">
+            <a class="stat-block" href="beliefs.html#malachi4">
+              <div class="stat-top-row"><i class="fas fa-scroll"></i><span class="stat-block-num">4:5</span></div>
+              <strong class="stat-block-label">Malachi</strong>
+              <span class="stat-block-desc">Elijah before the great day</span>
+            </a>
+            <a class="stat-block" href="beliefs.html#restored">
+              <div class="stat-top-row"><i class="fas fa-eye"></i><span class="stat-block-num">10:7</span></div>
+              <strong class="stat-block-label">Revelation</strong>
+              <span class="stat-block-desc">Mystery of God finished</span>
+            </a>
+            <a class="stat-block" href="beliefs.html#baptism">
+              <div class="stat-top-row"><i class="fas fa-water"></i><span class="stat-block-num">2:38</span></div>
+              <strong class="stat-block-label">Acts</strong>
+              <span class="stat-block-desc">Repent &amp; be baptized</span>
+            </a>
+            <a class="stat-block" href="beliefs.html#fivefold">
+              <div class="stat-top-row"><i class="fas fa-users"></i><span class="stat-block-num">4:11&ndash;16</span></div>
+              <strong class="stat-block-label">Ephesians</strong>
+              <span class="stat-block-desc">Five-fold ministry</span>
+            </a>
+          </div>
+          <div class="stat-text-body">
+            <p>We are a local body pursuing Christlike character, worship, discipleship, and service. We cherish apostolic doctrine and church order &mdash; walking in love and humility before God and one another.</p>
+            <p><em>&ldquo;That in all things He might have the preeminence.&rdquo;</em> &nbsp;(Colossians&nbsp;1:18)</p>
+            <a class="btn-solid" href="beliefs.html">Explore What We Believe</a>
+          </div>
         </div>
       </div>
     </div>
+  </section>
+
+  <div class="content-wrap">
+    <div class="container">
 
     <!-- 2 · CORE DISTINCTIVES -->
     <div class="content-section">
@@ -336,7 +377,8 @@
       </div>
     </div>
 
-  </div>
+    </div><!-- /.container -->
+  </div><!-- /.content-wrap -->
 </main>
 
 <!-- FOOTER -->
