@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ETMC -  Ubungo  — Welcome</title>
+  <meta name="description" content="A Bible-believing fellowship proclaiming the Gospel of Jesus Christ." />
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    :root{
+      --brand:#2a4c7f;         /* primary */
+      --ink:#10131a;           /* body text */
+      --muted:#6b7280;
+      --bg:#000000;            /* page background, dark to support glass */
+      --ring:rgba(42,76,127,.35);
+      --glass-bg:rgba(255,255,255,.12);
+      --glass-brd:rgba(255,255,255,.22);
+      --glass-shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
+      color:#eef2ff; background:radial-gradient(1200px 600px at 20% -10%, #1a2440 0, transparent 60%), var(--bg);
+      line-height:1.6;
+    }
+
+    /* ======= Glass helpers ======= */
+    .glass{
+      background:var(--glass-bg);
+      -webkit-backdrop-filter:saturate(180%) blur(14px);
+      backdrop-filter:saturate(180%) blur(14px);
+      border:1px solid var(--glass-brd);
+      box-shadow:var(--glass-shadow);
+    }
+    .glass-soft{
+      background:rgba(255,255,255,.08);
+      -webkit-backdrop-filter:saturate(160%) blur(10px);
+      backdrop-filter:saturate(160%) blur(10px);
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:0 8px 24px rgba(0,0,0,.25);
+    }
+
+    /* ======= Pill Navigation (iOS-like) ======= */
+    .nav-wrap{
+      position:fixed; top:16px; z-index:60; display:flex; justify-content:center; padding:0 16px; width:100%;
+    }
+    .nav{
+      display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:999px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; text-decoration:none; color:#eef2ff; font-weight:800;
+      padding:6px 10px; border-radius:999px;
+    }
+    .brand img{width:28px; height:28px; object-fit:contain}
+    .links{display:flex; gap:4px; flex-wrap:wrap}
+    .links a{
+      color:#f0f4ff; text-decoration:none; font-weight:700; font-size:.95rem;
+      padding:8px 12px; border-radius:999px; opacity:.95;
+    }
+    .links a:hover, .links a[aria-current="page"]{background:rgba(255,255,255,.14)}
+    .menu-btn{display:none; margin-left:8px; border:0; background:transparent; color:#fff; font-size:1.1rem; padding:8px 10px; border-radius:12px}
+    .menu-btn:focus{outline:3px solid var(--ring)}
+
+    /* ======= Hero with blurred local video ======= */
+    .hero{
+      position:relative; min-height:100vh; display:grid; place-items:center; overflow:hidden;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .hero-bg{
+      position:absolute; inset:0; overflow:hidden; z-index:-2;
+    }
+    .hero-bg video{
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+      filter:blur(14px) saturate(120%) brightness(70%);
+      transform:scale(1.08); /* bleed edges after blur */
+    }
+    .hero-overlay{
+      position:absolute; inset:0; z-index:-1;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(58,88,168,.35), transparent 60%),
+        linear-gradient(to bottom, rgba(7,10,20,.55), rgba(7,10,20,.55));
+    }
+    .hero-inner{
+      max-width:1200px; width:100%; padding:120px 16px 64px; display:grid; grid-template-columns:1.25fr 1fr; gap:24px;
+    }
+    .kicker{color:#c7d6ff; text-transform:uppercase; letter-spacing:.12em; font-weight:800; font-size:.8rem}
+    h1{margin:.35rem 0 1rem; font-size:clamp(1.9rem, 3.8vw, 3.2rem); line-height:1.15}
+    .lead{color:#e6ebff; max-width:65ch}
+    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px}
+    .btn{
+      appearance:none; border:0; border-radius:999px; padding:12px 18px; font-weight:800; cursor:pointer;
+      text-decoration:none; display:inline-flex; align-items:center; gap:10px;
+    }
+    .btn.primary{background:#3b5db1; color:#fff; box-shadow:0 10px 28px rgba(59,93,177,.45)}
+    .btn.ghost{background:rgba(255,255,255,.14); color:#fff; border:1px solid rgba(255,255,255,.22)}
+
+    .hero-card{
+      border-radius:var(--radius); padding:20px;
+    }
+    .meta{display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:.98rem; color:#d6def6}
+    .meta div{padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14)}
+
+    /* ======= Sections & Cards (glass) ======= */
+  section{max-width:1200px; margin:0 auto; padding:56px 16px}
+  .section{min-height:70vh}
+  #board.section{min-height:50vh}
+    #board{min-height:70vh}
+    .section-title{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:24px}
+    .section-title h2{margin:0; font-size:clamp(1.3rem, 2.6vw, 2rem)}
+    .section-title a{font-weight:800; color:#d2deff; text-decoration:none}
+
+    .grid{display:grid; gap:16px}
+    .cols-3{grid-template-columns:repeat(3, 1fr)}
+    .cols-2{grid-template-columns:repeat(2, 1fr)}
+    .cols-4{grid-template-columns:repeat(4, 1fr)}
+
+    .card{
+      border-radius:18px; padding:16px;
+      color:#eaf0ff;
+    }
+    .card h3{margin:6px 0 6px; font-size:1.06rem}
+    .muted{color:#c5cce6}
+    .badge{display:inline-block; font-size:.75rem; padding:4px 8px; border-radius:999px; background:rgba(255,255,255,.15); color:#fff; font-weight:800; border:1px solid rgba(255,255,255,.22)}
+
+    /* Publications videos */
+    .video-grid{display:grid; gap:16px; grid-template-columns:repeat(3, 1fr)}
+    .video-grid iframe{width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#000}
+
+    /* Prayer banner */
+    .banner{
+      border-radius:22px; padding:22px; display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .banner p{margin:0; max-width:75ch}
+
+    /* Footer */
+    footer {
+      margin-top:40px;
+      background:rgba(255,255,255,.06);
+      border-top:1px solid rgba(255,255,255,.12);
+    }
+    footer .wrap {
+      max-width:1200px;
+      margin:auto;
+      padding:48px 32px;
+      display:grid;
+      gap:0;
+      grid-template-columns:1fr 1fr 1fr;
+      justify-items:center;
+      align-items:center;
+      text-align:center;
+      column-gap:48px;
+    }
+    footer .wrap > div {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:0 24px;
+    }
+    .social-icons {
+      display:flex;
+      gap:12px;
+      margin-top:15px;
+      justify-content:center;
+    }
+    footer a {
+      color:#d7e4ff;
+      text-decoration:none;
+      text-align:center;
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .foot-note {
+      border-top:1px solid rgba(255,255,255,.12);
+      text-align:center;
+      padding:14px;
+      font-size:.9rem;
+      color:#c8d4f7;
+    }
+    
+    /* Social media icons */
+    .social-icons a:hover{
+      background:rgba(255,255,255,.2) !important;
+      transform:translateY(-2px);
+    }
+    .social-icons a{
+      transition:all 0.3s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-inner{grid-template-columns:1fr}
+      .video-grid{grid-template-columns:1fr 1fr}
+      .cols-4{grid-template-columns:repeat(2, 1fr)}
+      footer .wrap{
+        grid-template-columns:1fr;
+        padding:32px 8px;
+      }
+      footer .wrap > div {
+        margin-bottom:18px;
+        padding:0 8px;
+      }
+    }
+    @media (max-width: 760px){
+      .links{display:none}
+      .menu-btn{display:block}
+      .links.open{
+        display:flex; width:100%; flex-direction:column; padding:8px; gap:6px; margin-top:8px;
+      }
+      .video-grid{grid-template-columns:1fr}
+      .cols-3, .cols-2{grid-template-columns:1fr}
+      .banner{flex-direction:column; align-items:flex-start}
+    }
+
+    /* A11y focus */
+    a:focus, button:focus{outline:3px solid var(--ring); outline-offset:2px; border-radius:10px}
+
+    /* Motion & blur safety */
+    @media (prefers-reduced-motion: reduce){
+      .hero-bg video{animation:none}
+      .btn{transition:none}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Glass Pill NAV -->
+  <div class="nav-wrap" role="banner">
+    <div class="nav glass" role="navigation" aria-label="Primary">
+      <a class="brand" href="#home" aria-label="Home">
+        <img src="assets/logo.png" alt="Church Logo" />
+        <span>ETMC-Ubungo</span>
+      </a>
+
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" title="Toggle navigation">☰</button>
+
+      <nav id="nav-links" class="links">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="beliefs.html">What We Believe</a>
+        <a href="about.html">About</a>
+        <a href="board.html">Church Board</a>        
+        <a href="publications.html">Publications</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- HERO with blurred local video -->
+  <header id="home" class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <!-- Local video (muted+autoplay+loop for hero) -->
+      <video
+        preload="auto"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="assets/hero.jpg"
+      >
+        <source src="assets/hero.mp4" type="video/mp4" />
+        <!-- Optional WebM if you have it
+        <source src="assets/hero.webm" type="video/webm" /> -->
+      </video>
+    </div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div>
+        <div class="kicker">Welcome</div>
+        <h1>The End-Time Message</h1>
+<p class="lead">
+  Proclaiming the fulfillment of God’s promise in this last day, declaring the full Gospel of Jesus Christ, and restoring the apostolic faith once delivered to the saints.
+</p>
+        <div class="cta">
+          <a class="btn primary" href="#beliefs">Our Beliefs</a>
+          <a class="btn ghost glass-soft" href="#prayer">Our Church</a>
+        </div>
+      </div>
+
+      <aside class="hero-card glass" aria-label="Service times and location">
+        <h3 style="margin:0 0 10px">Join Us</h3>
+        <div class="meta">
+          <div><strong>Sundey Service</strong><br/>Sun · 9:00 AM</div>
+          <div><strong>Prayers Service</strong><br/>Sat · 4:00 PM</div>
+          <div><strong>Location</strong><br/><a href="https://maps.app.goo.gl/AmmTMawztCnETcYY9" target="_blank" rel="noopener" style="color:#fff; text-decoration:none">Ubungo, Dar es Salaam</a></div>
+          <div><strong>Contact</strong><br/><a style="color:#fff" href="tel:+255742398600">+255 742 398 600</a></div>
+        </div>
+<p class="muted" style="margin-top:10px">
+  “Behold, I will send you Elijah the prophet before the coming of the great and dreadful day of the Lord.” — Malachi 4:5
+</p>      </aside>
+    </div>
+  </header>
+
+  <!-- WHAT WE BELIEVE -->
+  <section id="beliefs" class="section" aria-labelledby="beliefs-title">
+    <div class="section-title">
+      <h2 id="beliefs-title">What We Believe</h2>
+      <a href="beliefs.html" title="Read all beliefs">Read full statement →</a>
+    </div>
+
+    <div class="grid cols-3">
+      <article class="card glass">
+        <span class="badge">The Bible</span>
+        <h3>The Infallible Word of God</h3>
+        <p class="muted">Every chapter, verse, and line is the Absolute—our final authority for faith and life.</p>
+      </article>
+
+      <article class="card glass">
+        <span class="badge">The Godhead</span>
+        <h3>Jehovah of the Old, Jesus of the New</h3>
+        <p class="muted">We confess one God manifested in the Lord Jesus Christ (Isa 9:6; 1 Tim 3:16; Heb 13:8).</p>
+      </article>
+
+      <article class="card glass">
+        <span class="badge">Restoration</span>
+        <h3>Malachi 4 & Revelation 10</h3>
+        <p class="muted">We receive the end-time message restoring apostolic faith and opening the mysteries of God.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section" aria-labelledby="about-title">
+    <div class="section-title">
+      <h2 id="about-title">About Us</h2>
+      <a href="about.html">Learn more →</a>
+    </div>
+
+    <div class="grid cols-2">
+      <div class="card glass-soft">
+        <h3>Our Story & Mission</h3>
+        <p class="muted">
+          Rooted in Scripture and led by the Spirit, we are a local body pursuing Christlike character, worship,
+          discipleship, and service. We cherish apostolic doctrine and church order in love and humility.
+        </p>
+        <p class="muted">“That in all things He might have the preeminence.” (Col 1:18)</p>
+      </div>
+      <div class="card glass-soft">
+        <h3>Who is W. M. Branham?</h3>
+        <p class="muted">
+          We recognize the end-time message promised in Malachi 4:5–6 and Revelation 10:7. Read the overview and
+          Scripture foundations we hold concerning the ministry of William Marrion Branham.
+        </p>
+        <p><a style="color:#d2deff" href="about/william-branham.html">Read the full article →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOARD -->
+  <section id="board" class="section" aria-labelledby="board-title">
+    <div class="section-title">
+      <h2 id="board-title">Church Board</h2>
+      <a href="board.html">Meet the team →</a>
+    </div>
+
+    <div class="grid cols-4">
+      <article class="card glass-soft">
+        <img src="assets/board/pastor.jpg" alt="Pastor photo" style="width:100%; height:200px; object-fit:cover; border-radius:12px" loading="lazy" />
+        <h3>Firstname Lastname</h3>
+        <p class="muted">Pastor</p>
+      </article>
+      <article class="card glass-soft">
+        <img src="assets/board/elder1.jpg" alt="Elder photo" style="width:100%; height:200px; object-fit:cover; border-radius:12px" loading="lazy" />
+        <h3>Firstname Lastname</h3>
+        <p class="muted">Elder</p>
+      </article>
+      <article class="card glass-soft">
+        <img src="assets/board/deacon1.jpg" alt="Deacon photo" style="width:100%; height:200px; object-fit:cover; border-radius:12px" loading="lazy" />
+        <h3>Firstname Lastname</h3>
+        <p class="muted">Deacon</p>
+      </article>
+      <article class="card glass-soft">
+        <img src="assets/board/secretary.jpg" alt="Secretary photo" style="width:100%; height:200px; object-fit:cover; border-radius:12px" loading="lazy" />
+        <h3>Firstname Lastname</h3>
+        <p class="muted">Secretary</p>
+      </article>
+    </div>
+  </section>
+
+  
+  <!-- PRAYER REQUEST CTA -->
+  <!-- <section id="prayer" class="section" aria-labelledby="prayer-title">
+    <div class="section-title">
+      <h2 id="prayer-title">Prayer Request</h2>
+    </div>
+    <div class="banner glass">
+      <p><strong>Need prayer?</strong> Share your request and our ministry team will stand with you in faith.</p>
+      <a class="btn primary" href="prayer-request.html">Send a Request</a>
+    </div>
+  </section> -->
+
+  <!-- PUBLICATIONS -->
+  <section id="publications" class="section" aria-labelledby="pub-title">
+    <div class="section-title">
+      <h2 id="pub-title">Publications</h2>
+      <a href="publications.html">View all →</a>
+    </div>
+
+    <div class="video-grid" id="youtube-videos">
+      <!-- Videos will be loaded dynamically from YouTube API -->
+      <div class="card glass-soft">
+        <div class="video-placeholder" style="height: 200px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #c5cce6;">
+          <i class="bi bi-youtube" style="font-size: 2rem;"></i>
+        </div>
+        <h3 style="margin-top:10px">Loading...</h3>
+        <p class="muted">Fetching video data...</p>
+      </div>
+      <div class="card glass-soft">
+        <div class="video-placeholder" style="height: 200px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #c5cce6;">
+          <i class="bi bi-youtube" style="font-size: 2rem;"></i>
+        </div>
+        <h3 style="margin-top:10px">Loading...</h3>
+        <p class="muted">Fetching video data...</p>
+      </div>
+      <div class="card glass-soft">
+        <div class="video-placeholder" style="height: 200px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #c5cce6;">
+          <i class="bi bi-youtube" style="font-size: 2rem;"></i>
+        </div>
+        <h3 style="margin-top:10px">Loading...</h3>
+        <p class="muted">Fetching video data...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT + MAP -->
+  <section id="contact" class="section" aria-labelledby="contact-title">
+    <div class="section-title">
+      <h2 id="contact-title">Contact Us</h2>
+      <a href="contact.html">More contact options →</a>
+    </div>
+
+    <div class="grid cols-2">
+      <div class="card glass-soft">
+        <h3>Visit or Reach Out</h3>
+        <p class="muted">
+          Ubungo, Dar es Salaam, Tanzania<br/>
+          <a style="color:#fff" href="tel:+255742398600">+255 742 398 600</a> · <a style="color:#fff" href="mailto:info@etmc.org">info@etmc.org</a><br/>
+          WhatsApp: <a style="color:#fff" href="https://wa.me/255742398600" target="_blank" rel="noopener">+255 742 398 600</a>
+        </p>
+        <p class="muted">Service Times:<br/>
+          Wed: 6:00 PM - 7:00 PM<br/>
+          Sat: 4:00 PM - 6:00 PM<br/>
+          Sun: 9:00 AM - 3:00 PM
+        </p>
+      </div>
+      <div class="card glass-soft">
+        <!-- Replace with your Google Maps embed -->
+        <iframe
+          title="Church location map"
+          loading="lazy"
+          style="border:0; width:100%; height:300px; border-radius:12px"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.7011818848173!2d39.2058714!3d-6.8061577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c492fd319aafb%3A0x5754399bcd4d4b8!2sUbungo%20EndTime%20Message%20Church!5e0!3m2!1sen!2stz!4v1756116179655!5m2!1sen!2stz">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo" class="glass-soft">
+    <div class="wrap">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px">
+          <img src="assets/logo.png" alt="Church logo" width="36" height="36" />
+          <strong>ETMC - Ubungo</strong>
+        </div>
+        <p style="margin:0 0 15px; color:#c8d4f7; line-height:1.5; max-width:220px">
+          A Bible-believing fellowship in Ubungo proclaiming the Gospel of Jesus Christ.
+        </p>
+        <div class="social-icons" style="display:flex; gap:12px; margin-top:15px">
+          <a href="https://www.instagram.com/ubungoendtime" target="_blank" rel="noopener" aria-label="Follow us on Instagram" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1); transition:all 0.2s">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener" aria-label="Subscribe to our YouTube channel" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1); transition:all 0.2s">
+            <i class="bi bi-youtube"></i>
+          </a>
+          <a href="https://wa.me/255742398600" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1); transition:all 0.2s">
+            <i class="bi bi-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+      <div>
+        <strong>Quick Links</strong><br/>
+        <a href="#beliefs">What We Believe</a><br/>
+        <a href="about.html">About Us</a><br/>
+        <a href="prayer-request.html">Prayer Request</a><br/>
+        <a href="publications.html">Publications</a>
+      </div>
+      <div>
+        <strong>Contact</strong><br/>
+        <a href="mailto:info@etmc.org" style="display:flex; align-items:center; gap:8px; margin-bottom:8px">
+          <i class="bi bi-envelope" style="color:#d7e4ff; font-size:0.9rem"></i>
+          info@etmc.org
+        </a>
+        <a href="tel:+255742398600" style="display:flex; align-items:center; gap:8px; margin-bottom:8px">
+          <i class="bi bi-telephone" style="color:#d7e4ff; font-size:0.9rem"></i>
+          +255 742 398 600
+        </a>
+        <a href="https://maps.app.goo.gl/AmmTMawztCnETcYY9" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px; color:#d7e4ff; text-decoration:none">
+          <i class="bi bi-geo-alt" style="color:#d7e4ff; font-size:0.9rem"></i>
+          Ubungo, Dar es Salaam
+        </a>
+      </div>
+    </div>
+    <div class="foot-note">© <span id="year"></span> ETMC -  Ubungo. All rights reserved.</div>
+  </footer>
+
+  <script src="youtube-config.js"></script>
+  <script>
+    // Mobile nav toggle for pill menu
+    const btn = document.querySelector('.menu-btn');
+    const links = document.querySelector('.links');
+    btn?.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Maintain focus on smooth-scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const id = a.getAttribute('href').slice(1);
+        if(!id) return;
+        const el = document.getElementById(id);
+        if(el){
+          e.preventDefault();
+          el.setAttribute('tabindex','-1'); el.focus({preventScroll:true});
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+          setTimeout(()=>el.removeAttribute('tabindex'), 500);
+        }
+      })
+    });
+
+    // YouTube API Integration
+    // Configuration is loaded from youtube-config.js
+
+    // Function to format date
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      const now = new Date();
+      const diffTime = Math.abs(now - date);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      
+      if (diffDays === 1) return 'Yesterday';
+      if (diffDays < 7) return `${diffDays} days ago`;
+      if (diffDays < 30) return `${Math.ceil(diffDays / 7)} weeks ago`;
+      if (diffDays < 365) return `${Math.ceil(diffDays / 30)} months ago`;
+      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    // Function to fetch YouTube video data
+    async function fetchYouTubeVideo(videoId) {
+      try {
+        const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${YOUTUBE_API_KEY}`);
+        const data = await response.json();
+        
+        if (data.items && data.items.length > 0) {
+          const video = data.items[0];
+          const snippet = video.snippet;
+          
+          return {
+            title: snippet.title,
+            publishedAt: snippet.publishedAt,
+            thumbnail: snippet.thumbnails.medium.url,
+            channelTitle: snippet.channelTitle
+          };
+        }
+        return null;
+      } catch (error) {
+        console.error('Error fetching YouTube video:', error);
+        return null;
+      }
+    }
+
+    // Function to update video cards
+    async function updateVideoCards() {
+      const videoGrid = document.getElementById('youtube-videos');
+      if (!videoGrid) return;
+
+      // Clear existing content
+      videoGrid.innerHTML = '';
+
+      // Fetch and display each video
+      for (let i = 0; i < YOUTUBE_VIDEO_IDS.length; i++) {
+        const videoId = YOUTUBE_VIDEO_IDS[i];
+        
+        // Create loading card
+        const card = document.createElement('div');
+        card.className = 'card glass-soft';
+        card.innerHTML = `
+          <div class="video-placeholder" style="height: 200px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #c5cce6;">
+            <i class="bi bi-youtube" style="font-size: 2rem;"></i>
+          </div>
+          <h3 style="margin-top:10px">Loading...</h3>
+          <p class="muted">Fetching video data...</p>
+        `;
+        videoGrid.appendChild(card);
+
+        // Fetch video data
+        const videoData = await fetchYouTubeVideo(videoId);
+        
+        if (videoData) {
+          // Update card with real data
+          card.innerHTML = `
+            <iframe 
+              loading="lazy" 
+              src="https://www.youtube.com/embed/${videoId}" 
+              title="${videoData.title}"
+              style="width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#000">
+            </iframe>
+            <h3 style="margin-top:10px">${videoData.title}</h3>
+            <p class="muted">${formatDate(videoData.publishedAt)} · ${videoData.channelTitle}</p>
+          `;
+        } else {
+          // Show error state
+          card.innerHTML = `
+            <div class="video-placeholder" style="height: 200px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #c5cce6;">
+              <i class="bi bi-exclamation-triangle" style="font-size: 2rem;"></i>
+            </div>
+            <h3 style="margin-top:10px">Video Unavailable</h3>
+            <p class="muted">Could not load video data</p>
+          `;
+        }
+      }
+    }
+
+    // Initialize video cards when page loads
+    if (YOUTUBE_API_KEY !== 'YOUR_API_KEY_HERE') {
+      updateVideoCards();
+    } else {
+      console.warn('Please set your YouTube API key to load video data');
+    }
+  </script>
+
+  <!-- JSON-LD (update fields) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Church",
+    "name":"ETMC -  Ubungo",
+    "url":"https://ETMC -  Ubungo.org",
+    "logo":"https://ETMC -  Ubungo.org/assets/logo.png",
+    "address":{"@type":"PostalAddress","addressCountry":"TZ"},
+    "telephone":"+255700000000"
+  }
+  </script>
+</body>
+</html>

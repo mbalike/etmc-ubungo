@@ -81,9 +81,9 @@
   .breadcrumb span { opacity: .7; }
 
   /* CONTENT SECTIONS */
-  .content-wrap { padding: 60px 0 90px; }
-  .content-section { margin-bottom: 80px; }
-  .content-section:last-child { margin-bottom: 0; }
+  .content-section-wrap { padding: 70px 0; }
+  .content-section-wrap.bg-alt { background: #f2f2f2; }
+  .content-section { /* individual sections now live in their own wrapper */ }
   .section-label {
     font-family: 'Playfair Display', serif; font-style: italic;
     font-size: 20px; font-weight: 400;
@@ -108,7 +108,7 @@
   }
   .section-photo { overflow: hidden; }
   .section-photo img { width: 100%; height: 420px; object-fit: cover; display: block; }
-  .stat-content-wrap { padding: 56px 0 64px; border-bottom: 1px solid #eee; margin-bottom: 60px; }
+  .stat-content-wrap { padding: 56px 0 64px; }
   .stat-content-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center;
   }
@@ -274,7 +274,7 @@
   <section>
     <div class="editorial-intro">
       <div class="container">
-        <span class="section-label">Our Story</span>
+        <span class="section-label">About Us</span>
         <h2 class="editorial-heading">Who We Are</h2>
       </div>
     </div>
@@ -320,65 +320,71 @@
     </div>
   </section>
 
-  <div class="content-wrap">
+  <!-- 2 · CORE DISTINCTIVES -->
+  <section class="content-section-wrap bg-alt">
     <div class="container">
-
-    <!-- 2 · CORE DISTINCTIVES -->
-    <div class="content-section">
-      <p class="section-label">Our Values</p>
-      <h2 class="section-heading">Core Distinctives</h2>
-      <div class="three-col">
-        <div class="content-card">
-          <span class="card-badge">Bible-Centered</span>
-          <h3>The Infallible Word</h3>
-          <p>Every chapter, verse, and line is the Absolute — our final authority for faith, life, and doctrine.</p>
-        </div>
-        <div class="content-card">
-          <span class="card-badge">Apostolic</span>
-          <h3>Full Gospel &amp; Order</h3>
-          <p>We teach the full apostolic blessing and maintain sound church order, discipline, and love.</p>
-        </div>
-        <div class="content-card">
-          <span class="card-badge">Five-Fold</span>
-          <h3>Ephesians 4:11&ndash;16</h3>
-          <p>We believe the five-fold ministry is God's ordained way to perfect and edify the body of Christ.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3 · W. M. BRANHAM -->
-    <div class="content-section">
-      <p class="section-label">End-Time Message</p>
-      <h2 class="section-heading">Who is W. M. Branham?</h2>
-      <div class="two-col flip">
-        <div class="content-card">
-          <p>We recognize the end-time message promised in Malachi&nbsp;4:5&ndash;6 and Revelation&nbsp;10:7. We believe God sent the spirit of Elijah in our day — an end-time messenger to restore apostolic faith and reveal the mysteries of the Word, turning the hearts of the children back to the fathers.</p>
-          <a class="cta-link" href="about/william-branham.html">Read the full article <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="img-card">
-          <img src="https://branham.org/azure/branham/d3ca5794-0e31-412c-83a1-379186434aa7.jpg?w=1000&h=460&mode=stretch&scale=both" alt="William Marrion Branham" loading="lazy">
+      <div class="content-section">
+        <p class="section-label">Our Values</p>
+        <h2 class="section-heading">Core Distinctives</h2>
+        <div class="three-col">
+          <div class="content-card">
+            <span class="card-badge">Bible-Centered</span>
+            <h3>The Infallible Word</h3>
+            <p>Every chapter, verse, and line is the Absolute — our final authority for faith, life, and doctrine.</p>
+          </div>
+          <div class="content-card">
+            <span class="card-badge">Apostolic</span>
+            <h3>Full Gospel &amp; Order</h3>
+            <p>We teach the full apostolic blessing and maintain sound church order, discipline, and love.</p>
+          </div>
+          <div class="content-card">
+            <span class="card-badge">Five-Fold</span>
+            <h3>Ephesians 4:11&ndash;16</h3>
+            <p>We believe the five-fold ministry is God's ordained way to perfect and edify the body of Christ.</p>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- 4 · HISTORY -->
-    <div class="content-section">
-      <p class="section-label">Our Journey</p>
-      <h2 class="section-heading">History <span style="font-size:16px;font-weight:600;color:var(--text-muted);">(Coming Soon)</span></h2>
-      <div class="two-col">
-        <div class="content-card">
-          <h3>A Journey of Grace</h3>
-          <p>From humble beginnings to a thriving fellowship in Ubungo, our story is one of faith, prayer, and service. We&rsquo;ll share key moments, leaders, and the Lord&rsquo;s dealings with us in due time.</p>
-          <a class="cta-link" href="#">View timeline <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="img-card">
-          <div class="img-card-placeholder" aria-label="Church history photo coming soon"><i class="fas fa-landmark"></i></div>
+  <!-- 3 · W. M. BRANHAM -->
+  <section class="content-section-wrap">
+    <div class="container">
+      <div class="content-section">
+        <p class="section-label">End-Time Message</p>
+        <h2 class="section-heading">Who is W. M. Branham?</h2>
+        <div class="two-col flip">
+          <div class="content-card">
+            <p>We recognize the end-time message promised in Malachi&nbsp;4:5&ndash;6 and Revelation&nbsp;10:7. We believe God sent the spirit of Elijah in our day — an end-time messenger to restore apostolic faith and reveal the mysteries of the Word, turning the hearts of the children back to the fathers.</p>
+            <a class="cta-link" href="about/william-branham.html">Read the full article <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="img-card">
+            <img src="https://branham.org/azure/branham/d3ca5794-0e31-412c-83a1-379186434aa7.jpg?w=1000&h=460&mode=stretch&scale=both" alt="William Marrion Branham" loading="lazy">
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    </div><!-- /.container -->
-  </div><!-- /.content-wrap -->
+  <!-- 4 · HISTORY -->
+  <section class="content-section-wrap bg-alt">
+    <div class="container">
+      <div class="content-section">
+        <p class="section-label">Our Journey</p>
+        <h2 class="section-heading">History <span style="font-size:16px;font-weight:600;color:var(--text-muted);">(Coming Soon)</span></h2>
+        <div class="two-col">
+          <div class="content-card">
+            <h3>A Journey of Grace</h3>
+            <p>From humble beginnings to a thriving fellowship in Ubungo, our story is one of faith, prayer, and service. We&rsquo;ll share key moments, leaders, and the Lord&rsquo;s dealings with us in due time.</p>
+            <a class="cta-link" href="#">View timeline <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="img-card">
+            <div class="img-card-placeholder" aria-label="Church history photo coming soon"><i class="fas fa-landmark"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <!-- FOOTER -->

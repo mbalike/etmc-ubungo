@@ -1,655 +1,607 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ETMC -  Ubungo  — Welcome</title>
-  <meta name="description" content="A Bible-believing fellowship proclaiming the Gospel of Jesus Christ." />
-  <link rel="icon" href="assets/logo.png" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <style>
-    :root{
-      --brand:#2a4c7f;         /* primary */
-      --ink:#10131a;           /* body text */
-      --muted:#6b7280;
-      --bg:#000000;            /* page background, dark to support glass */
-      --ring:rgba(42,76,127,.35);
-      --glass-bg:rgba(255,255,255,.12);
-      --glass-brd:rgba(255,255,255,.22);
-      --glass-shadow:0 10px 30px rgba(0,0,0,.35);
-      --radius:20px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0; font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
-      color:#eef2ff; background:radial-gradient(1200px 600px at 20% -10%, #1a2440 0, transparent 60%), var(--bg);
-      line-height:1.6;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ubungo End Time Message Church</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@1,400&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --orange: #e8541e;
+    --dark: #111;
+    --teal: #2ea89a;
+    --blue: #3a8fbf;
+    --pink: #c93f8e;
+    --navy: #1e3a5f;
+    --light-bg: #f2f2f2;
+    --text-muted: #888;
+  }
+  body { font-family: 'Lato', sans-serif; color: #333; overflow-x: hidden; }
+  a { text-decoration: none; color: inherit; }
 
-    /* ======= Glass helpers ======= */
-    .glass{
-      background:var(--glass-bg);
-      -webkit-backdrop-filter:saturate(180%) blur(14px);
-      backdrop-filter:saturate(180%) blur(14px);
-      border:1px solid var(--glass-brd);
-      box-shadow:var(--glass-shadow);
-    }
-    .glass-soft{
-      background:rgba(255,255,255,.08);
-      -webkit-backdrop-filter:saturate(160%) blur(10px);
-      backdrop-filter:saturate(160%) blur(10px);
-      border:1px solid rgba(255,255,255,.16);
-      box-shadow:0 8px 24px rgba(0,0,0,.25);
-    }
+  /* ===== CONTAINER — consistent side margins ===== */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
 
-    /* ======= Pill Navigation (iOS-like) ======= */
-    .nav-wrap{
-      position:fixed; top:16px; z-index:60; display:flex; justify-content:center; padding:0 16px; width:100%;
-    }
-    .nav{
-      display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:999px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px; text-decoration:none; color:#eef2ff; font-weight:800;
-      padding:6px 10px; border-radius:999px;
-    }
-    .brand img{width:28px; height:28px; object-fit:contain}
-    .links{display:flex; gap:4px; flex-wrap:wrap}
-    .links a{
-      color:#f0f4ff; text-decoration:none; font-weight:700; font-size:.95rem;
-      padding:8px 12px; border-radius:999px; opacity:.95;
-    }
-    .links a:hover, .links a[aria-current="page"]{background:rgba(255,255,255,.14)}
-    .menu-btn{display:none; margin-left:8px; border:0; background:transparent; color:#fff; font-size:1.1rem; padding:8px 10px; border-radius:12px}
-    .menu-btn:focus{outline:3px solid var(--ring)}
+  /* ===== NAVBAR ===== */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 60px;
+    z-index: 1000;
+    transition: background .3s, box-shadow .3s, padding .3s;
+  }
+  nav.scrolled {
+    background: #fff;
+    box-shadow: 0 2px 20px rgba(0,0,0,.1);
+    padding: 14px 60px;
+  }
+  nav.scrolled .logo-text { color: var(--dark); }
+  nav.scrolled .logo-sub  { color: #777; }
+  nav.scrolled ul li a    { color: #333; }
+  nav.scrolled .btn-live-prayer { border-color: var(--dark); color: var(--dark); }
+  nav.scrolled .btn-live-prayer:hover { background: var(--dark); color: #fff; }
 
-    /* ======= Hero with blurred local video ======= */
-    .hero{
-      position:relative; min-height:100vh; display:grid; place-items:center; overflow:hidden;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .hero-bg{
-      position:absolute; inset:0; overflow:hidden; z-index:-2;
-    }
-    .hero-bg video{
-      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-      filter:blur(14px) saturate(120%) brightness(70%);
-      transform:scale(1.08); /* bleed edges after blur */
-    }
-    .hero-overlay{
-      position:absolute; inset:0; z-index:-1;
-      background:
-        radial-gradient(1200px 600px at 10% -10%, rgba(58,88,168,.35), transparent 60%),
-        linear-gradient(to bottom, rgba(7,10,20,.55), rgba(7,10,20,.55));
-    }
-    .hero-inner{
-      max-width:1200px; width:100%; padding:120px 16px 64px; display:grid; grid-template-columns:1.25fr 1fr; gap:24px;
-    }
-    .kicker{color:#c7d6ff; text-transform:uppercase; letter-spacing:.12em; font-weight:800; font-size:.8rem}
-    h1{margin:.35rem 0 1rem; font-size:clamp(1.9rem, 3.8vw, 3.2rem); line-height:1.15}
-    .lead{color:#e6ebff; max-width:65ch}
-    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px}
-    .btn{
-      appearance:none; border:0; border-radius:999px; padding:12px 18px; font-weight:800; cursor:pointer;
-      text-decoration:none; display:inline-flex; align-items:center; gap:10px;
-    }
-    .btn.primary{background:#3b5db1; color:#fff; box-shadow:0 10px 28px rgba(59,93,177,.45)}
-    .btn.ghost{background:rgba(255,255,255,.14); color:#fff; border:1px solid rgba(255,255,255,.22)}
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-img { width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; }
+  .logo-text { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 22px; line-height: 1; transition: color .3s; }
+  .logo-text sup { font-size: 13px; color: var(--orange); }
+  .logo-sub { color: #aaa; font-size: 10px; letter-spacing: 1.5px; transition: color .3s; }
 
-    .hero-card{
-      border-radius:var(--radius); padding:20px;
-    }
-    .meta{display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:.98rem; color:#d6def6}
-    .meta div{padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14)}
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul li a { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.5px; transition: color .2s; }
+  nav ul li a:hover { color: var(--orange); }
 
-    /* ======= Sections & Cards (glass) ======= */
-  section{max-width:1200px; margin:0 auto; padding:56px 16px}
-  .section{min-height:70vh}
-  #board.section{min-height:50vh}
-    #board{min-height:70vh}
-    .section-title{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:24px}
-    .section-title h2{margin:0; font-size:clamp(1.3rem, 2.6vw, 2rem)}
-    .section-title a{font-weight:800; color:#d2deff; text-decoration:none}
+  .btn-live-prayer {
+    border: 2px solid #fff; color: #fff; padding: 10px 22px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 1px;
+    transition: all .2s; text-transform: uppercase; white-space: nowrap;
+  }
+  .btn-live-prayer:hover { background: #fff; color: var(--dark); }
 
-    .grid{display:grid; gap:16px}
-    .cols-3{grid-template-columns:repeat(3, 1fr)}
-    .cols-2{grid-template-columns:repeat(2, 1fr)}
-    .cols-4{grid-template-columns:repeat(4, 1fr)}
+  /* ===== HERO ===== */
+  .hero {
+    position: relative; min-height: 100vh; background: var(--dark);
+    display: flex; align-items: center; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    z-index: 1;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .hero-slide {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    opacity: 0; transition: opacity 1.5s ease-in-out;
+    will-change: opacity;
+  }
+  .hero-slide.active { opacity: 1; }
+  .hero-slide-1 { background-image: url('assets/bg1.jpg'); }
+  .hero-slide-2 { background-image: url('assets/bg2.jpg'); }
+  /* left-side slider arrows */
+  .hero-side-arrows {
+    position: absolute; left: 24px; top: 50%; transform: translateY(-50%);
+    z-index: 10; display: flex; gap: 10px;
+  }
+  .slider-btn {
+    width: 36px; height: 36px; border: 1px solid #555; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 13px; transition: all .2s;
+  }
+  .slider-btn:hover { background: var(--orange); border-color: var(--orange); }
 
-    .card{
-      border-radius:18px; padding:16px;
-      color:#eaf0ff;
-    }
-    .card h3{margin:6px 0 6px; font-size:1.06rem}
-    .muted{color:#c5cce6}
-    .badge{display:inline-block; font-size:.75rem; padding:4px 8px; border-radius:999px; background:rgba(255,255,255,.15); color:#fff; font-weight:800; border:1px solid rgba(255,255,255,.22)}
+  .hero-content {
+    position: relative; z-index: 2; width: 100%;
+    max-width: 1200px; margin: 0 auto;
+    padding: 160px 60px 100px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+  .hero-left { max-width: 760px; }
+  .hero-title {
+    font-family: 'Montserrat', sans-serif; font-weight: 900;
+    font-size: clamp(38px, 5.5vw, 76px); color: #fff; line-height: 1.05;
+  }
+  .hero-sub { color: #ddd; font-size: 15px; line-height: 1.7; margin-top: 24px; max-width: 420px; }
+  .hero-right { flex-shrink: 0; padding-left: 30px; }
+  .btn-more-details {
+    background: var(--orange); color: #fff; padding: 18px 30px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; display: inline-block;
+    transition: opacity .2s; white-space: nowrap;
+  }
+  .btn-more-details:hover { opacity: .85; }
 
-    /* Publications videos */
-    .video-grid{display:grid; gap:16px; grid-template-columns:repeat(3, 1fr)}
-    .video-grid iframe{width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#000}
+  /* ===== MISSION SECTION ===== */
+  .mission { background: #fff; padding: 90px 0; }
+  .mission .container { display: flex; align-items: center; gap: 80px; }
+  .mission-left { flex: 1; }
+  .section-label {
+    font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px; font-weight: 400;
+    color: var(--orange); margin-bottom: 16px; display: block; line-height: 1.2;
+  }
+  .section-title {
+    font-family: 'PT Serif', serif; font-weight: 700;
+    font-size: clamp(24px, 2.8vw, 42px); color: #000; line-height: 1.15; margin-bottom: 16px;
+  }
+  .section-subtitle { font-size: 15px; color: #555; margin-bottom: 28px; line-height: 1.65; }
+  .mission-quote {
+    border-left: 3px solid #ccc; padding-left: 20px;
+    color: var(--text-muted); font-size: 14px; line-height: 1.85; margin-bottom: 36px;
+  }
+  .btn-about {
+    background: var(--orange); color: #fff; padding: 15px 28px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; display: inline-block; transition: opacity .2s;
+  }
+  .btn-about:hover { opacity: .85; }
 
-    /* Prayer banner */
-    .banner{
-      border-radius:22px; padding:22px; display:flex; align-items:center; justify-content:space-between; gap:16px;
-    }
-    .banner p{margin:0; max-width:75ch}
+  .mission-right { flex: 1; }
+  /* The image wrapper is RELATIVE so the overlay can be ABSOLUTE inside it */
+  .mission-img-wrap { position: relative; display: block; width: 100%; }
+  .mission-img { width: 100%; height: 400px; object-fit: cover; display: block; }
+  .mission-overlay {
+    position: absolute;
+    bottom: 0; left: 0;           /* sits at bottom-left of image */
+    background: rgba(0,0,0,.88);
+    color: #fff;
+    padding: 26px 28px;
+    width: 55%;
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 20px; line-height: 1.35;
+  }
 
-    /* Footer */
-    footer {
-      margin-top:40px;
-      background:rgba(255,255,255,.06);
-      border-top:1px solid rgba(255,255,255,.12);
-    }
-    footer .wrap {
-      max-width:1200px;
-      margin:auto;
-      padding:48px 32px;
-      display:grid;
-      gap:0;
-      grid-template-columns:1fr 1fr 1fr;
-      justify-items:center;
-      align-items:center;
-      text-align:center;
-      column-gap:48px;
-    }
-    footer .wrap > div {
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      padding:0 24px;
-    }
-    .social-icons {
-      display:flex;
-      gap:12px;
-      margin-top:15px;
-      justify-content:center;
-    }
-    footer a {
-      color:#d7e4ff;
-      text-decoration:none;
-      text-align:center;
-      display:inline-flex;
-      justify-content:center;
-      align-items:center;
-    }
-    .foot-note {
-      border-top:1px solid rgba(255,255,255,.12);
-      text-align:center;
-      padding:14px;
-      font-size:.9rem;
-      color:#c8d4f7;
-    }
-    
-    /* Social media icons */
-    .social-icons a:hover{
-      background:rgba(255,255,255,.2) !important;
-      transform:translateY(-2px);
-    }
-    .social-icons a{
-      transition:all 0.3s ease;
-    }
+  /* ===== QUICK LINKS GRID ===== */
+  .quick-links-section { background: #f2f2f2; }
+  .quick-links { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .ql-item { padding: 40px 36px; display: flex; flex-direction: column; gap: 14px; }
+  .ql-item:nth-child(1) { background: #2d2d2d; }
+  .ql-item:nth-child(2) { background: var(--teal); }
+  .ql-item:nth-child(3) { background: var(--blue); }
+  .ql-icon { font-size: 30px; color: #fff; }
+  .ql-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; color: #fff; line-height: 1.25; }
+  .ql-subtitle { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.85); }
+  .ql-desc { font-size: 13px; color: rgba(255,255,255,.85); line-height: 1.7; }
 
-    /* Responsive */
-    @media (max-width: 980px){
-      .hero-inner{grid-template-columns:1fr}
-      .video-grid{grid-template-columns:1fr 1fr}
-      .cols-4{grid-template-columns:repeat(2, 1fr)}
-      footer .wrap{
-        grid-template-columns:1fr;
-        padding:32px 8px;
-      }
-      footer .wrap > div {
-        margin-bottom:18px;
-        padding:0 8px;
-      }
-    }
-    @media (max-width: 760px){
-      .links{display:none}
-      .menu-btn{display:block}
-      .links.open{
-        display:flex; width:100%; flex-direction:column; padding:8px; gap:6px; margin-top:8px;
-      }
-      .video-grid{grid-template-columns:1fr}
-      .cols-3, .cols-2{grid-template-columns:1fr}
-      .banner{flex-direction:column; align-items:flex-start}
-    }
+  /* ===== MINISTRIES SECTION ===== */
+  .ministries { padding: 90px 0; background: #fff; text-align: center; }
+  .script-label { font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-muted); font-size: 18px; margin-bottom: 10px; }
+  .ministries-title { font-family: 'PT Serif', serif; font-weight: 700; font-size: clamp(24px, 2.8vw, 40px); color: #000; margin-bottom: 60px; line-height: 1.2; }
+  .ministries-inner { display: flex; align-items: center; gap: 70px; text-align: left; }
+  .min-text { flex: 1; }
+  .min-text p { font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 20px; }
+  .btn-learn {
+    background: var(--orange); color: #fff; padding: 15px 28px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; display: inline-block; margin-right: 14px; transition: opacity .2s;
+  }
+  .btn-learn:hover { opacity: .85; }
+  .btn-pastors {
+    border: 2px solid var(--orange); color: var(--orange); padding: 13px 26px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; display: inline-block; transition: all .2s;
+  }
+  .btn-pastors:hover { background: var(--orange); color: #fff; }
+  .min-img { flex: 1; }
+  .min-img img { width: 100%; height: 360px; object-fit: cover; }
 
-    /* A11y focus */
-    a:focus, button:focus{outline:3px solid var(--ring); outline-offset:2px; border-radius:10px}
+  /* ===== FEATURED STORIES ===== */
+  .stories { padding: 90px 0; background: #f2f2f2; }
+  .stories-title { font-family: 'PT Serif', serif; font-weight: 700; font-size: clamp(24px, 2.8vw, 40px); color: #124a5f; text-align: center; margin-bottom: 10px; }
+  .stories-icon { text-align: center; color: var(--orange); font-size: 22px; margin-bottom: 50px; }
+  .stories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .story-card { display: block; background: #fff; overflow: hidden; transition: transform .3s, box-shadow .3s; border: 1px solid #eee; }
+  .story-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,.1); }
+  .story-thumb { position: relative; overflow: hidden; }
+  .story-thumb img { width: 100%; height: 210px; object-fit: cover; display: block; transition: transform .4s ease; }
+  .story-card:hover .story-thumb img { transform: scale(1.04); }
+  .story-badge {
+    position: absolute; top: 12px; left: 12px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 10px;
+    letter-spacing: 1px; text-transform: uppercase; padding: 5px 10px; color: #fff;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .story-badge-photo { background: rgba(30,58,95,.85); }
+  .story-badge-video { background: rgba(200,0,0,.85); }
+  .story-play-btn {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,.25); color: #fff; font-size: 46px;
+    opacity: 0; transition: opacity .3s;
+  }
+  .story-card-video .story-play-btn { opacity: 1; }
+  .story-card:hover .story-play-btn { opacity: 1; background: rgba(0,0,0,.4); }
+  .story-body { padding: 20px 22px; }
+  .story-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 10px; line-height: 1.4; }
+  .story-meta { font-size: 12px; color: #777; }
 
-    /* Motion & blur safety */
-    @media (prefers-reduced-motion: reduce){
-      .hero-bg video{animation:none}
-      .btn{transition:none}
-    }
-  </style>
+  /* ===== NEWSLETTER BANNER ===== */
+  .newsletter-banner {
+    position: relative; overflow: hidden;
+    background: url('https://images.unsplash.com/photo-1544928147-79a2dbc1f389?w=1600&q=80') center/cover no-repeat;
+    min-height: 200px; display: flex; align-items: center; justify-content: center;
+  }
+  .newsletter-banner::before { content: ''; position: absolute; inset: 0; background: rgba(10,10,10,.65); }
+  .newsletter-banner-content { position: relative; z-index: 1; text-align: center; padding: 40px 20px; }
+  .nl-icon { display: inline-block; position: relative; margin-bottom: 14px; }
+  .nl-icon .fa-envelope { color: #4caf50; font-size: 44px; }
+  .nl-icon .dot { position: absolute; top: -4px; right: -6px; width: 12px; height: 12px; background: red; border-radius: 50%; }
+  .nl-title { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.5; margin-top: 10px; }
+
+  /* ===== SOCIAL SECTION ===== */
+  .social-section { padding: 40px 0; background: #fff; display: flex; justify-content: center; gap: 10px; }
+  .soc-btn { width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 22px; color: #fff; transition: opacity .2s; cursor: pointer; }
+  .soc-btn:hover { opacity: .85; }
+  .soc-fb { background: #3b5998; }
+  .soc-tw { background: #1da1f2; }
+  .soc-gp { background: #dd4b39; }
+  .soc-li { background: #0077b5; }
+  .soc-pi { background: #bd081c; }
+
+  /* ===== FOOTER ===== */
+  footer { background: #111; color: #ccc; padding: 70px 0 30px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
+  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+  .footer-logo-img { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
+  .footer-logo-text { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; }
+  .footer-desc { font-size: 14px; line-height: 1.8; color: #888; margin-bottom: 24px; }
+  .footer-social { display: flex; gap: 10px; }
+  .footer-soc-btn { width: 34px; height: 34px; border: 1px solid #333; color: #888; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all .2s; }
+  .footer-soc-btn:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
+  .footer-col-title { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 2px solid var(--orange); display: inline-block; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a { color: #888; font-size: 14px; transition: color .2s; display: flex; align-items: center; gap: 8px; }
+  .footer-col ul li a i { font-size: 10px; color: var(--orange); }
+  .footer-col ul li a:hover { color: var(--orange); }
+  .footer-service-time { font-size: 14px; color: #888; line-height: 2; }
+  .footer-service-time span { color: var(--orange); font-weight: 600; }
+  .footer-bottom { border-top: 1px solid #222; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 13px; color: #555; }
+  .footer-copy a { color: var(--orange); }
+  .footer-bottom-links { display: flex; gap: 20px; }
+  .footer-bottom-links a { font-size: 13px; color: #555; transition: color .2s; }
+  .footer-bottom-links a:hover { color: var(--orange); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .container { padding-left: 32px; padding-right: 32px; }
+    nav, nav.scrolled { padding: 18px 32px; }
+    .hero-content { padding: 140px 32px 80px; }
+  }
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .container { padding-left: 20px; padding-right: 20px; }
+    nav, nav.scrolled { padding: 16px 20px; }
+    .hero-content { padding: 120px 20px 60px; flex-direction: column; align-items: flex-start; gap: 30px; }
+    .hero-right { padding-left: 0; }
+    .mission .container { flex-direction: column; gap: 40px; }
+    .mission-overlay { width: 70%; font-size: 16px; padding: 16px 18px; }
+    .quick-links { grid-template-columns: repeat(2, 1fr); }
+    .ministries-inner { flex-direction: column; }
+    .stories-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+    .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- Glass Pill NAV -->
-  <div class="nav-wrap" role="banner">
-    <div class="nav glass" role="navigation" aria-label="Primary">
-      <a class="brand" href="#home" aria-label="Home">
-        <img src="assets/logo.png" alt="Church Logo" />
-        <span>ETMC-Ubungo</span>
-      </a>
-
-      <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" title="Toggle navigation">☰</button>
-
-      <nav id="nav-links" class="links">
-        <a href="index.html" aria-current="page">Home</a>
-        <a href="beliefs.html">What We Believe</a>
-        <a href="about.html">About</a>
-        <a href="board.html">Church Board</a>        
-        <a href="publications.html">Publications</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+<!-- NAVBAR -->
+<nav id="mainNav">
+  <div class="logo">
+    <img class="logo-img" src="assets/logo.png" alt="ETMC-Ubungo logo">
+    <div>
+      <div class="logo-text">ETMC-Ubungo</div>
+      <div class="logo-sub">Ubungo End Time Message Church</div>
     </div>
   </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="beliefs.html">Beliefs</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="board.html">Board</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="about.html" class="btn-live-prayer">OUR CHURCH</a>
+</nav>
 
-  <!-- HERO with blurred local video -->
-  <header id="home" class="hero">
-    <div class="hero-bg" aria-hidden="true">
-      <!-- Local video (muted+autoplay+loop for hero) -->
-      <video
-        preload="auto"
-        autoplay
-        muted
-        loop
-        playsinline
-        poster="assets/hero.jpg"
-      >
-        <source src="assets/hero.mp4" type="video/mp4" />
-        <!-- Optional WebM if you have it
-        <source src="assets/hero.webm" type="video/webm" /> -->
-      </video>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-slide hero-slide-1"></div>
+    <div class="hero-slide hero-slide-2"></div>
+  </div>
+  <div class="hero-side-arrows">
+    <div class="slider-btn"><i class="fas fa-chevron-left"></i></div>
+    <div class="slider-btn"><i class="fas fa-chevron-right"></i></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <h1 class="hero-title">The End-Time Message</h1>
+      <p class="hero-sub">Proclaiming the fulfillment of God’s promise in this last day, declaring the full Gospel of Jesus Christ, and restoring the apostolic faith once delivered to the saints.</p>
     </div>
-    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-right">
+      <a href="about.html" class="btn-more-details">OUR CHURCH</a>
+    </div>
+  </div>
+</section>
 
-    <div class="hero-inner">
-      <div>
-        <div class="kicker">Welcome</div>
-        <h1>The End-Time Message</h1>
-<p class="lead">
-  Proclaiming the fulfillment of God’s promise in this last day, declaring the full Gospel of Jesus Christ, and restoring the apostolic faith once delivered to the saints.
-</p>
-        <div class="cta">
-          <a class="btn primary" href="#beliefs">Our Beliefs</a>
-          <a class="btn ghost glass-soft" href="#prayer">Our Church</a>
+<!-- MISSION SECTION -->
+<section class="mission">
+  <div class="container">
+    <div class="mission-left">
+      <p class="section-label">About Us</p>
+      <h2 class="section-title">Rooted in Scripture, led by the Spirit</h2>
+      <p class="section-subtitle">Rooted in Scripture and led by the Spirit, we are a local body pursuing Christlike character, worship, discipleship, and service. We cherish apostolic doctrine and church order in love and humility.</p>
+      <div class="mission-quote">
+        “That in all things He might have the preeminence.” (Col 1:18)
+      </div>
+      <a href="about.html" class="btn-about">OUR CHURCH</a>
+    </div>
+    <div class="mission-right">
+      <div class="mission-img-wrap">
+        <img class="mission-img" src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?w=800&q=80" alt="Priest holding rosary and bible">
+        <div class="mission-overlay">“Behold, I will send you Elijah the prophet” (Mal 4:5)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK LINKS GRID -->
+<section class="quick-links-section">
+  <div class="container">
+    <div class="quick-links">
+  <div class="ql-item">
+    <div class="ql-icon"><i class="fas fa-bible"></i></div>
+    <div class="ql-title">The Bible</div>
+    <div class="ql-subtitle">The Infallible Word of God</div>
+    <div class="ql-desc">Every chapter, verse, and line is the Absolute—our final authority for faith and life.</div>
+  </div>
+  <div class="ql-item">
+    <div class="ql-icon"><i class="fas fa-dove"></i></div>
+    <div class="ql-title">The Godhead</div>
+    <div class="ql-subtitle">Jehovah of the Old, Jesus of the New</div>
+    <div class="ql-desc">We confess one God manifested in the Lord Jesus Christ (Isa 9:6; 1 Tim 3:16; Heb 13:8).</div>
+  </div>
+  <div class="ql-item">
+    <div class="ql-icon"><i class="fas fa-scroll"></i></div>
+    <div class="ql-title">Restoration</div>
+    <div class="ql-subtitle">Malachi 4 &amp; Revelation 10</div>
+    <div class="ql-desc">We receive the end-time message restoring apostolic faith and opening the mysteries of God.</div>
+  </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINISTRIES SECTION -->
+<section class="ministries">
+  <div class="container">
+    <p class="script-label">The End-Time Messenger</p>
+    <h2 class="ministries-title">William Marrion Branham </h2>
+    <div class="ministries-inner">
+      <div class="min-text">
+        <p>We believe that God, in fulfilment of Malachi&nbsp;4:5&ndash;6 and Revelation&nbsp;10:7, sent a prophet in our day &mdash; William Marrion Branham &mdash; whose vindicated ministry turned the hearts of this generation back to the apostolic fathers and opened the hidden mysteries of the Word of God.</p>
+        <p>Born in 1909 in Kentucky, Bro. Branham&rsquo;s ministry was accompanied by extraordinary supernatural signs: healing the sick, discerning the thoughts of hearts, and raising the dead &mdash; all pointing to the Pillar of Fire that commissioned him. His message is not a denomination; it is the Word restored.</p>
+        <a href="about/william-branham.html" class="btn-learn">LEARN MORE</a>
+        <a href="https://branham.org" target="_blank" rel="noopener" class="btn-pastors">VGR WEBSITE</a>
+      </div>
+      <div class="min-img">
+        <img src="https://branham.org/azure/branham/d3ca5794-0e31-412c-83a1-379186434aa7.jpg?w=800&h=460&mode=stretch&scale=both" alt="William Marrion Branham">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED STORIES -->
+<section class="stories">
+  <div class="container">
+    <p class="script-label" style="text-align:center">Photos &amp; Videos</p>
+    <h2 class="stories-title">From Our Publications</h2>
+    <div class="stories-icon"><i class="fas fa-cross"></i></div>
+    <div class="stories-grid">
+
+      <!-- Photo album card 1 -->
+      <a class="story-card" href="publications.html">
+        <div class="story-thumb">
+          <img src="assets/pub.jpeg" alt="Church Photo Album">
+          <span class="story-badge story-badge-photo"><i class="fas fa-images"></i> Photos</span>
         </div>
-      </div>
-
-      <aside class="hero-card glass" aria-label="Service times and location">
-        <h3 style="margin:0 0 10px">Join Us</h3>
-        <div class="meta">
-          <div><strong>Sundey Service</strong><br/>Sun · 9:00 AM</div>
-          <div><strong>Prayers Service</strong><br/>Sat · 4:00 PM</div>
-          <div><strong>Location</strong><br/><a href="https://maps.app.goo.gl/AmmTMawztCnETcYY9" target="_blank" rel="noopener" style="color:#fff; text-decoration:none">Ubungo, Dar es Salaam</a></div>
-          <div><strong>Contact</strong><br/><a style="color:#fff" href="tel:+255742398600">+255 742 398 600</a></div>
+        <div class="story-body">
+          <div class="story-title">Church Events Photo Gallery</div>
+          <div class="story-meta">Publications &rarr; Photo Albums</div>
         </div>
-<p class="muted" style="margin-top:10px">
-  “Behold, I will send you Elijah the prophet before the coming of the great and dreadful day of the Lord.” — Malachi 4:5
-</p>      </aside>
-    </div>
-  </header>
+      </a>
 
-  <!-- WHAT WE BELIEVE -->
-  <section id="beliefs" class="section" aria-labelledby="beliefs-title">
-    <div class="section-title">
-      <h2 id="beliefs-title">What We Believe</h2>
-      <a href="beliefs.html" title="Read all beliefs">Read full statement →</a>
-    </div>
-
-    <div class="grid cols-3">
-      <article class="card glass">
-        <span class="badge">The Bible</span>
-        <h3>The Infallible Word of God</h3>
-        <p class="muted">Every chapter, verse, and line is the Absolute—our final authority for faith and life.</p>
-      </article>
-
-      <article class="card glass">
-        <span class="badge">The Godhead</span>
-        <h3>Jehovah of the Old, Jesus of the New</h3>
-        <p class="muted">We confess one God manifested in the Lord Jesus Christ (Isa 9:6; 1 Tim 3:16; Heb 13:8).</p>
-      </article>
-
-      <article class="card glass">
-        <span class="badge">Restoration</span>
-        <h3>Malachi 4 & Revelation 10</h3>
-        <p class="muted">We receive the end-time message restoring apostolic faith and opening the mysteries of God.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="section" aria-labelledby="about-title">
-    <div class="section-title">
-      <h2 id="about-title">About Us</h2>
-      <a href="about.html">Learn more →</a>
-    </div>
-
-    <div class="grid cols-2">
-      <div class="card glass-soft">
-        <h3>Our Story & Mission</h3>
-        <p class="muted">
-          Rooted in Scripture and led by the Spirit, we are a local body pursuing Christlike character, worship,
-          discipleship, and service. We cherish apostolic doctrine and church order in love and humility.
-        </p>
-        <p class="muted">“That in all things He might have the preeminence.” (Col 1:18)</p>
-      </div>
-      <div class="card glass-soft">
-        <h3>Who is W. M. Branham?</h3>
-        <p class="muted">
-          We recognize the end-time message promised in Malachi 4:5–6 and Revelation 10:7. Read the overview and
-          Scripture foundations we hold concerning the ministry of William Marrion Branham.
-        </p>
-        <p><a style="color:#d2deff" href="about/william-branham.html">Read the full article →</a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- BOARD -->
-  <section id="board" class="section" aria-labelledby="board-title">
-    <div class="section-title">
-      <h2 id="board-title">Church Board</h2>
-      <a href="board.html">Meet the team →</a>
-    </div>
-
-    <div class="grid cols-4">
-      <article class="card glass-soft">
-        <img src="assets/board/pastor.jpg" alt="Pastor photo" style="width:100%; height:200px; object-fit:cover; border-radius:12px" loading="lazy" />
-        <h3>Firstname Lastname</h3>
-        <p class="muted">Pastor</p>
-      </article>
-      <article class="card glass-soft">
-        <img src="assets/board/elder1.jpg" alt="Elder photo" style="width:100%; height:200px; object-fit:cover; border-radius:12px" loading="lazy" />
-        <h3>Firstname Lastname</h3>
-        <p class="muted">Elder</p>
-      </article>
-      <article class="card glass-soft">
-        <img src="assets/board/deacon1.jpg" alt="Deacon photo" style="width:100%; height:200px; object-fit:cover; border-radius:12px" loading="lazy" />
-        <h3>Firstname Lastname</h3>
-        <p class="muted">Deacon</p>
-      </article>
-      <article class="card glass-soft">
-        <img src="assets/board/secretary.jpg" alt="Secretary photo" style="width:100%; height:200px; object-fit:cover; border-radius:12px" loading="lazy" />
-        <h3>Firstname Lastname</h3>
-        <p class="muted">Secretary</p>
-      </article>
-    </div>
-  </section>
-
-  
-  <!-- PRAYER REQUEST CTA -->
-  <!-- <section id="prayer" class="section" aria-labelledby="prayer-title">
-    <div class="section-title">
-      <h2 id="prayer-title">Prayer Request</h2>
-    </div>
-    <div class="banner glass">
-      <p><strong>Need prayer?</strong> Share your request and our ministry team will stand with you in faith.</p>
-      <a class="btn primary" href="prayer-request.html">Send a Request</a>
-    </div>
-  </section> -->
-
-  <!-- PUBLICATIONS -->
-  <section id="publications" class="section" aria-labelledby="pub-title">
-    <div class="section-title">
-      <h2 id="pub-title">Publications</h2>
-      <a href="publications.html">View all →</a>
-    </div>
-
-    <div class="video-grid" id="youtube-videos">
-      <!-- Videos will be loaded dynamically from YouTube API -->
-      <div class="card glass-soft">
-        <div class="video-placeholder" style="height: 200px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #c5cce6;">
-          <i class="bi bi-youtube" style="font-size: 2rem;"></i>
+      <!-- Photo album card 2 -->
+      <a class="story-card" href="publications.html">
+        <div class="story-thumb">
+          <img src="assets/bg1.jpg" alt="Worship Service">
+          <span class="story-badge story-badge-photo"><i class="fas fa-images"></i> Photos</span>
         </div>
-        <h3 style="margin-top:10px">Loading...</h3>
-        <p class="muted">Fetching video data...</p>
-      </div>
-      <div class="card glass-soft">
-        <div class="video-placeholder" style="height: 200px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #c5cce6;">
-          <i class="bi bi-youtube" style="font-size: 2rem;"></i>
+        <div class="story-body">
+          <div class="story-title">Worship &amp; Praise Services</div>
+          <div class="story-meta">Publications &rarr; Photo Albums</div>
         </div>
-        <h3 style="margin-top:10px">Loading...</h3>
-        <p class="muted">Fetching video data...</p>
-      </div>
-      <div class="card glass-soft">
-        <div class="video-placeholder" style="height: 200px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #c5cce6;">
-          <i class="bi bi-youtube" style="font-size: 2rem;"></i>
+      </a>
+
+      <!-- Photo album card 3 -->
+      <a class="story-card" href="publications.html">
+        <div class="story-thumb">
+          <img src="assets/bg2.jpg" alt="Congregation Moments">
+          <span class="story-badge story-badge-photo"><i class="fas fa-images"></i> Photos</span>
         </div>
-        <h3 style="margin-top:10px">Loading...</h3>
-        <p class="muted">Fetching video data...</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT + MAP -->
-  <section id="contact" class="section" aria-labelledby="contact-title">
-    <div class="section-title">
-      <h2 id="contact-title">Contact Us</h2>
-      <a href="contact.html">More contact options →</a>
-    </div>
-
-    <div class="grid cols-2">
-      <div class="card glass-soft">
-        <h3>Visit or Reach Out</h3>
-        <p class="muted">
-          Ubungo, Dar es Salaam, Tanzania<br/>
-          <a style="color:#fff" href="tel:+255742398600">+255 742 398 600</a> · <a style="color:#fff" href="mailto:info@etmc.org">info@etmc.org</a><br/>
-          WhatsApp: <a style="color:#fff" href="https://wa.me/255742398600" target="_blank" rel="noopener">+255 742 398 600</a>
-        </p>
-        <p class="muted">Service Times:<br/>
-          Wed: 6:00 PM - 7:00 PM<br/>
-          Sat: 4:00 PM - 6:00 PM<br/>
-          Sun: 9:00 AM - 3:00 PM
-        </p>
-      </div>
-      <div class="card glass-soft">
-        <!-- Replace with your Google Maps embed -->
-        <iframe
-          title="Church location map"
-          loading="lazy"
-          style="border:0; width:100%; height:300px; border-radius:12px"
-          allowfullscreen
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.7011818848173!2d39.2058714!3d-6.8061577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c492fd319aafb%3A0x5754399bcd4d4b8!2sUbungo%20EndTime%20Message%20Church!5e0!3m2!1sen!2stz!4v1756116179655!5m2!1sen!2stz">
-        </iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer role="contentinfo" class="glass-soft">
-    <div class="wrap">
-      <div>
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px">
-          <img src="assets/logo.png" alt="Church logo" width="36" height="36" />
-          <strong>ETMC - Ubungo</strong>
+        <div class="story-body">
+          <div class="story-title">Congregation Moments</div>
+          <div class="story-meta">Publications &rarr; Photo Albums</div>
         </div>
-        <p style="margin:0 0 15px; color:#c8d4f7; line-height:1.5; max-width:220px">
-          A Bible-believing fellowship in Ubungo proclaiming the Gospel of Jesus Christ.
-        </p>
-        <div class="social-icons" style="display:flex; gap:12px; margin-top:15px">
-          <a href="https://www.instagram.com/ubungoendtime" target="_blank" rel="noopener" aria-label="Follow us on Instagram" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1); transition:all 0.2s">
-            <i class="bi bi-instagram"></i>
-          </a>
-          <a href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener" aria-label="Subscribe to our YouTube channel" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1); transition:all 0.2s">
-            <i class="bi bi-youtube"></i>
-          </a>
-          <a href="https://wa.me/255742398600" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp" style="color:#d7e4ff; font-size:1.2rem; padding:8px; border-radius:8px; background:rgba(255,255,255,.1); transition:all 0.2s">
-            <i class="bi bi-whatsapp"></i>
-          </a>
+      </a>
+
+      <!-- YouTube video card 1 -->
+      <a class="story-card story-card-video" href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener">
+        <div class="story-thumb">
+          <img src="assets/pub.jpeg" alt="Sunday Service">
+          <span class="story-badge story-badge-video"><i class="fab fa-youtube"></i> YouTube</span>
+          <div class="story-play-btn"><i class="fab fa-youtube"></i></div>
         </div>
-      </div>
-      <div>
-        <strong>Quick Links</strong><br/>
-        <a href="#beliefs">What We Believe</a><br/>
-        <a href="about.html">About Us</a><br/>
-        <a href="prayer-request.html">Prayer Request</a><br/>
-        <a href="publications.html">Publications</a>
-      </div>
-      <div>
-        <strong>Contact</strong><br/>
-        <a href="mailto:info@etmc.org" style="display:flex; align-items:center; gap:8px; margin-bottom:8px">
-          <i class="bi bi-envelope" style="color:#d7e4ff; font-size:0.9rem"></i>
-          info@etmc.org
-        </a>
-        <a href="tel:+255742398600" style="display:flex; align-items:center; gap:8px; margin-bottom:8px">
-          <i class="bi bi-telephone" style="color:#d7e4ff; font-size:0.9rem"></i>
-          +255 742 398 600
-        </a>
-        <a href="https://maps.app.goo.gl/AmmTMawztCnETcYY9" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px; color:#d7e4ff; text-decoration:none">
-          <i class="bi bi-geo-alt" style="color:#d7e4ff; font-size:0.9rem"></i>
-          Ubungo, Dar es Salaam
-        </a>
-      </div>
+        <div class="story-body">
+          <div class="story-title">Sunday Service &mdash; End-Time Message</div>
+          <div class="story-meta">Watch on YouTube &rarr;</div>
+        </div>
+      </a>
+
+      <!-- YouTube video card 2 -->
+      <a class="story-card story-card-video" href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener">
+        <div class="story-thumb">
+          <img src="assets/bg1.jpg" alt="Bible Study">
+          <span class="story-badge story-badge-video"><i class="fab fa-youtube"></i> YouTube</span>
+          <div class="story-play-btn"><i class="fab fa-youtube"></i></div>
+        </div>
+        <div class="story-body">
+          <div class="story-title">Bible Study: Revelation 10:7</div>
+          <div class="story-meta">Watch on YouTube &rarr;</div>
+        </div>
+      </a>
+
+      <!-- YouTube video card 3 -->
+      <a class="story-card story-card-video" href="https://www.youtube.com/channel/UC-VyNWrLxPGvkyG8XFtlyyw" target="_blank" rel="noopener">
+        <div class="story-thumb">
+          <img src="assets/bg2.jpg" alt="Prayer Night">
+          <span class="story-badge story-badge-video"><i class="fab fa-youtube"></i> YouTube</span>
+          <div class="story-play-btn"><i class="fab fa-youtube"></i></div>
+        </div>
+        <div class="story-body">
+          <div class="story-title">Prayer &amp; Testimony Night</div>
+          <div class="story-meta">Watch on YouTube &rarr;</div>
+        </div>
+      </a>
+
     </div>
-    <div class="foot-note">© <span id="year"></span> ETMC -  Ubungo. All rights reserved.</div>
-  </footer>
+  </div>
+</section>
 
-  <script src="youtube-config.js"></script>
-  <script>
-    // Mobile nav toggle for pill menu
-    const btn = document.querySelector('.menu-btn');
-    const links = document.querySelector('.links');
-    btn?.addEventListener('click', () => {
-      const open = links.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
+<!-- NEWSLETTER BANNER — full width -->
+<div class="newsletter-banner">
+  <div class="newsletter-banner-content">
+    <span class="nl-icon">
+      <i class="fas fa-envelope"></i>
+      <span class="dot"></span>
+    </span>
+    <div class="nl-title">The Weekly Newsletter<br>With Latest News</div>
+  </div>
+</div>
 
-    // Current year
-    document.getElementById('year').textContent = new Date().getFullYear();
+<!-- SOCIAL SECTION -->
+<div class="social-section">
+  <a class="soc-btn soc-fb" href="#"><i class="fab fa-facebook-f"></i></a>
+  <a class="soc-btn soc-tw" href="#"><i class="fab fa-twitter"></i></a>
+  <a class="soc-btn soc-gp" href="#"><i class="fab fa-google-plus-g"></i></a>
+  <a class="soc-btn soc-li" href="#"><i class="fab fa-linkedin-in"></i></a>
+  <a class="soc-btn soc-pi" href="#"><i class="fab fa-pinterest-p"></i></a>
+</div>
 
-    // Maintain focus on smooth-scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click',e=>{
-        const id = a.getAttribute('href').slice(1);
-        if(!id) return;
-        const el = document.getElementById(id);
-        if(el){
-          e.preventDefault();
-          el.setAttribute('tabindex','-1'); el.focus({preventScroll:true});
-          el.scrollIntoView({behavior:'smooth', block:'start'});
-          setTimeout(()=>el.removeAttribute('tabindex'), 500);
-        }
-      })
-    });
-
-    // YouTube API Integration
-    // Configuration is loaded from youtube-config.js
-
-    // Function to format date
-    function formatDate(dateString) {
-      const date = new Date(dateString);
-      const now = new Date();
-      const diffTime = Math.abs(now - date);
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      
-      if (diffDays === 1) return 'Yesterday';
-      if (diffDays < 7) return `${diffDays} days ago`;
-      if (diffDays < 30) return `${Math.ceil(diffDays / 7)} weeks ago`;
-      if (diffDays < 365) return `${Math.ceil(diffDays / 30)} months ago`;
-      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-    }
-
-    // Function to fetch YouTube video data
-    async function fetchYouTubeVideo(videoId) {
-      try {
-        const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${YOUTUBE_API_KEY}`);
-        const data = await response.json();
-        
-        if (data.items && data.items.length > 0) {
-          const video = data.items[0];
-          const snippet = video.snippet;
-          
-          return {
-            title: snippet.title,
-            publishedAt: snippet.publishedAt,
-            thumbnail: snippet.thumbnails.medium.url,
-            channelTitle: snippet.channelTitle
-          };
-        }
-        return null;
-      } catch (error) {
-        console.error('Error fetching YouTube video:', error);
-        return null;
-      }
-    }
-
-    // Function to update video cards
-    async function updateVideoCards() {
-      const videoGrid = document.getElementById('youtube-videos');
-      if (!videoGrid) return;
-
-      // Clear existing content
-      videoGrid.innerHTML = '';
-
-      // Fetch and display each video
-      for (let i = 0; i < YOUTUBE_VIDEO_IDS.length; i++) {
-        const videoId = YOUTUBE_VIDEO_IDS[i];
-        
-        // Create loading card
-        const card = document.createElement('div');
-        card.className = 'card glass-soft';
-        card.innerHTML = `
-          <div class="video-placeholder" style="height: 200px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #c5cce6;">
-            <i class="bi bi-youtube" style="font-size: 2rem;"></i>
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img class="footer-logo-img" src="assets/logo.png" alt="ETMC-Ubungo logo">
+          <div>
+            <div class="footer-logo-text">ETMC-Ubungo</div>
+            <div style="color:#555; font-size:10px; letter-spacing:1.5px;">Ubungo End Time Message Church</div>
           </div>
-          <h3 style="margin-top:10px">Loading...</h3>
-          <p class="muted">Fetching video data...</p>
-        `;
-        videoGrid.appendChild(card);
+        </div>
+        <p class="footer-desc">We are a community of believers dedicated to spreading love, faith, and hope. Join us as we grow together in Christ and serve our community with joy.</p>
+        <div class="footer-social">
+          <a href="#" class="footer-soc-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer-soc-btn"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-soc-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-soc-btn"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Quick Links</div>
+        <ul>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Sermons</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Ministries</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Events</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Resources</div>
+        <ul>
+          <li><a href="https://branham.org" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> VGR</a></li>
+          <li><a href="https://table.branham.org" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> The Table</a></li>
+          <li><a href="https://branham.org/messageaudio" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Sermon Audio</a></li>
+          <li><a href="https://www.messagehub.info" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Message Hub</a></li>
+          <li><a href="https://play.google.com/store/apps/details?id=org.branham.table.app" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> Play Store</a></li>
+          <li><a href="https://apps.apple.com/us/app/the-table-mobile/id589296925" target="_blank" rel="noopener"><i class="fas fa-chevron-right"></i> App Store</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Service Times</div>
+        <div class="footer-service-time">
+          <p><span>Sun</span><br>9:00 AM - 3:00 PM</p><br>
+          <p><span>Wed</span><br>6:00 PM - 7:00 PM</p><br>
+          <p><span>Sat</span><br>4:00 PM - 6:00 PM</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 <a href="#">Ubungo End Time Message Church</a>. All Rights Reserved.</div>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-        // Fetch video data
-        const videoData = await fetchYouTubeVideo(videoId);
-        
-        if (videoData) {
-          // Update card with real data
-          card.innerHTML = `
-            <iframe 
-              loading="lazy" 
-              src="https://www.youtube.com/embed/${videoId}" 
-              title="${videoData.title}"
-              style="width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#000">
-            </iframe>
-            <h3 style="margin-top:10px">${videoData.title}</h3>
-            <p class="muted">${formatDate(videoData.publishedAt)} · ${videoData.channelTitle}</p>
-          `;
-        } else {
-          // Show error state
-          card.innerHTML = `
-            <div class="video-placeholder" style="height: 200px; background: rgba(255,255,255,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #c5cce6;">
-              <i class="bi bi-exclamation-triangle" style="font-size: 2rem;"></i>
-            </div>
-            <h3 style="margin-top:10px">Video Unavailable</h3>
-            <p class="muted">Could not load video data</p>
-          `;
-        }
-      }
-    }
+<script>
+  // Nav scroll
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 80));
 
-    // Initialize video cards when page loads
-    if (YOUTUBE_API_KEY !== 'YOUR_API_KEY_HERE') {
-      updateVideoCards();
-    } else {
-      console.warn('Please set your YouTube API key to load video data');
-    }
-  </script>
-
-  <!-- JSON-LD (update fields) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Church",
-    "name":"ETMC -  Ubungo",
-    "url":"https://ETMC -  Ubungo.org",
-    "logo":"https://ETMC -  Ubungo.org/assets/logo.png",
-    "address":{"@type":"PostalAddress","addressCountry":"TZ"},
-    "telephone":"+255700000000"
+  // Hero image slideshow
+  const slides = document.querySelectorAll('.hero-slide');
+  let current = 0;
+  function showSlide(idx) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[idx].classList.add('active');
+    current = idx;
   }
-  </script>
+  showSlide(0);
+  let slideTimer = setInterval(() => showSlide((current + 1) % slides.length), 5000);
+
+  const arrowBtns = document.querySelectorAll('.slider-btn');
+  arrowBtns[0]?.addEventListener('click', () => {
+    clearInterval(slideTimer);
+    showSlide((current - 1 + slides.length) % slides.length);
+    slideTimer = setInterval(() => showSlide((current + 1) % slides.length), 5000);
+  });
+  arrowBtns[1]?.addEventListener('click', () => {
+    clearInterval(slideTimer);
+    showSlide((current + 1) % slides.length);
+    slideTimer = setInterval(() => showSlide((current + 1) % slides.length), 5000);
+  });
+</script>
 </body>
 </html>
